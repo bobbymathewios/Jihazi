@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Medium.ttf">
+            <string>Roboto-Medium</string>
+        </array>
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+        <array key="RobotoSlab-Regular.ttf">
+            <string>RobotoSlab-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CancelOrderViewController">
+            <connections>
+                <outlet property="actionView" destination="xOf-oO-hpb" id="tIF-Re-KO9"/>
+                <outlet property="btnBack" destination="QoT-dn-WAF" id="fJI-lJ-jBk"/>
+                <outlet property="btnBack1" destination="X4V-Zd-vUi" id="XN7-LD-uTt"/>
+                <outlet property="btnSubmit" destination="gvA-7u-CWw" id="C3b-Q7-b6c"/>
+                <outlet property="lblOrderID" destination="7Qr-f8-SOh" id="rqv-Ki-xdH"/>
+                <outlet property="lblReasonForCancel" destination="p0l-0i-6Tx" id="3OJ-e6-Pdy"/>
+                <outlet property="lblTitle" destination="76r-3Y-nog" id="nMH-F7-smy"/>
+                <outlet property="scrollObj" destination="KTg-fZ-sEL" id="Wpb-3k-PcS"/>
+                <outlet property="tblOrder" destination="yBV-Gl-MZc" id="GuW-jX-pmG"/>
+                <outlet property="topObj" destination="8DN-gU-9EF" id="Mbo-yd-Oag"/>
+                <outlet property="txtReason" destination="3rg-j2-37w" id="CK6-nb-MnA"/>
+                <outlet property="txtText" destination="dBH-kC-NZa" id="zhD-Y0-4P2"/>
+                <outlet property="txtYourComment" destination="wPO-Fu-rO9" id="ejG-zL-Sn6"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dNF-Dp-E9Q">
+                    <rect key="frame" x="0.0" y="20" width="375" height="654"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="375" id="7h1-oT-5kq"/>
+                        <constraint firstAttribute="height" constant="654" id="nyd-Xo-ci5"/>
+                    </constraints>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8DN-gU-9EF">
+                    <rect key="frame" x="0.0" y="24" width="375" height="63"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QoT-dn-WAF">
+                            <rect key="frame" x="8" y="25" width="15" height="27"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            <state key="normal" backgroundImage="index-arrow-right.png"/>
+                            <connections>
+                                <action selector="backAction:" destination="-1" eventType="touchUpInside" id="NuT-ee-DIV"/>
+                            </connections>
+                        </button>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="my-acoount-line.png" translatesAutoresizingMaskIntoConstraints="NO" id="VPI-7g-4w7">
+                            <rect key="frame" x="-20" y="62" width="414" height="1"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Cancel Order" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="76r-3Y-nog">
+                            <rect key="frame" x="51" y="28" width="278" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="20"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X4V-Zd-vUi">
+                            <rect key="frame" x="0.0" y="8" width="78" height="55"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <connections>
+                                <action selector="backAction:" destination="-1" eventType="touchUpInside" id="22f-sk-Mzb"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.989998877" green="0.7306883931" blue="0.2489235699" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="63" id="N7r-1o-jix"/>
+                        <constraint firstAttribute="width" constant="375" id="QJc-kF-d2J"/>
+                    </constraints>
+                </view>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KTg-fZ-sEL">
+                    <rect key="frame" x="0.0" y="115" width="375" height="552"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z1L-A5-ECI">
+                            <rect key="frame" x="6" y="8" width="362" height="127"/>
+                            <subviews>
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" editable="NO" text="Please let us know how you want us to handle the return by selecting the options shown below." textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dBH-kC-NZa">
+                                    <rect key="frame" x="19" y="30" width="326" height="76"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <color key="textColor" white="0.0" alpha="0.54704607670000005" colorSpace="calibratedWhite"/>
+                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                </textView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Order ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Qr-f8-SOh">
+                                    <rect key="frame" x="19" y="8" width="326" height="20"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
+                                    <color key="textColor" white="0.0" alpha="0.54704607670000005" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="127" id="zUR-tj-yfW"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xOf-oO-hpb">
+                            <rect key="frame" x="6" y="165" width="362" height="622"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Reason " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p0l-0i-6Tx">
+                                    <rect key="frame" x="20" y="19" width="325" height="20"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
+                                    <color key="textColor" white="0.0" alpha="0.54704607670000005" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="-select reason-" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3rg-j2-37w">
+                                    <rect key="frame" x="12" y="54" width="337" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <nil key="textColor"/>
+                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="-1" id="hVa-gU-V0S"/>
+                                    </connections>
+                                </textField>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gvA-7u-CWw">
+                                    <rect key="frame" x="91" y="241" width="180" height="39"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
+                                    <state key="normal" title="SUBMIT" backgroundImage="add-button.png">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="submitAction:" destination="-1" eventType="touchUpInside" id="8mw-eY-DOX"/>
+                                    </connections>
+                                </button>
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="wPO-Fu-rO9">
+                                    <rect key="frame" x="12" y="101" width="337" height="122"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <color key="textColor" white="0.0" alpha="0.54704607670000005" colorSpace="calibratedWhite"/>
+                                    <fontDescription key="fontDescription" name="RobotoSlab-Regular" family="Roboto Slab" pointSize="15"/>
+                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="-1" id="oLt-6b-6HI"/>
+                                    </connections>
+                                </textView>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="default" rowHeight="61" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="yBV-Gl-MZc">
+                            <rect key="frame" x="6" y="116" width="363" height="45"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <outlet property="dataSource" destination="-1" id="q9d-RF-XMj"/>
+                                <outlet property="delegate" destination="-1" id="Sao-oR-4jk"/>
+                            </connections>
+                        </tableView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="z1L-A5-ECI" firstAttribute="leading" secondItem="KTg-fZ-sEL" secondAttribute="leading" constant="6" id="5fL-u2-6AN"/>
+                        <constraint firstAttribute="bottom" secondItem="z1L-A5-ECI" secondAttribute="bottom" constant="417" id="S5X-Fe-NUj"/>
+                        <constraint firstItem="z1L-A5-ECI" firstAttribute="centerX" secondItem="KTg-fZ-sEL" secondAttribute="centerX" id="V6h-IJ-Fjx"/>
+                        <constraint firstItem="z1L-A5-ECI" firstAttribute="top" secondItem="KTg-fZ-sEL" secondAttribute="topMargin" id="W2h-ju-rbQ"/>
+                        <constraint firstAttribute="trailing" secondItem="z1L-A5-ECI" secondAttribute="trailing" constant="7" id="obO-HS-jRj"/>
+                    </constraints>
+                </scrollView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="KTg-fZ-sEL" firstAttribute="bottom" secondItem="xE3-3H-iIe" secondAttribute="bottom" id="JCb-DU-jrQ"/>
+                <constraint firstItem="dNF-Dp-E9Q" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="Qoc-OK-1af"/>
+                <constraint firstItem="dNF-Dp-E9Q" firstAttribute="trailing" secondItem="xE3-3H-iIe" secondAttribute="trailing" id="XVA-4q-feb"/>
+                <constraint firstItem="KTg-fZ-sEL" firstAttribute="trailing" secondItem="8DN-gU-9EF" secondAttribute="trailing" id="YBd-OA-Nsd"/>
+                <constraint firstItem="KTg-fZ-sEL" firstAttribute="leading" secondItem="8DN-gU-9EF" secondAttribute="leading" id="llY-bq-fgt"/>
+                <constraint firstItem="KTg-fZ-sEL" firstAttribute="trailing" secondItem="dNF-Dp-E9Q" secondAttribute="trailing" id="okH-fn-XgY"/>
+                <constraint firstItem="KTg-fZ-sEL" firstAttribute="top" secondItem="8DN-gU-9EF" secondAttribute="bottom" constant="28" id="qSH-ko-cYf"/>
+                <constraint firstItem="dNF-Dp-E9Q" firstAttribute="leading" secondItem="xE3-3H-iIe" secondAttribute="leading" id="qai-Or-W01"/>
+                <constraint firstItem="8DN-gU-9EF" firstAttribute="top" secondItem="xE3-3H-iIe" secondAttribute="top" constant="4" id="r3v-qa-c07"/>
+                <constraint firstItem="KTg-fZ-sEL" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="115" id="sTX-P2-Qkb"/>
+                <constraint firstItem="KTg-fZ-sEL" firstAttribute="top" secondItem="8DN-gU-9EF" secondAttribute="bottom" constant="28" id="soK-cX-8rA"/>
+                <constraint firstItem="KTg-fZ-sEL" firstAttribute="leading" secondItem="dNF-Dp-E9Q" secondAttribute="leading" id="uMa-Ma-lTJ"/>
+                <constraint firstItem="dNF-Dp-E9Q" firstAttribute="bottom" secondItem="xE3-3H-iIe" secondAttribute="bottom" constant="7" id="vdH-tT-jlt"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="xE3-3H-iIe"/>
+            <point key="canvasLocation" x="-182.5" y="-306.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="add-button.png" width="123" height="40"/>
+        <image name="index-arrow-right.png" width="48" height="82"/>
+        <image name="my-acoount-line.png" width="1080" height="2"/>
+    </resources>
+</document>

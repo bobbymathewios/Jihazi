@@ -1,0 +1,21 @@
+target “Jihazi” do
+platform :ios, ‘9.0’
+pod 'SDWebImage', '~>3.8'
+pod 'SDWebImage/WebP'
+pod 'JVFloatLabeledTextField'
+pod 'StartSDK', :git => 'https://github.com/payfort/start-ios-sdk.git'
+pod 'FBSDKCoreKit'
+pod 'FBSDKLoginKit'
+pod 'FBSDKShareKit'
+pod 'GoogleSignIn'
+pod 'OpenSans'
+pod 'RESideMenu', '~> 4.0.7'
+pod 'AlgoliaSearch-Client', '~> 3.5'
+pod 'AFNetworking', '~> 2.0'
+pod 'Firebase/Core'
+pod 'ZDCChat'
+pod 'Firebase/Performance'
+pod 'Fabric', '~> 1.7.6'
+pod 'Crashlytics', '~> 3.10.1'
+use_frameworks!
+end

@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Medium.ttf">
+            <string>Roboto-Medium</string>
+        </array>
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+        <array key="RobotoSlab-Regular.ttf">
+            <string>RobotoSlab-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CartViewController">
+            <connections>
+                <outlet property="bottomView" destination="G9F-85-CS9" id="Mhn-pb-KdX"/>
+                <outlet property="brnEmptyShop" destination="iB2-1e-orW" id="sHj-xj-SCn"/>
+                <outlet property="btnApp" destination="gTK-S2-aU0" id="bdV-1h-AaG"/>
+                <outlet property="btnCan" destination="WXr-rx-hqX" id="rNI-i8-re0"/>
+                <outlet property="btnCheckout" destination="mfh-Jn-Qav" id="Odf-iO-4XL"/>
+                <outlet property="btnClose" destination="W2K-0K-fiR" id="UbP-Mb-EmS"/>
+                <outlet property="cH" destination="SeE-bj-WGn" id="Y6f-9h-FI8"/>
+                <outlet property="emptyView" destination="Kc6-Sj-lxh" id="nx0-sm-Jof"/>
+                <outlet property="giftView" destination="C0T-ph-X8g" id="prw-sx-R6y"/>
+                <outlet property="lblAmt" destination="Xbg-x8-I4r" id="ZwN-PF-eWU"/>
+                <outlet property="lblCount" destination="GIc-t2-rna" id="9Kz-8j-QBK"/>
+                <outlet property="lblEmptyCart" destination="SyF-wA-0pf" id="U6c-k0-ZN6"/>
+                <outlet property="lblPromoTitle" destination="sak-RC-gFc" id="Ygd-8j-2wY"/>
+                <outlet property="lblTotLbl" destination="7hc-Ex-1GQ" id="puu-SW-2V1"/>
+                <outlet property="pW" destination="e1Q-K8-Q1t" id="mgn-9Y-MIo"/>
+                <outlet property="redeemPromoView" destination="wdj-7R-5Bc" id="x1K-SX-uVz"/>
+                <outlet property="scrollViewObj" destination="LhJ-ms-SkC" id="Atv-27-KoO"/>
+                <outlet property="tblCart" destination="QQg-Pf-UJQ" id="oVh-L0-BkW"/>
+                <outlet property="tblGift" destination="bKR-1m-J0h" id="T93-z9-I0W"/>
+                <outlet property="tblPrice" destination="7Om-cP-Oxj" id="8da-58-7M6"/>
+                <outlet property="tblcatH" destination="XBY-Ve-gHx" id="aB0-sv-29a"/>
+                <outlet property="tblpriceh" destination="386-8b-945" id="6rP-bb-aPT"/>
+                <outlet property="topHeadView" destination="U3R-nB-S4m" id="xiw-vu-cVi"/>
+                <outlet property="txtPromoCodeValue" destination="6CG-zN-wdR" id="cbp-Gz-lvB"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Kja-jN-yNM">
+                    <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="647" id="SpC-md-XZP"/>
+                        <constraint firstAttribute="width" constant="375" id="w8P-AN-gFp"/>
+                    </constraints>
+                </imageView>
+                <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kc6-Sj-lxh">
+                    <rect key="frame" x="0.0" y="39" width="375" height="622"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="emptycart.png" translatesAutoresizingMaskIntoConstraints="NO" id="uV4-JQ-Ny9">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="622"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Your cart is empty!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SyF-wA-0pf">
+                            <rect key="frame" x="74" y="317" width="227" height="21"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iB2-1e-orW">
+                            <rect key="frame" x="128" y="357" width="120" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                            <state key="normal" title="SHOP NOW" backgroundImage="add-button.png">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="shopNowAction:" destination="-1" eventType="touchUpInside" id="ggD-9P-HDD"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="375" id="ZAy-2a-nEN"/>
+                        <constraint firstAttribute="height" constant="622" id="oRh-j1-Ck5"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U3R-nB-S4m">
+                    <rect key="frame" x="0.0" y="20" width="375" height="63"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="My Cart " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GIc-t2-rna">
+                            <rect key="frame" x="56" y="28" width="258" height="28"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="20"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="my-acoount-line.png" translatesAutoresizingMaskIntoConstraints="NO" id="wFx-Nd-jZu">
+                            <rect key="frame" x="-20" y="62" width="414" height="1"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W2K-0K-fiR">
+                            <rect key="frame" x="8" y="27" width="15" height="27"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" backgroundImage="index-arrow-right.png"/>
+                            <connections>
+                                <action selector="closeAction:" destination="-1" eventType="touchUpInside" id="R6b-oP-nhW"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zw4-Wp-cl2">
+                            <rect key="frame" x="0.0" y="14" width="77" height="47"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <connections>
+                                <action selector="closeAction:" destination="-1" eventType="touchUpInside" id="lK2-uS-Gg6"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.989998877" green="0.7306883931" blue="0.2489235699" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="63" id="511-f8-rQ4"/>
+                        <constraint firstAttribute="width" constant="375" id="zrg-7z-sBM"/>
+                    </constraints>
+                </view>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LhJ-ms-SkC">
+                    <rect key="frame" x="0.0" y="86" width="375" height="529"/>
+                    <subviews>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="172" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QQg-Pf-UJQ">
+                            <rect key="frame" x="1" y="5" width="375" height="306"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="375" id="SeE-bj-WGn"/>
+                                <constraint firstAttribute="height" constant="306" id="XBY-Ve-gHx"/>
+                            </constraints>
+                            <connections>
+                                <outlet property="dataSource" destination="-1" id="zA5-u1-2VZ"/>
+                                <outlet property="delegate" destination="-1" id="kew-om-5P2"/>
+                            </connections>
+                        </tableView>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="44" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7Om-cP-Oxj">
+                            <rect key="frame" x="1" y="319" width="375" height="202"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="202" id="386-8b-945"/>
+                                <constraint firstAttribute="width" constant="375" id="e1Q-K8-Q1t"/>
+                            </constraints>
+                            <connections>
+                                <outlet property="dataSource" destination="-1" id="3wH-6G-KQG"/>
+                                <outlet property="delegate" destination="-1" id="iJX-oi-8Qn"/>
+                            </connections>
+                        </tableView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="375" id="Aem-FU-tDY"/>
+                        <constraint firstAttribute="height" constant="529" id="B22-q8-JfR"/>
+                        <constraint firstAttribute="trailing" secondItem="QQg-Pf-UJQ" secondAttribute="trailing" constant="-1" id="Jiy-py-lQg"/>
+                        <constraint firstItem="QQg-Pf-UJQ" firstAttribute="leading" secondItem="LhJ-ms-SkC" secondAttribute="leading" constant="1" id="Jkh-uC-ufX"/>
+                        <constraint firstItem="7Om-cP-Oxj" firstAttribute="top" secondItem="QQg-Pf-UJQ" secondAttribute="bottom" constant="8" symbolic="YES" id="KN9-zs-VwC"/>
+                        <constraint firstAttribute="trailing" secondItem="7Om-cP-Oxj" secondAttribute="trailing" constant="-1" id="W71-ey-fin"/>
+                        <constraint firstAttribute="bottom" secondItem="7Om-cP-Oxj" secondAttribute="bottom" constant="8" id="Wbh-bv-p6i"/>
+                        <constraint firstItem="7Om-cP-Oxj" firstAttribute="leading" secondItem="LhJ-ms-SkC" secondAttribute="leading" constant="1" id="sbI-pL-bQc"/>
+                        <constraint firstItem="QQg-Pf-UJQ" firstAttribute="top" secondItem="LhJ-ms-SkC" secondAttribute="top" constant="5" id="y0I-YV-kyw"/>
+                    </constraints>
+                </scrollView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G9F-85-CS9">
+                    <rect key="frame" x="-18" y="582" width="402" height="79"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="box.png" translatesAutoresizingMaskIntoConstraints="NO" id="vUa-w8-QUg">
+                            <rect key="frame" x="8" y="32" width="400" height="56"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xbg-x8-I4r">
+                            <rect key="frame" x="40" y="61" width="177" height="20"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mfh-Jn-Qav">
+                            <rect key="frame" x="227" y="41" width="160" height="38"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="16"/>
+                            <state key="normal" title="PLACE ORDER" backgroundImage="add-button.png">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="checkoutAction:" destination="-1" eventType="touchUpInside" id="Jc3-fK-qxZ"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total Amount" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7hc-Ex-1GQ">
+                            <rect key="frame" x="40" y="39" width="95" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="11"/>
+                            <color key="textColor" red="0.31369256969999998" green="0.31374275680000002" blue="0.31368109579999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="402" id="Dv9-QA-rPl"/>
+                        <constraint firstAttribute="height" constant="79" id="fdp-xd-OBc"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="Kc6-Sj-lxh" firstAttribute="top" secondItem="IoN-BV-U69" secondAttribute="top" constant="19" id="3jA-XF-0R4"/>
+                <constraint firstItem="Kja-jN-yNM" firstAttribute="bottom" secondItem="IoN-BV-U69" secondAttribute="bottom" id="3wq-fi-JoV"/>
+                <constraint firstItem="LhJ-ms-SkC" firstAttribute="trailing" secondItem="IoN-BV-U69" secondAttribute="trailing" id="Bhg-ww-f3N"/>
+                <constraint firstItem="Kja-jN-yNM" firstAttribute="bottom" secondItem="IoN-BV-U69" secondAttribute="bottom" id="C8U-VP-pPO"/>
+                <constraint firstItem="IoN-BV-U69" firstAttribute="bottom" secondItem="G9F-85-CS9" secondAttribute="bottom" constant="6" id="Dnu-T2-uAz"/>
+                <constraint firstItem="Kja-jN-yNM" firstAttribute="leading" secondItem="Kc6-Sj-lxh" secondAttribute="leading" id="E1A-Id-kFi"/>
+                <constraint firstItem="LhJ-ms-SkC" firstAttribute="top" secondItem="U3R-nB-S4m" secondAttribute="bottom" constant="3" id="KBs-ig-DJv"/>
+                <constraint firstItem="LhJ-ms-SkC" firstAttribute="centerY" secondItem="Kc6-Sj-lxh" secondAttribute="centerY" id="MhK-wB-LOO"/>
+                <constraint firstItem="Kja-jN-yNM" firstAttribute="trailing" secondItem="LhJ-ms-SkC" secondAttribute="trailing" id="QG2-hf-SUJ"/>
+                <constraint firstItem="U3R-nB-S4m" firstAttribute="top" secondItem="IoN-BV-U69" secondAttribute="top" id="QrZ-zQ-T6l"/>
+                <constraint firstItem="Kc6-Sj-lxh" firstAttribute="trailing" secondItem="IoN-BV-U69" secondAttribute="trailing" id="Yfs-oE-UnH"/>
+                <constraint firstItem="Kja-jN-yNM" firstAttribute="leading" secondItem="IoN-BV-U69" secondAttribute="leading" id="bNl-Wt-5lw"/>
+                <constraint firstItem="Kja-jN-yNM" firstAttribute="trailing" secondItem="IoN-BV-U69" secondAttribute="trailing" id="deQ-ny-6LN"/>
+                <constraint firstItem="LhJ-ms-SkC" firstAttribute="top" secondItem="U3R-nB-S4m" secondAttribute="bottom" constant="3" id="fj5-wh-48j"/>
+                <constraint firstItem="IoN-BV-U69" firstAttribute="bottom" secondItem="LhJ-ms-SkC" secondAttribute="bottom" constant="52" id="hUp-Mo-e1H"/>
+                <constraint firstItem="U3R-nB-S4m" firstAttribute="trailing" secondItem="IoN-BV-U69" secondAttribute="trailing" id="idO-Q4-dPl"/>
+                <constraint firstAttribute="trailing" secondItem="G9F-85-CS9" secondAttribute="trailing" constant="-9" id="kqK-R2-Fem"/>
+                <constraint firstItem="Kja-jN-yNM" firstAttribute="top" secondItem="U3R-nB-S4m" secondAttribute="top" id="lQl-DB-3hY"/>
+                <constraint firstItem="G9F-85-CS9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="-18" id="nfm-f1-A81"/>
+                <constraint firstItem="IoN-BV-U69" firstAttribute="bottom" secondItem="G9F-85-CS9" secondAttribute="bottom" constant="6" id="pZa-O1-gEG"/>
+                <constraint firstItem="Kc6-Sj-lxh" firstAttribute="leading" secondItem="IoN-BV-U69" secondAttribute="leading" id="sFQ-MA-EwG"/>
+                <constraint firstItem="LhJ-ms-SkC" firstAttribute="leading" secondItem="IoN-BV-U69" secondAttribute="leading" id="tpE-ev-ALa"/>
+                <constraint firstItem="U3R-nB-S4m" firstAttribute="leading" secondItem="IoN-BV-U69" secondAttribute="leading" id="ttS-gd-lN9"/>
+                <constraint firstItem="Kja-jN-yNM" firstAttribute="top" secondItem="IoN-BV-U69" secondAttribute="top" id="xVY-xg-hJ4"/>
+                <constraint firstItem="Kja-jN-yNM" firstAttribute="leading" secondItem="LhJ-ms-SkC" secondAttribute="leading" id="xjw-hZ-BGc"/>
+                <constraint firstItem="Kja-jN-yNM" firstAttribute="trailing" secondItem="Kc6-Sj-lxh" secondAttribute="trailing" id="yuY-9b-64P"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="IoN-BV-U69"/>
+            <point key="canvasLocation" x="-687.5" y="-366.5"/>
+        </view>
+        <view contentMode="scaleToFill" id="wdj-7R-5Bc">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4md-7v-lMY">
+                    <rect key="frame" x="16" y="176" width="343" height="228"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Promo Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sak-RC-gFc">
+                            <rect key="frame" x="22" y="10" width="299" height="51"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" name="RobotoSlab-Regular" family="Roboto Slab" pointSize="17"/>
+                            <color key="textColor" red="0.45093518500000002" green="0.45100402830000003" blue="0.4509194493" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter promo code?" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6CG-zN-wdR">
+                            <rect key="frame" x="22" y="69" width="299" height="42"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" name="RobotoSlab-Regular" family="Roboto Slab" pointSize="15"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="Puh-a9-h7p"/>
+                            </connections>
+                        </textField>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b0I-p6-CBI">
+                            <rect key="frame" x="19" y="115" width="293" height="2"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="0.66666666669999997" alpha="0.2552178376" colorSpace="calibratedWhite"/>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gTK-S2-aU0">
+                            <rect key="frame" x="175" y="160" width="134" height="38"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" name="RobotoSlab-Regular" family="Roboto Slab" pointSize="19"/>
+                            <state key="normal" title="Apply" backgroundImage="add-button.png">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="ApplyAction:" destination="-1" eventType="touchUpInside" id="Svi-JR-SIT"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WXr-rx-hqX">
+                            <rect key="frame" x="33" y="160" width="134" height="38"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" name="RobotoSlab-Regular" family="Roboto Slab" pointSize="15"/>
+                            <state key="normal" title="Cancel">
+                                <color key="titleColor" red="0.45093518500000002" green="0.45100402830000003" blue="0.4509194493" alpha="0.52175524640000004" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="canCelPromoAction:" destination="-1" eventType="touchUpInside" id="dGa-IW-TB5"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.43365077549999997" colorSpace="calibratedWhite"/>
+            <viewLayoutGuide key="safeArea" id="5dZ-3X-LfO"/>
+            <point key="canvasLocation" x="-243" y="-367"/>
+        </view>
+        <view contentMode="scaleToFill" id="C0T-ph-X8g">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bKR-1m-J0h">
+                    <rect key="frame" x="16" y="73" width="330" height="537"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="ko5-5B-Q3h"/>
+                        <outlet property="delegate" destination="-1" id="PUp-FU-I1r"/>
+                    </connections>
+                </tableView>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uiU-Nk-f88">
+                    <rect key="frame" x="324" y="51" width="46" height="47"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" backgroundImage="closes.png"/>
+                    <connections>
+                        <action selector="closeActionGift:" destination="-1" eventType="touchUpInside" id="tGd-jU-cuX"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.43365077549999997" colorSpace="calibratedWhite"/>
+            <viewLayoutGuide key="safeArea" id="Iyi-kp-g15"/>
+            <point key="canvasLocation" x="206.5" y="-368.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="add-button.png" width="123" height="40"/>
+        <image name="box.png" width="336" height="301"/>
+        <image name="closes.png" width="68" height="68"/>
+        <image name="emptycart.png" width="1080" height="1922"/>
+        <image name="index-arrow-right.png" width="48" height="82"/>
+        <image name="my-acoount-line.png" width="1080" height="2"/>
+    </resources>
+</document>

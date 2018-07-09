@@ -1,0 +1,6 @@
+framework module Pods_Jihazi {
+  umbrella header "Pods-Jihazi-umbrella.h"
+
+  export *
+  module * { export * }
+}

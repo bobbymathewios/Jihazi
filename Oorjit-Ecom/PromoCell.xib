@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Medium.ttf">
+            <string>Roboto-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="44" id="KGk-i7-Jjw" customClass="PromoCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Apply Promo Code" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A3s-Lc-CYt">
+                        <rect key="frame" x="40" y="9" width="220" height="17"/>
+                        <nil key="textColor"/>
+                        <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="15"/>
+                        <textInputTraits key="textInputTraits"/>
+                    </textField>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="promocoupn.png" translatesAutoresizingMaskIntoConstraints="NO" id="d3o-OJ-WLD">
+                        <rect key="frame" x="7" y="7" width="28" height="23"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="28" id="Og1-HT-TaV"/>
+                        </constraints>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RuX-Yq-Pcu">
+                        <rect key="frame" x="296" y="9" width="14" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="14" id="iKM-o1-iCN"/>
+                        </constraints>
+                        <state key="normal" backgroundImage="promoarrow.png"/>
+                    </button>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line111.png" translatesAutoresizingMaskIntoConstraints="NO" id="ash-De-Ip4">
+                        <rect key="frame" x="0.0" y="42" width="320" height="1"/>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="A3s-Lc-CYt" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-2" id="9XX-fn-1nb"/>
+                    <constraint firstAttribute="trailing" secondItem="ash-De-Ip4" secondAttribute="trailing" id="FIU-zZ-ZZm"/>
+                    <constraint firstItem="d3o-OJ-WLD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-4" id="GNv-bl-qx6"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="RuX-Yq-Pcu" secondAttribute="trailing" constant="-6" id="Ilz-5a-dxZ"/>
+                    <constraint firstItem="d3o-OJ-WLD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-9" id="QSa-aR-Ttn"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="ash-De-Ip4" secondAttribute="bottom" constant="-10" id="VGh-J6-Kvu"/>
+                    <constraint firstItem="A3s-Lc-CYt" firstAttribute="leading" secondItem="d3o-OJ-WLD" secondAttribute="trailing" constant="5" id="Vil-Jy-nGx"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="d3o-OJ-WLD" secondAttribute="bottom" constant="3" id="XHd-l9-XIH"/>
+                    <constraint firstItem="RuX-Yq-Pcu" firstAttribute="leading" secondItem="A3s-Lc-CYt" secondAttribute="trailing" constant="36" id="cQx-bT-Z43"/>
+                    <constraint firstItem="ash-De-Ip4" firstAttribute="top" secondItem="d3o-OJ-WLD" secondAttribute="bottom" constant="12" id="cyA-EG-fTb"/>
+                    <constraint firstItem="RuX-Yq-Pcu" firstAttribute="top" secondItem="A3s-Lc-CYt" secondAttribute="top" id="dTH-75-I8k"/>
+                    <constraint firstItem="ash-De-Ip4" firstAttribute="top" secondItem="A3s-Lc-CYt" secondAttribute="bottom" constant="16" id="hya-1t-3mR"/>
+                    <constraint firstItem="RuX-Yq-Pcu" firstAttribute="centerY" secondItem="d3o-OJ-WLD" secondAttribute="centerY" constant="1.5" id="rqI-bn-QA7"/>
+                    <constraint firstItem="ash-De-Ip4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="u3S-cn-rWM"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="txt" destination="A3s-Lc-CYt" id="FeR-Ib-Bet"/>
+            </connections>
+            <point key="canvasLocation" x="25" y="45"/>
+        </tableViewCell>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="44" id="aEf-O7-huW" customClass="PromoCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aEf-O7-huW" id="fsJ-Gd-q0l">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="تطبيق الرمز الترويجي" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TuO-zo-8A9">
+                        <rect key="frame" x="40" y="9" width="220" height="17"/>
+                        <nil key="textColor"/>
+                        <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="15"/>
+                        <textInputTraits key="textInputTraits"/>
+                    </textField>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="promocoupn.png" translatesAutoresizingMaskIntoConstraints="NO" id="M43-XB-fzk">
+                        <rect key="frame" x="287" y="7" width="30" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="Tqa-re-cw3"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line111.png" translatesAutoresizingMaskIntoConstraints="NO" id="OVr-AZ-Es7">
+                        <rect key="frame" x="0.0" y="40" width="320" height="3"/>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DPL-hh-p5z">
+                        <rect key="frame" x="6" y="9" width="14" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="14" id="7bp-lX-Sta"/>
+                        </constraints>
+                        <state key="normal" backgroundImage="index-arrow-right.png"/>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottomMargin" secondItem="M43-XB-fzk" secondAttribute="bottom" constant="1" id="4KQ-4l-MhI"/>
+                    <constraint firstItem="OVr-AZ-Es7" firstAttribute="top" secondItem="M43-XB-fzk" secondAttribute="bottom" constant="8" symbolic="YES" id="8Bk-AD-4cN"/>
+                    <constraint firstItem="TuO-zo-8A9" firstAttribute="top" secondItem="fsJ-Gd-q0l" secondAttribute="topMargin" constant="-2" id="8Yi-tB-OwX"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="DPL-hh-p5z" secondAttribute="trailing" constant="284" id="LNl-IZ-iyC"/>
+                    <constraint firstItem="DPL-hh-p5z" firstAttribute="leading" secondItem="TuO-zo-8A9" secondAttribute="trailing" constant="-254" id="MBG-6J-YW3"/>
+                    <constraint firstItem="M43-XB-fzk" firstAttribute="leading" secondItem="fsJ-Gd-q0l" secondAttribute="leadingMargin" constant="271" id="apo-0N-Qtd"/>
+                    <constraint firstItem="OVr-AZ-Es7" firstAttribute="top" secondItem="TuO-zo-8A9" secondAttribute="bottom" constant="14" id="brA-YA-Mo4"/>
+                    <constraint firstItem="DPL-hh-p5z" firstAttribute="centerY" secondItem="M43-XB-fzk" secondAttribute="centerY" id="e9v-DH-HPh"/>
+                    <constraint firstItem="DPL-hh-p5z" firstAttribute="top" secondItem="TuO-zo-8A9" secondAttribute="top" id="g9e-lv-GT7"/>
+                    <constraint firstItem="M43-XB-fzk" firstAttribute="top" secondItem="fsJ-Gd-q0l" secondAttribute="topMargin" constant="-4" id="h8H-gI-yb2"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="OVr-AZ-Es7" secondAttribute="bottom" constant="-10" id="hlH-iI-XiD"/>
+                    <constraint firstItem="OVr-AZ-Es7" firstAttribute="leading" secondItem="fsJ-Gd-q0l" secondAttribute="leading" id="tiv-6T-OPk"/>
+                    <constraint firstAttribute="trailing" secondItem="OVr-AZ-Es7" secondAttribute="trailing" id="vaK-IW-Swk"/>
+                    <constraint firstItem="TuO-zo-8A9" firstAttribute="leading" secondItem="M43-XB-fzk" secondAttribute="trailing" constant="-277" id="xTf-Wl-C9b"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="Gp6-L6-kUH"/>
+            <connections>
+                <outlet property="txt" destination="TuO-zo-8A9" id="ydX-qK-Y0e"/>
+            </connections>
+            <point key="canvasLocation" x="31" y="127"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="index-arrow-right.png" width="48" height="82"/>
+        <image name="line111.png" width="1244" height="2"/>
+        <image name="promoarrow.png" width="43" height="56"/>
+        <image name="promocoupn.png" width="87" height="83"/>
+    </resources>
+</document>
