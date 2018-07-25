@@ -49,7 +49,7 @@
          self.view.transform=CGAffineTransformMakeScale(-1, 1);
         self.lblTitle.transform=CGAffineTransformMakeScale(-1, 1);
 
-        self.lblTitle.text=@"طلبي";
+        self.lblTitle.text=@"طلباتي";
     }
     if([_type isEqualToString:@"Account"])
     {
@@ -66,7 +66,7 @@
     {
         if(appDelObj.isArabic==YES )
         {
-            self.lblTitle.text=@"طلبي";
+            self.lblTitle.text=@"طلباتي";
         }
         else
         {
@@ -361,7 +361,7 @@
                 listCell.lblViewmore.alpha=0;
                 if (appDelObj.isArabic)
                 {
-                    [listCell.btnHelp setTitle:@"عرض تفاصيل الطلب" forState:UIControlStateNormal];
+                    [listCell.btnHelp setTitle:@"تفاصيل الطلب" forState:UIControlStateNormal];
                     [listCell.btnCancel setTitle:@"أضف تعليقك" forState:UIControlStateNormal];
                 }
                 else{
@@ -529,7 +529,7 @@
                         listCell.btnHelp.tag=indexPath.section;
                         listCell.btnCancel.tag=indexPath.section;
                         if (appDelObj.isArabic) {
-                            [listCell.btnCancel setTitle:@"عرض تفاصيل الطلب" forState:UIControlStateNormal];
+                            [listCell.btnCancel setTitle:@"تفاصيل الطلب" forState:UIControlStateNormal];
                             
                         }
                         else
@@ -705,7 +705,7 @@
         
     }
     else{
-        if ([title isEqualToString:@"View Order"]||[title isEqualToString:@"عرض تفاصيل الطلب"])
+        if ([title isEqualToString:@"View Order"]||[title isEqualToString:@"تفاصيل الطلب"])
         {
             OrderDetailsViewController *listDetail=[[OrderDetailsViewController alloc]init];
             if (appDelObj.isArabic) {

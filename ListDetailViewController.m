@@ -3114,7 +3114,7 @@ productOptionID=@"";
                 listCell.lbltitle.textAlignment=NSTextAlignmentRight;
                 listCell.txtDes.textAlignment=NSTextAlignmentRight;
 
-                listCell.already.text=@"أنت تراجع بالفعل هذا المنتج";
+                listCell.already.text=@"لقد قمت بتقيم هذا المنتج";
             }
             else
             {
@@ -3209,7 +3209,7 @@ productOptionID=@"";
                     listCell.btnR.transform = CGAffineTransformMakeScale(-1, 1);
                     self.lblName.transform = CGAffineTransformMakeScale(-1, 1);
                     [listCell.btnR setBackgroundImage:[UIImage imageNamed:@"write-a-review-ar.png"] forState:UIControlStateNormal];
-                    listCell.already.text=@"أنت تراجع بالفعل هذا المنتج";
+                    listCell.already.text=@"لقد قمت بتقيم هذا المنتج";
                 }
                 else
                 {

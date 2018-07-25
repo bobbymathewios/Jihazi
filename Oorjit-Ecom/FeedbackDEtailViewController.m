@@ -994,7 +994,7 @@ oveall=@"3";         [_s1 setImage:checkImage forState:UIControlStateNormal];
                 NSString *msg=@"Please give all mandatory values";
                 NSString *ok=@"Ok";
                 if (appDelObj.isArabic) {
-                    msg=@"يرجى إعطاء جميع القيم الإلزامية";
+                    msg=@"جميع الحقول مطلوبة";
                     ok=@" موافق ";
                 }
                 UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:msg preferredStyle:UIAlertControllerStyleAlert];

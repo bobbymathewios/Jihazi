@@ -82,10 +82,11 @@
         self.btnwish.transform=CGAffineTransformMakeScale(-1, 1);
         self.btnMyAd.transform=CGAffineTransformMakeScale(-1, 1);
         self.lblWishCount.transform=CGAffineTransformMakeScale(-1, 1);
+        self.imgUser.transform=CGAffineTransformMakeScale(-1, 1);
 
             [self.btnMyAd setTitle:@"عنواني" forState:UIControlStateNormal];
             [self.btnwish setTitle:@"المفضلة" forState:UIControlStateNormal];
-            [self.btnmyorder setTitle:@"طلبي" forState:UIControlStateNormal];
+            [self.btnmyorder setTitle:@"طلباتي" forState:UIControlStateNormal];
             self.lblTitle.text=@"حسابي";
     
     }

@@ -225,7 +225,7 @@
 
             listCell.lbl1.text=@"تاريخ الطلب";
             listCell.lbl2.text=@"رقم الطلب";
-            listCell.lbl3.text=@"رقم طلب الإلغاء";
+            listCell.lbl3.text=@" رقم طلب الارجاع ";
             listCell.lbl4.text=@"السبب";
             listCell.lbl5.text=@"الحالة";
             listCell.lbl.text=@"تفاصيل الطلب";
@@ -235,8 +235,9 @@
             listCell.lblRdate.text=[[DataArray objectAtIndex:0 ] valueForKey:@"returnDate"];
             listCell.lblOID.text=[[DataArray objectAtIndex:0 ]valueForKey:@"masterOrderID"];
             listCell.lblRID.text=[[DataArray objectAtIndex:0 ] valueForKey:@"returnID"];
-            listCell.lblaction.text=[[DataArray objectAtIndex:0 ] valueForKey:@"actionReason"];
-            if ([[[DataArray objectAtIndex:0 ] valueForKey:@"returnStatus"] isKindOfClass:[NSNull class]]) {
+          //  listCell.lblaction.text=[[orderIemsAry objectAtIndex:0]valueForKey:@"reason"];
+            if ([[[DataArray objectAtIndex:0 ] valueForKey:@"returnStatus"] isKindOfClass:[NSNull class]])
+            {
                 
             }
             else
@@ -244,7 +245,16 @@
                 listCell.lblStatus.text=[[DataArray objectAtIndex:0 ] valueForKey:@"returnStatus"];
 
             }
-            listCell.lblReason.text=[[DataArray objectAtIndex:0]valueForKey:@"actionReason"];
+            if([[[orderIemsAry objectAtIndex:0]valueForKey:@"reason"] isKindOfClass:[NSNull class] ])
+            {
+                listCell.lblReason.alpha=0;
+                listCell.lbl4.alpha=0;
+            }
+            else
+            {
+                 listCell.lblReason.text=[[orderIemsAry objectAtIndex:0]valueForKey:@"reason"];
+            }
+           
 
         }
         return listCell;

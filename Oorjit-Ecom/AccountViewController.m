@@ -13,7 +13,7 @@
     AppDelegate *appDelObj;
     CATransition * transition;
     WebService *webServiceObj;
-    NSString *gender,*fileName,*changePassword,*type;
+    NSString *gender,*fileName,*changePassword,*type,*addImage;
     UIImage *imagePro;
     NSMutableData *responseData;
     NSArray *billingArray;
@@ -26,6 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationController.navigationBarHidden=YES;
+    //addImage=@"";
     webServiceObj=[[WebService alloc]init];
     webServiceObj.PDA=self;
     self.imgprofile.clipsToBounds=YES;
@@ -260,7 +261,14 @@
     [toolBar setItems:[NSArray arrayWithObjects:space,doneBtn, nil]];
     [self.txtDOB setInputAccessoryView:toolBar];
     self.scroll.contentOffset=CGPointMake(0, 0);
+    if([addImage isEqualToString:@"Yes"])
+    {
+        
+    }
+    else
+    {
     [self getDataFromService];
+    }
 }
 -(void)viewDidLayoutSubviews
 {
@@ -728,6 +736,7 @@
     }
 }
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+     addImage=@"Yes";
     int i = (int)buttonIndex;
     switch(i) {
         case 0:
@@ -776,6 +785,7 @@
     }
 }
 -(void)imagepickerfromGallery{
+      addImage=@"Yes";
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;
     picker.allowsEditing = YES;
@@ -805,6 +815,7 @@
                        resultBlock:resultblock
                       failureBlock:nil];
         imagePro = [info objectForKey:UIImagePickerControllerOriginalImage] ;
+        addImage=@"Yes";
         _imgprofile.image=imagePro;
     }];
 }

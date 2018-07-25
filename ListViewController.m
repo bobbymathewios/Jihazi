@@ -1311,6 +1311,7 @@ NSString *s2=[NSString stringWithFormat:@"%@",ss] ;
         double minitem;
        
         double  outStock;
+        
         if ([[[ListAryData objectAtIndex:indexPath.row ]  valueForKey:@"dealMaxBuyLimit"]isKindOfClass:[NSNull class]]) {
             minitem=1;
         }
@@ -1325,7 +1326,7 @@ NSString *s2=[NSString stringWithFormat:@"%@",ss] ;
         {
             outStock=[[[ListAryData objectAtIndex:indexPath.row ]  valueForKey:@"productOptionQuantitySum"]doubleValue];
         }
-        if (outStock<1||minitem>outStock) {
+        if (outStock<1) {
             if (appDelObj.isArabic) {
                 [cell.btnAdd setTitle:@"غير متوفر" forState:UIControlStateNormal];
             }
@@ -1364,7 +1365,7 @@ NSString *s2=[NSString stringWithFormat:@"%@",ss] ;
         {
             outStock=[[[ListAryData objectAtIndex:indexPath.row ]  valueForKey:@"productOptionQuantitySum"]doubleValue];
         }
-        if (outStock<1||minitem>outStock) {
+        if (outStock<1) {
             if (appDelObj.isArabic) {
                 [cell.btnAdd setTitle:@"غير متوفر" forState:UIControlStateNormal];
             }
@@ -1375,6 +1376,7 @@ NSString *s2=[NSString stringWithFormat:@"%@",ss] ;
         }
         else
         {
+            
             if (appDelObj.isArabic) {
                 [cell.btnAdd setTitle:@"إضافة الى العربة" forState:UIControlStateNormal];
             }
