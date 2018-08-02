@@ -100,7 +100,7 @@
     else if([self.type isEqualToString:@"Notification"])
     {
         NSString *urlStr=[NSString stringWithFormat:@"%@%@%@",appDelObj.baseURL,@"mobileapp/push/listUnread/languageID/",appDelObj.languageId];
-        NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:@"iphone",@"deviceType",appDelObj.devicetocken,@"deviceID", nil];
+        NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:@"iPhone",@"deviceType",appDelObj.devicetocken,@"deviceID", nil];
         [webServiceObj getUrlReqForPostingBaseUrl:urlStr andTextData:dicPost];
     }
     else

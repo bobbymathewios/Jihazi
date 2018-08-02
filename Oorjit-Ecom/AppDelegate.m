@@ -258,7 +258,7 @@ static NSString * const kClientID =@"1058965638207-gr0vth5hjfd38j0pdsv1hmlcbbf9d
     
     
     NSString *urlStr=[NSString stringWithFormat:@"%@%@%@",self.baseURL,@"mobileapp/Push/index/languageID/",self.languageId];
-    NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:@"iphone",@"deviceType",self.devicetocken,@"deviceToken", nil];
+    NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:@"iPhone",@"deviceType",self.devicetocken,@"deviceToken", nil];
     [webServiceObj getUrlReqForPostingBaseUrl:urlStr andTextData:dicPost];
     
     

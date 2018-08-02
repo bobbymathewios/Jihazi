@@ -292,7 +292,7 @@
         [Loading showWithStatus:@"Please wait..." maskType:SVProgressHUDMaskTypeClear Indicator:YES];
     }
     NSString *urlStr=[NSString stringWithFormat:@"%@%@%@",appDelObj.baseURL,@"mobileapp/User/account/languageID/",appDelObj.languageId];
-    NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:[[NSUserDefaults standardUserDefaults]objectForKey:@"USER_ID"],@"userID",@"iphone",@"deviceType",[[NSUserDefaults standardUserDefaults]objectForKey:@"DEVICE"],@"deviceToken", nil];
+    NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:[[NSUserDefaults standardUserDefaults]objectForKey:@"USER_ID"],@"userID",@"iPhone",@"deviceType",[[NSUserDefaults standardUserDefaults]objectForKey:@"DEVICE"],@"deviceToken", nil];
     [webServiceObj getUrlReqForPostingBaseUrl:urlStr andTextData:dicPost];
 }
 -(void)failServiceMSg
@@ -631,7 +631,7 @@
         }
         //,self.txtDOB.text,@"userDOB"
         NSString *urlStr=[NSString stringWithFormat:@"%@%@%@",appDelObj.baseURL,@"mobileapp/User/editaccount/languageID/",appDelObj.languageId];
-        NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:[[NSUserDefaults standardUserDefaults]objectForKey:@"USER_ID"],@"userID",self.txtFirstName.text,@"userFirstName",self.txtLastNmae.text,@"userLastName",self.txtMobileNumber.text,@"userPhone",@"",@"userDOB", gender,@"userGender",self.txtEmailAddress.text,@"userEmail",@"",@"userNewsletterSubscribeStatus",pushS,@"hidnotification",@"iphone",@"deviceType",[[NSUserDefaults standardUserDefaults]objectForKey:@"DEVICE"],@"deviceToken", nil];
+        NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:[[NSUserDefaults standardUserDefaults]objectForKey:@"USER_ID"],@"userID",self.txtFirstName.text,@"userFirstName",self.txtLastNmae.text,@"userLastName",self.txtMobileNumber.text,@"userPhone",@"",@"userDOB", gender,@"userGender",self.txtEmailAddress.text,@"userEmail",@"",@"userNewsletterSubscribeStatus",pushS,@"hidnotification",@"iPhone",@"deviceType",[[NSUserDefaults standardUserDefaults]objectForKey:@"DEVICE"],@"deviceToken", nil];
         NSMutableDictionary *imageParams = [NSMutableDictionary dictionaryWithObject:self.imgprofile.image forKey:@"userProfilePicture"];
         [webServiceObj getUrlReqForUpdatingProfileBaseUrl:urlStr andTextData:dicPost andImageData:imageParams];
     }
@@ -889,7 +889,7 @@
             [Loading showWithStatus:@"Please wait..." maskType:SVProgressHUDMaskTypeClear Indicator:YES];
         }
         NSString *urlStr=[NSString stringWithFormat:@"%@%@%@",appDelObj.baseURL,@"mobileapp/user/pushStatus/languageID/",appDelObj.languageId];
-        NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:@"true",@"pushStatus",[[NSUserDefaults standardUserDefaults]objectForKey:@"USER_ID"],@"userID",@"iphone",@"deviceType",[[NSUserDefaults standardUserDefaults]objectForKey:@"DEVICE"],@"deviceToken", nil];
+        NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:@"true",@"pushStatus",[[NSUserDefaults standardUserDefaults]objectForKey:@"USER_ID"],@"userID",@"iPhone",@"deviceType",[[NSUserDefaults standardUserDefaults]objectForKey:@"DEVICE"],@"deviceToken", nil];
         [webServiceObj getUrlReqForPostingBaseUrl:urlStr andTextData:dicPost];
     } else{
         NSLog(@"Switch is OFF");
@@ -904,7 +904,7 @@
             [Loading showWithStatus:@"Please wait..." maskType:SVProgressHUDMaskTypeClear Indicator:YES];
         }
         NSString *urlStr=[NSString stringWithFormat:@"%@%@%@",appDelObj.baseURL,@"mobileapp/user/pushStatus/languageID/",appDelObj.languageId];
-        NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:@"false",@"pushStatus",[[NSUserDefaults standardUserDefaults]objectForKey:@"USER_ID"],@"userID",@"iphone",@"deviceType",[[NSUserDefaults standardUserDefaults]objectForKey:@"DEVICE"],@"deviceToken", nil];
+        NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:@"false",@"pushStatus",[[NSUserDefaults standardUserDefaults]objectForKey:@"USER_ID"],@"userID",@"iPhone",@"deviceType",[[NSUserDefaults standardUserDefaults]objectForKey:@"DEVICE"],@"deviceToken", nil];
         [webServiceObj getUrlReqForPostingBaseUrl:urlStr andTextData:dicPost];
     }
 

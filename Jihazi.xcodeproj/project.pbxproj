@@ -456,7 +456,6 @@
 		C662936C1EC9C7FC00080B93 /* list-filter.png in Resources */ = {isa = PBXBuildFile; fileRef = C66293661EC9C7FC00080B93 /* list-filter.png */; };
 		C662936F1EC9C7FC00080B93 /* list-search.png in Resources */ = {isa = PBXBuildFile; fileRef = C66293691EC9C7FC00080B93 /* list-search.png */; };
 		C66293701EC9C7FC00080B93 /* list-sort.png in Resources */ = {isa = PBXBuildFile; fileRef = C662936A1EC9C7FC00080B93 /* list-sort.png */; };
-		C66293791EC9CAE000080B93 /* ArabicMenuViewController.m in Resources */ = {isa = PBXBuildFile; fileRef = C65B4B731EC445BE008EC3B2 /* ArabicMenuViewController.m */; };
 		C66E3AF41FFB679B0011B29E /* PendPresImgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C66E3AF21FFB679B0011B29E /* PendPresImgCell.m */; };
 		C66E3AF51FFB679B0011B29E /* PendPresImgCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C66E3AF31FFB679B0011B29E /* PendPresImgCell.xib */; };
 		C66E3AF91FFB9DFD0011B29E /* PendingPaymentView.m in Sources */ = {isa = PBXBuildFile; fileRef = C66E3AF71FFB9DFC0011B29E /* PendingPaymentView.m */; };
@@ -2956,7 +2955,6 @@
 				C61D40281FA89C2100C81B76 /* CusOptCell.xib in Resources */,
 				C61A013E1ECEF5940094BF3C /* white-backri.png in Resources */,
 				C604AEF91EDEEE6B00C455EF /* slider-default-trackCrossedOver@2x.png in Resources */,
-				C66293791EC9CAE000080B93 /* ArabicMenuViewController.m in Resources */,
 				9B7AB9ED20BBE2EF00AA5D00 /* ar-logo.png in Resources */,
 				C604AEF81EDEEE6B00C455EF /* slider-default-trackCrossedOver.png in Resources */,
 				C616DD2D1EE1165900EAD312 /* 6.png in Resources */,

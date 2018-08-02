@@ -82,7 +82,7 @@
         [Loading showWithStatus:@"Please wait..." maskType:SVProgressHUDMaskTypeClear Indicator:YES];
     }
     NSString *urlStr=[NSString stringWithFormat:@"%@%@%@",appDelObj.baseURL,@"mobileapp/push/readStatus/languageID",appDelObj.languageId];
-    NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:@"iphone",@"deviceType",self.notiId,@"notificationID",appDelObj.devicetocken,@"deviceID", nil];
+    NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:@"iPhone",@"deviceType",self.notiId,@"notificationID",appDelObj.devicetocken,@"deviceID", nil];
     [webServiceObj getUrlReqForPostingBaseUrl:urlStr andTextData:dicPost];
 }
 -(void)finishedParsingDictionary:(NSDictionary *)dictionary

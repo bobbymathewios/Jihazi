@@ -230,7 +230,7 @@
                         [Loading showWithStatus:@"Please wait..." maskType:SVProgressHUDMaskTypeClear Indicator:YES];
                     }
                     NSString *urlStr=[NSString stringWithFormat:@"%@%@%@",appDelObj.baseURL,@"mobileapp/Push/index/languageID/",appDelObj.languageId];
-                    NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:[self.result objectForKey:@"userID"],@"userID",@"iphone",@"deviceType",@"B2D61B9A-2BAA4C5DAE674C7B590D55F0",@"deviceToken", nil];
+                    NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:[self.result objectForKey:@"userID"],@"userID",@"iPhone",@"deviceType",appDelObj.devicetocken,@"deviceToken", nil];
                     [webServiceObj getUrlReqForPostingBaseUrl:urlStr andTextData:dicPost];
                     type=@"Tocken";
                 }

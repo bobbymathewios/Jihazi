@@ -726,7 +726,7 @@ static NSString *const kPlaceholderUserName = @"<Name>";
                 [Loading showWithStatus:@"Please wait..." maskType:SVProgressHUDMaskTypeClear Indicator:YES];
             }
             NSString *urlStr=[NSString stringWithFormat:@"%@%@%@",appDelObj.baseURL,@"mobileapp/Push/index/languageID/",appDelObj.languageId];
-            NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:[[NSUserDefaults standardUserDefaults]objectForKey:@"USER_ID"],@"userID",@"iphone",@"deviceType",appDelObj.devicetocken,@"deviceToken", nil];
+            NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:[[NSUserDefaults standardUserDefaults]objectForKey:@"USER_ID"],@"userID",@"iPhone",@"deviceType",appDelObj.devicetocken,@"deviceToken", nil];
             [webService getUrlReqForPostingBaseUrl:urlStr andTextData:dicPost];
             type=@"Tocken";
             
@@ -767,7 +767,7 @@ static NSString *const kPlaceholderUserName = @"<Name>";
                 [Loading showWithStatus:@"Please wait..." maskType:SVProgressHUDMaskTypeClear Indicator:YES];
             }
             NSString *urlStr=[NSString stringWithFormat:@"%@%@%@",appDelObj.baseURL,@"mobileapp/Push/index/languageID/",appDelObj.languageId];
-            NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:[[NSUserDefaults standardUserDefaults]objectForKey:@"USER_ID"],@"userID",@"iphone",@"deviceType",appDelObj.devicetocken,@"deviceToken", nil];
+            NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:[[NSUserDefaults standardUserDefaults]objectForKey:@"USER_ID"],@"userID",@"iPhone",@"deviceType",appDelObj.devicetocken,@"deviceToken", nil];
             [webService getUrlReqForPostingBaseUrl:urlStr andTextData:dicPost];
             type=@"Tocken";
             

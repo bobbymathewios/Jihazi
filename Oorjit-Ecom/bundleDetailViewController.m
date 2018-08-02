@@ -753,7 +753,7 @@
     }
     urlStr=[NSString stringWithFormat:@"%@%@%@",appDelObj.baseURL,@"mobileapp/Cart/bundleAddItem/languageID/",appDelObj.languageId];
     
-    dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:User,@"userID",self.bundleKey,@"ruleID",CAID,@"cartID",@"iphone",@"deviceType",appDelObj.devicetocken,@"deviceID", nil];
+    dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:User,@"userID",self.bundleKey,@"ruleID",CAID,@"cartID",@"iPhone",@"deviceType",appDelObj.devicetocken,@"deviceID", nil];
     
     [webServiceObj getUrlReqForPostingBaseUrl:urlStr andTextData:dicPost];
 }

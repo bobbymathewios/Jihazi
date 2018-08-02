@@ -1500,7 +1500,7 @@
         CAID=@"";
     }
     NSString* urlStr=[NSString stringWithFormat:@"%@%@%@",appDelObj.baseURL,@"mobileapp/Cart/addItem/languageID/",appDelObj.languageId];
-    NSMutableDictionary*   dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:User,@"userID",[array valueForKey:@"productID"],@"productID",[array valueForKey:@"productOptionID"],@"productOptionID",@"1",@"quantity",[array valueForKey:@"productTitle"],@"productOptionName",[array valueForKey:@"productTitle"],@"productTitle",[array valueForKey:@"productDefaultCurrency"],@"productDefaultCurrency",CAID,@"cartID",[array valueForKey:@"productImage"],@"productImage",@"",@"optionsHash",@"",@"combinationHash",@"",@"strcombinationValues",@"",@"subAttr",@"onetime",@"purchase",@"",@"customOptionValues",@"Yes",@"freeProduct",colID,@"freeBaseProductID",@"iphone",@"deviceType",appDelObj.devicetocken,@"deviceID", nil];
+    NSMutableDictionary*   dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:User,@"userID",[array valueForKey:@"productID"],@"productID",[array valueForKey:@"productOptionID"],@"productOptionID",@"1",@"quantity",[array valueForKey:@"productTitle"],@"productOptionName",[array valueForKey:@"productTitle"],@"productTitle",[array valueForKey:@"productDefaultCurrency"],@"productDefaultCurrency",CAID,@"cartID",[array valueForKey:@"productImage"],@"productImage",@"",@"optionsHash",@"",@"combinationHash",@"",@"strcombinationValues",@"",@"subAttr",@"onetime",@"purchase",@"",@"customOptionValues",@"Yes",@"freeProduct",colID,@"freeBaseProductID",@"iPhone",@"deviceType",appDelObj.devicetocken,@"deviceID", nil];
     [webServiceObj getUrlReqForPostingBaseUrl:urlStr andTextData:dicPost];
 }
 -(void)productSimilarDetailDel:(NSString *)pid
