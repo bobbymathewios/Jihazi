@@ -44,7 +44,9 @@ static NSString * const kClientID =@"1058965638207-gr0vth5hjfd38j0pdsv1hmlcbbf9d
     //[trace incrementMetric:@"retry" by:1];
    //self.baseURL=@"http://pan02-private.ispghosting.com/resmi/jihazi/";
 // self.baseURL=@"https://v2-test.jihazi.com/";
-     self.baseURL=@"https://test.jihazi.com/";
+    // self.baseURL=@"https://test.jihazi.com/";
+    
+   self.baseURL=@"https://www.jihazi.com/";
     NSString* Identifier = [[[UIDevice currentDevice] identifierForVendor] UUIDString]; // IOS 6+
     NSLog(@"output is : %@", Identifier);
     webServiceObj=[[WebService alloc]init];
