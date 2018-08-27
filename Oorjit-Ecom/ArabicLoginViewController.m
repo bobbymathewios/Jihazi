@@ -103,7 +103,7 @@ static NSString *const kPlaceholderUserName = @"<Name>";
     [stringA endEditing];
     
     [self.txtEmailAddress setAttributedPlaceholder:stringA floatingTitle:@"البريد الالكتروني"];
-    NSMutableAttributedString *stringC = [[NSMutableAttributedString alloc] initWithString:@"الهاتف*"];
+    NSMutableAttributedString *stringC = [[NSMutableAttributedString alloc] initWithString:@"الجوال*"];
     
     [stringC beginEditing];
     [stringC addAttribute:NSForegroundColorAttributeName
@@ -111,7 +111,7 @@ static NSString *const kPlaceholderUserName = @"<Name>";
     
     [stringC endEditing];
     
-    [self.txtPhone setAttributedPlaceholder:stringC floatingTitle:@"الهاتف"];
+    [self.txtPhone setAttributedPlaceholder:stringC floatingTitle:@"الجوال"];
     NSMutableAttributedString *stringS = [[NSMutableAttributedString alloc] initWithString:@"كلمة المرور*"];
     
     [stringS beginEditing];
@@ -240,7 +240,7 @@ static NSString *const kPlaceholderUserName = @"<Name>";
         NSString *strMsg,*okMsg;
         if (appDelObj.isArabic)
         {
-            strMsg=@"يرجى ملء جميع الحقول الإلزامية";
+            strMsg=@"يرجى ادخال جميع الحقول المطلوبة";
             okMsg=@" موافق ";
         }
         else
@@ -291,7 +291,12 @@ static NSString *const kPlaceholderUserName = @"<Name>";
                                 [Loading showWithStatus:@"Please wait..." maskType:SVProgressHUDMaskTypeClear Indicator:YES];
                             }
                             NSString *urlStr=[NSString stringWithFormat:@"%@%@",appDelObj.baseURL,@"mobileapp/User/signup/"];
-                            NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:appDelObj.languageId,@"languageID",self.txtname.text,@"userFirstName",self.txtLast.text,@"userLastName",self.txtEmailAddress.text,@"userEmail",self.txtPassword1.text,@"userPassword",self.txtPhone.text,@"userPhone", nil];
+                            NSString *cart=[[NSUserDefaults standardUserDefaults]objectForKey:@"cartID"];
+                            if(cart.length==0)
+                            {
+                                cart=@"";
+                            }
+                            NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:cart,@"cartID",appDelObj.languageId,@"languageID",self.txtname.text,@"userFirstName",self.txtLast.text,@"userLastName",self.txtEmailAddress.text,@"userEmail",self.txtPassword1.text,@"userPassword",self.txtPhone.text,@"userPhone", nil];
                             
                             [webService getUrlReqForPostingBaseUrl:urlStr andTextData:dicPost];
                         }
@@ -397,6 +402,14 @@ static NSString *const kPlaceholderUserName = @"<Name>";
             }
             
             resultDic=dictionary;
+//            if (appDelObj.isArabic) {
+//                 ArabicMenuViewController *aSidemenu=[[ArabicMenuViewController alloc]init];
+//                [aSidemenu viewDidLoad];
+//            }
+//            else{
+//                 MenuViewController *aSidemenu=[[MenuViewController alloc]init];
+//                [aSidemenu viewDidLoad];
+//            }
             [self afterLogin];
             
         }
@@ -1077,7 +1090,12 @@ static NSString *const kPlaceholderUserName = @"<Name>";
         }
         
         NSString *urlStr=[NSString stringWithFormat:@"%@%@",appDelObj.baseURL,@"mobileapp/User/forgotPassword/"];
-        NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:appDelObj.languageId,@"languageID",self.txtForgot.text,@"emailID", nil];
+        NSString *cart=[[NSUserDefaults standardUserDefaults]objectForKey:@"cartID"];
+        if(cart.length==0)
+        {
+            cart=@"";
+        }
+        NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:cart,@"cartID",appDelObj.languageId,@"languageID",self.txtForgot.text,@"emailID", nil];
         
         [webService getUrlReqForPostingBaseUrl:urlStr andTextData:dicPost];
     }
@@ -1132,9 +1150,13 @@ static NSString *const kPlaceholderUserName = @"<Name>";
         {
             [Loading showWithStatus:@"Please wait..." maskType:SVProgressHUDMaskTypeClear Indicator:YES];
         }
-        
+        NSString *cart=[[NSUserDefaults standardUserDefaults]objectForKey:@"cartID"];
+        if(cart.length==0)
+        {
+            cart=@"";
+        }
         NSString *urlStr=[NSString stringWithFormat:@"%@%@",appDelObj.baseURL,@"mobileapp/User/"];
-        NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:appDelObj.languageId,@"languageID",self.txtEmail.text,@"userEmail",self.txtPassword.text,@"userPassword", nil];
+        NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:cart,@"cartID",appDelObj.languageId,@"languageID",self.txtEmail.text,@"userEmail",self.txtPassword.text,@"userPassword", nil];
         
         [webService getUrlReqForPostingBaseUrl:urlStr andTextData:dicPost];
     }
@@ -1269,8 +1291,14 @@ static NSString *const kPlaceholderUserName = @"<Name>";
                              {
                                  [Loading showWithStatus:@"Please wait..." maskType:SVProgressHUDMaskTypeClear Indicator:YES];
                              }
+                             NSString *cart=[[NSUserDefaults standardUserDefaults]objectForKey:@"cartID"];
+                             if(cart.length==0)
+                             {
+                                 cart=@"";
+                             }
                              NSString *urlStr=[NSString stringWithFormat:@"%@%@",appDelObj.baseURL,@"mobileapp/User/fbUserSignup/"];
-                             NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:appDelObj.languageId,@"languageID",first_name,@"first_name",last_name,@"last_name",sex,@"gender",uid,@"id",pic,@"profile_image",namefield.text,@"email",birthday_date,@"birthday", nil];
+                             
+                             NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:cart,@"cartID",appDelObj.languageId,@"languageID",first_name,@"first_name",last_name,@"last_name",sex,@"gender",uid,@"id",pic,@"profile_image",namefield.text,@"email",birthday_date,@"birthday", nil];
                              
                              [webService getUrlReqForPostingBaseUrl:urlStr andTextData:dicPost];
                              
@@ -1287,9 +1315,13 @@ static NSString *const kPlaceholderUserName = @"<Name>";
                          {
                              [Loading showWithStatus:@"Please wait..." maskType:SVProgressHUDMaskTypeClear Indicator:YES];
                          }
-                         
+                         NSString *cart=[[NSUserDefaults standardUserDefaults]objectForKey:@"cartID"];
+                         if(cart.length==0)
+                         {
+                             cart=@"";
+                         }
                          NSString *urlStr=[NSString stringWithFormat:@"%@%@",appDelObj.baseURL,@"mobileapp/User/fbUserSignup/"];
-                         NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:appDelObj.languageId,@"languageID",first_name,@"first_name",last_name,@"last_name",sex,@"gender",uid,@"id",pic,@"profile_image",email,@"email",birthday_date,@"birthday", nil];
+                         NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:cart,@"cartID",appDelObj.languageId,@"languageID",first_name,@"first_name",last_name,@"last_name",sex,@"gender",uid,@"id",pic,@"profile_image",email,@"email",birthday_date,@"birthday", nil];
                          
                          [webService getUrlReqForPostingBaseUrl:urlStr andTextData:dicPost];
                          
@@ -1405,9 +1437,15 @@ didDisconnectWithUser:(GIDGoogleUser *)user
     {
         [Loading showWithStatus:@"Please wait..." maskType:SVProgressHUDMaskTypeClear Indicator:YES];
     }
-    
-    NSString *urlStr=[NSString stringWithFormat:@"%@%@",appDelObj.baseURL,@"mobileapp/User/checkgPlusLogin/"];
-    NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:appDelObj.languageId,@"languageID",[GIDSignIn sharedInstance].currentUser.profile.givenName
+    NSString *urlStr=[NSString stringWithFormat:@"%@%@",appDelObj.baseURL,@"mobileapp/googleplus/index/"];
+
+   // NSString *urlStr=[NSString stringWithFormat:@"%@%@",appDelObj.baseURL,@"mobileapp/User/checkgPlusLogin/"];
+    NSString *cart=[[NSUserDefaults standardUserDefaults]objectForKey:@"cartID"];
+    if(cart.length==0)
+    {
+        cart=@"";
+    }
+    NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:cart,@"cartID",appDelObj.languageId,@"languageID",[GIDSignIn sharedInstance].currentUser.profile.givenName
                                   ,@"first_name",[GIDSignIn sharedInstance].currentUser.profile.familyName,@"last_name",[GIDSignIn sharedInstance].currentUser.profile.email,@"email",@"",@"id",@"",@"birthday",@"",@"gender",@"",@"profile_image", nil];
     
     [webService getUrlReqForPostingBaseUrl:urlStr andTextData:dicPost];

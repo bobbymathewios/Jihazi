@@ -44,9 +44,9 @@ static NSString * const kClientID =@"1058965638207-gr0vth5hjfd38j0pdsv1hmlcbbf9d
     //[trace incrementMetric:@"retry" by:1];
    //self.baseURL=@"http://pan02-private.ispghosting.com/resmi/jihazi/";
 // self.baseURL=@"https://v2-test.jihazi.com/";
-    // self.baseURL=@"https://test.jihazi.com/";
+    //self.baseURL=@"https://test.jihazi.com/";
     
-   self.baseURL=@"https://www.jihazi.com/";
+    self.baseURL=@"https://www.jihazi.com/";
     NSString* Identifier = [[[UIDevice currentDevice] identifierForVendor] UUIDString]; // IOS 6+
     NSLog(@"output is : %@", Identifier);
     webServiceObj=[[WebService alloc]init];
@@ -389,6 +389,7 @@ static NSString * const kClientID =@"1058965638207-gr0vth5hjfd38j0pdsv1hmlcbbf9d
     sideMenuViewController.delegate = self;
     self.window.rootViewController = sideMenuViewController;
 }
+
 -(void)arabicMenuAction
 {
     [[NSUserDefaults standardUserDefaults]setObject:@"Arabic" forKey:@"LANGUAGE"];
@@ -418,7 +419,62 @@ static NSString * const kClientID =@"1058965638207-gr0vth5hjfd38j0pdsv1hmlcbbf9d
     self.window.rootViewController = sideMenuViewController;
 }
 
+-(void)englishRoot
+{
+    self.isArabic=NO;
+    self.languageId=@"1";
+    [[NSUserDefaults standardUserDefaults]setObject:@"English" forKey:@"LANGUAGE"];
+    
+    [[NSUserDefaults standardUserDefaults]setObject:@"1" forKey:@"LANGUAGEID"];
+    
+    [[NSUserDefaults standardUserDefaults]setObject:@"YES" forKey:@"SELECT_LANGUAGE"];
+    [[NSUserDefaults standardUserDefaults]setObject:@"English" forKey:@"SELECT_LANGUAGE_Name"];
+    
+    [[NSUserDefaults standardUserDefaults]synchronize];
+    homeViewObj=[[HomeViewController alloc]init];
+    self.rootNavObj=[[UINavigationController alloc]initWithRootViewController:homeViewObj];
+    self.rootNavObj.navigationBarHidden=YES;
+    MenuViewController *sidemenu=[[MenuViewController alloc]init];
+    if ([self.rootNavObj respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.rootNavObj.interactivePopGestureRecognizer.enabled = NO;
+    }
+    self.rootNavObj.navigationBar.hidden=YES;
+    sideMenuViewController = [[RESideMenu alloc] initWithContentViewController:self.rootNavObj
+                                                        leftMenuViewController:sidemenu
+                                                       rightMenuViewController:nil];
+    sideMenuViewController.view.backgroundColor =  self.menubgtable;
+    sideMenuViewController.menuPreferredStatusBarStyle = 1;
+    sideMenuViewController.delegate = self;
+    self.window.rootViewController = sideMenuViewController;
+}
 
+-(void)arabicRoot
+{
+    [[NSUserDefaults standardUserDefaults]setObject:@"Arabic" forKey:@"LANGUAGE"];
+    
+    [[NSUserDefaults standardUserDefaults]setObject:@"2" forKey:@"LANGUAGEID"];
+    
+    [[NSUserDefaults standardUserDefaults]setObject:@"YES" forKey:@"SELECT_LANGUAGE"];
+    [[NSUserDefaults standardUserDefaults]setObject:@"Arabic" forKey:@"SELECT_LANGUAGE_Name"];
+    
+    [[NSUserDefaults standardUserDefaults]synchronize];
+    self.isArabic=YES;
+    self.languageId=@"2";
+    
+    ArabicHomeViewController *searchViewcontroller=[[ArabicHomeViewController alloc]init];
+    ArabicMenuViewController *aSidemenu=[[ArabicMenuViewController alloc]init];
+    UINavigationController *searchNav=[[UINavigationController alloc]initWithRootViewController:searchViewcontroller];
+    if ([searchNav respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        searchNav.interactivePopGestureRecognizer.enabled = NO;
+    }
+    searchNav.navigationBar.hidden=YES;
+    sideMenuViewController = [[RESideMenu alloc] initWithContentViewController:searchNav
+                                                        leftMenuViewController:nil
+                                                       rightMenuViewController:aSidemenu];
+    sideMenuViewController.view.backgroundColor =  self.menubgtable;
+    sideMenuViewController.menuPreferredStatusBarStyle = 1;
+    sideMenuViewController.delegate = self;
+}
 
 -(BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options NS_AVAILABLE_IOS(9_0){        return [self application:app        processOpenURLAction:url           sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]                  annotation:options[UIApplicationOpenURLOptionsAnnotationKey]                  iosVersion:9];
     

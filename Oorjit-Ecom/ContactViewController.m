@@ -196,7 +196,7 @@
         okMsg=@"Ok";
         
         if (appDelObj.isArabic) {
-            strMsg=@"يرجى ادخال رسالتك";
+            strMsg=@"لايمكن ارسال الرسالة عبر البريد الالكتروني";
             okMsg=@" موافق ";
         }
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:strMsg preferredStyle:UIAlertControllerStyleAlert];

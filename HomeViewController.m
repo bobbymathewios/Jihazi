@@ -1116,7 +1116,7 @@
             {
                 urlIMG=[NSString stringWithFormat:@"%@%@",bannerURl,img];
             }
-
+            urlIMG=[urlIMG stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
             [bannerImage sd_setImageWithURL:[NSURL URLWithString:urlIMG] placeholderImage:[UIImage imageNamed:@"placeholder1.png"]];
 
 
@@ -1499,6 +1499,8 @@
 {
     //  [[Crashlytics sharedInstance] crash];
     appDelObj.menuTag=1;
+    MenuViewController *ar=[[MenuViewController alloc]init];
+    [ar.view setNeedsDisplay];
      [self performSelector:@selector(presentLeftMenuViewController:) withObject:nil];
 }
 - (IBAction)backAction:(id)sender
@@ -1768,7 +1770,7 @@
     {
         
             WishLlstViewController *listDetail=[[WishLlstViewController alloc]init];
-            listDetail.fromMenu=@"yes";
+            listDetail.fromMenu=@"";
             [self.navigationController pushViewController:listDetail animated:YES];
      
     }

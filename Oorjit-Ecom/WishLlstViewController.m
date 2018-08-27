@@ -195,38 +195,40 @@
                     okMsg=@" موافق ";
                 }
                 UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:strMsg preferredStyle:UIAlertControllerStyleAlert];
-                [alertController addAction:[UIAlertAction actionWithTitle:okMsg style:UIAlertActionStyleDefault handler:nil]];
-                [self presentViewController:alertController animated:YES completion:^{ if(appDelObj.isArabic==YES )
-                {
-                    if ([self.fromMenu isEqualToString:@"yes"])
+                [alertController addAction:[UIAlertAction actionWithTitle:okMsg style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+                    if(appDelObj.isArabic)
                     {
-                        transition = [CATransition animation];
-                        [transition setDuration:0.3];
-                        transition.type = kCATransitionPush;
-                        transition.subtype = kCATransitionFromRight;
-                        [transition setFillMode:kCAFillModeBoth];
-                        [transition setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
-                        [self.navigationController.view.layer addAnimation:transition forKey:kCATransition];
-                        [self.navigationController popViewControllerAnimated:YES];
+                        if ([self.fromMenu isEqualToString:@"yes"])
+                        {
+                            transition = [CATransition animation];
+                            [transition setDuration:0.3];
+                            transition.type = kCATransitionPush;
+                            transition.subtype = kCATransitionFromRight;
+                            [transition setFillMode:kCAFillModeBoth];
+                            [transition setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+                            [self.navigationController.view.layer addAnimation:transition forKey:kCATransition];
+                            [self.navigationController popViewControllerAnimated:YES];
+                        }
+                        else
+                        {
+                            [appDelObj arabicMenuAction];
+                            //   [self performSelector:@selector(presentRightMenuViewController:) withObject:nil];
+                        }
                     }
                     else
                     {
-                        [appDelObj arabicMenuAction];
-                     //   [self performSelector:@selector(presentRightMenuViewController:) withObject:nil];
+                        if ([self.fromMenu isEqualToString:@"yes"])
+                        {
+                            [self.navigationController popViewControllerAnimated:YES];
+                        }
+                        else
+                        {
+                            [appDelObj englishMenuAction];
+                            // [self performSelector:@selector(presentLeftMenuViewController:) withObject:nil];
+                        }
                     }
-                }
-                else
-                {
-                    if ([self.fromMenu isEqualToString:@"yes"])
-                    {
-                        [self.navigationController popViewControllerAnimated:YES];
-                    }
-                    else
-                    {
-                        [appDelObj englishMenuAction];
-                       // [self performSelector:@selector(presentLeftMenuViewController:) withObject:nil];
-                    }
-                }}];
+                }]];
+                [self presentViewController:alertController animated:YES completion:nil];
             }
         }
     }

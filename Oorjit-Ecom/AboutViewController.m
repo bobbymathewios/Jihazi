@@ -57,7 +57,17 @@
     if ([self.cms  isEqualToString:@"10"])
     {
         self.lblTitle.text=self.titleText;
-        [self.web loadHTMLString:_desc baseURL:nil];
+        if (appDelObj.isArabic) {
+            [self.web loadHTMLString:[NSString stringWithFormat:@"<div dir='rtl'>%@<div>",_desc] baseURL:nil];
+
+        }
+        else
+        {
+            [self.web loadHTMLString:[NSString stringWithFormat:@"<div dir='ltr'>%@<div>",_desc] baseURL:nil];
+
+        }
+        
+      //  [self.web loadHTMLString:_desc baseURL:nil];
     }
     else  if (self.cms.length==0)
     {
@@ -126,7 +136,15 @@
 {
     if ([[dictionary objectForKey:@"response"]isEqualToString:@"Success"])
     {
-        [self.web loadHTMLString:[[dictionary objectForKey:@"results" ] objectForKey:@"contentDescription"] baseURL:nil];
+        
+        if (appDelObj.isArabic) {
+            [self.web loadHTMLString:[NSString stringWithFormat:@"<div dir='rtl'>%@<div>",[[dictionary objectForKey:@"results" ] objectForKey:@"contentDescription"]] baseURL:nil];
+        }
+        else
+        {
+           [self.web loadHTMLString:[NSString stringWithFormat:@"<div dir='ltr'>%@<div>",[[dictionary objectForKey:@"results" ] objectForKey:@"contentDescription"]] baseURL:nil];
+        }
+      //  [self.web loadHTMLString:[[dictionary objectForKey:@"results" ] objectForKey:@"contentDescription"] baseURL:nil];
     }
     else
     {

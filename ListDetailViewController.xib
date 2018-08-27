@@ -71,7 +71,6 @@
                 <outlet property="lblReturnPolicy" destination="aPC-TI-eQm" id="J0R-HY-aVQ"/>
                 <outlet property="lblSellerTitle" destination="C9J-Hw-hes" id="RPe-UT-zdg"/>
                 <outlet property="lblShipping" destination="oKE-Vy-6Mt" id="bvn-zs-6hB"/>
-                <outlet property="lblShortDes" destination="BXG-HR-MwU" id="7BX-QJ-NP0"/>
                 <outlet property="lblSoldBy" destination="Fl0-By-J4g" id="jxX-Hw-dbe"/>
                 <outlet property="lblchoose" destination="sJ3-D6-yUc" id="sQc-u0-GKJ"/>
                 <outlet property="lblfreecount" destination="Gvi-Yg-04l" id="Zki-cY-qd7"/>
@@ -104,6 +103,7 @@
                 <outlet property="varientsView" destination="LU5-QN-tb9" id="627-re-G8y"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="viewStore" destination="Stj-5y-lbG" id="WbT-yf-Esc"/>
+                <outlet property="weee" destination="BNv-e7-mAb" id="fvt-Df-deG"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -289,13 +289,11 @@
                                         <action selector="viewReviewListAction:" destination="-1" eventType="touchUpInside" id="jlI-zN-e5m"/>
                                     </connections>
                                 </button>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="20" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BXG-HR-MwU">
-                                    <rect key="frame" x="8" y="104" width="362" height="148"/>
+                                <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BNv-e7-mAb">
+                                    <rect key="frame" x="8" y="105" width="359" height="128"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
-                                    <nil key="textColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </webView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </view>

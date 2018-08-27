@@ -1071,8 +1071,9 @@
             {
                 urlIMG=[NSString stringWithFormat:@"%@%@",bannerURl,img];
             }
-
-            [bannerImage sd_setImageWithURL:[NSURL URLWithString:urlIMG] placeholderImage:[UIImage imageNamed:@"place_holderar.png"]];
+           urlIMG=[urlIMG stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+           // bannerImage.image = [UIImage imageWithContentsOfURL:theURL];
+           [bannerImage sd_setImageWithURL:[NSURL URLWithString:urlIMG] placeholderImage:[UIImage imageNamed:@"place_holderar.png"]];
 
 
         }
@@ -1490,7 +1491,10 @@
 - (IBAction)menuAction:(id)sender
 {
     appDelObj.menuTag=1;
+    ArabicMenuViewController *ar=[[ArabicMenuViewController alloc]init];
+    [ar.view setNeedsDisplay];
     [self performSelector:@selector(presentRightMenuViewController:) withObject:nil];
+    
 }
 - (IBAction)backAction:(id)sender
 {
@@ -1777,7 +1781,7 @@
     {
        
             WishLlstViewController *listDetail=[[WishLlstViewController alloc]init];
-            listDetail.fromMenu=@"yes";
+            listDetail.fromMenu=@"";
             transition = [CATransition animation];
             [transition setDuration:0.3];
             transition.type = kCATransitionPush;

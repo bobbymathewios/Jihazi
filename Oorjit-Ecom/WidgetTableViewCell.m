@@ -111,7 +111,7 @@
     }
     
         NSString *sDis=[[colItemAry objectAtIndex:indexPath.row ]   valueForKey:@"itemDiscount"] ;
-        if([sDis isKindOfClass:[NSNull class]]||[sDis isEqualToString:@""]||sDis.length==0||[sDis isEqualToString:@"0"])
+        if([sDis isKindOfClass:[NSNull class]]||[sDis isEqualToString:@""]||sDis.length==0||[sDis isEqualToString:@"0"]||[sDis isEqualToString:@"0.0"]||[sDis isEqualToString:@"0.00"]||[sDis isEqualToString:@"0.000"]||[sDis isEqualToString:@"0.0000"])
         {
             cell.lblOffer.alpha=0;
             cell.offview.alpha=0;

@@ -177,9 +177,17 @@
                 NSArray* cartAry=[[dictionary objectForKey:@"result"]objectForKey:@"items"];
                 if (cartAry.count!=0)
                 {
-                    NSString *cCount=[NSString stringWithFormat:@"%lu",(unsigned long)cartAry.count];
+                    NSString *cCount;
+                    int qtyCount=0;
+                    for(int i=0;i<cartAry.count;i++)
+                    {
+                        int qtyC=[[[cartAry objectAtIndex:i]valueForKey:@"orderItemQuantity"]intValue];
+                        qtyCount=qtyCount+qtyC;
+                    }
+                    cCount=[NSString stringWithFormat:@"%lu",(unsigned long)qtyCount];
                     if ([cCount isEqualToString:@"0"]) {
                         [[NSUserDefaults standardUserDefaults]setObject:@"" forKey:@"CART_COUNT"];
+                        
                         [[NSUserDefaults standardUserDefaults]synchronize];
                     }
                     else

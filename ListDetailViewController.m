@@ -39,7 +39,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
+     self.weee.scrollView.scrollEnabled=NO;
     optionSelectForimage=0;
     outStock=1;
     cellsArray = [NSMutableArray new];
@@ -134,6 +134,7 @@
          self.lblJihazhiDeli.transform = CGAffineTransformMakeScale(-1, 1);
         self.lblhot.transform = CGAffineTransformMakeScale(-1, 1);
          self.lblShortDes.transform = CGAffineTransformMakeScale(-1, 1);
+        self.weee.transform = CGAffineTransformMakeScale(-1, 1);
         self.lblhot.text=@"مميز";
           self.lblQtySelected.transform = CGAffineTransformMakeScale(-1, 1);
           self.lblAvalGiftsLabel.transform = CGAffineTransformMakeScale(-1, 1);
@@ -1853,7 +1854,17 @@ productOptionID=@"";
                             [string addAttribute:NSForegroundColorAttributeName
                                            value:[UIColor blackColor]
                                            range:NSMakeRange(0, [string length])];
-                            self.lblShortDes.attributedText=string;
+                            
+                            //self.lblShortDes.attributedText=string;
+                           // [self.weee loadHTMLString:[DetailListAryData  valueForKey:@"productDescription"] baseURL:nil];
+                            if (appDelObj.isArabic) {
+                                [self.weee loadHTMLString:[NSString stringWithFormat:@"<div dir='rtl'>%@<div>",shortDes ]baseURL:nil];
+                                //[self.web loadHTMLString:[NSString stringWithFormat:@"<div dir='rtl'>%@<div>",[[dictionary objectForKey:@"results" ] objectForKey:@"contentDescription"]] baseURL:nil];
+                            }
+                            else
+                            {
+                                [self.weee loadHTMLString:[NSString stringWithFormat:@"<div dir='rtl'>%@<div>",shortDes ]baseURL:nil];
+                            }
                         }
                         else
                         {
@@ -1870,7 +1881,15 @@ productOptionID=@"";
                                             value:[UIColor grayColor]
                                             range:NSMakeRange(0, [string1 length])];
                             [string appendAttributedString:string1];
-                            self.lblShortDes.attributedText=string;
+                            //self.lblShortDes.attributedText=string;
+                            if (appDelObj.isArabic) {
+                                [self.weee loadHTMLString:[NSString stringWithFormat:@"<div dir='rtl'>%@ %@<div>",shortDes,specificationStr ]baseURL:nil];
+                                //[self.web loadHTMLString:[NSString stringWithFormat:@"<div dir='rtl'>%@<div>",[[dictionary objectForKey:@"results" ] objectForKey:@"contentDescription"]] baseURL:nil];
+                            }
+                            else
+                            {
+                                [self.weee loadHTMLString:[NSString stringWithFormat:@"<div dir='rtl'>%@ %@<div>",shortDes,specificationStr ]baseURL:nil];
+                            }
                         }
                     
                     }
@@ -3066,7 +3085,14 @@ productOptionID=@"";
                 else
                 {
                      desCell.act.alpha=1;
-                    [desCell.detail loadHTMLString:[[DescriptionArray objectAtIndex:indexPath.section ]  valueForKey:@"Des"] baseURL:nil];
+                    if (appDelObj.isArabic) {
+                        [desCell.detail loadHTMLString:[NSString stringWithFormat:@"<div dir='rtl'>%@<div>",[[DescriptionArray objectAtIndex:indexPath.section ]  valueForKey:@"Des"] ]baseURL:nil];
+                        //[self.web loadHTMLString:[NSString stringWithFormat:@"<div dir='rtl'>%@<div>",[[dictionary objectForKey:@"results" ] objectForKey:@"contentDescription"]] baseURL:nil];
+                    }
+                    else
+                    {
+                        [desCell.detail loadHTMLString:[NSString stringWithFormat:@"<div dir='rtl'>%@<div>",[[DescriptionArray objectAtIndex:indexPath.section ]  valueForKey:@"Des"] ]baseURL:nil];
+                    }
                     desCell.btnViewMore.alpha=1;
                 }
                 desCell.imgPlus.image=[UIImage imageNamed:@"min-.png"];
@@ -5121,6 +5147,38 @@ productOptionID=@"";
         listDetail.productID=pid ;
         [self.navigationController pushViewController:listDetail animated:YES];
     }
+}
+-(void)productSimilarAddCartDel:(NSArray *)array
+{
+    loginorNot=@"login";
+    addtoCart=@"AddCart";
+    NSString *CAID= [[NSUserDefaults standardUserDefaults]objectForKey:@"cartID"];
+    if (CAID.length==0||[CAID isEqualToString:@""])
+    {
+        CAID=@"";
+    }
+     NSString *userID=[[NSUserDefaults standardUserDefaults]objectForKey:@"USER_ID"];
+    NSString *urlStr;
+    NSMutableDictionary *dicPost;
+   
+    
+        urlStr=[NSString stringWithFormat:@"%@%@%@",appDelObj.baseURL,@"mobileapp/Cart/addItem/languageID/",appDelObj.languageId];
+        dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:userID,@"userID",[array valueForKey:@"productID"],@"productID",[array valueForKey:@"productID"],@"productOptionID",@"1",@"quantity",[array valueForKey:@"productTitle"],@"productTitle",[array valueForKey:@"productTitle"],@"productOptionName",[array valueForKey:@"productDefaultCurrency"],@"productDefaultCurrency",CAID,@"cartID",[array valueForKey:@"productImage"],@"productImage",@"",@"optionsHash",@"",@"combinationHash",@"",@"strcombinationValues",@"",@"subAttr",@"",@"purchase",@"",@"customOptionValues",@"iPhone",@"deviceType",appDelObj.devicetocken,@"deviceID", nil];
+     [webServiceObj getUrlReqForPostingBaseUrl:urlStr andTextData:dicPost];
+   /* NSString *User=[[NSUserDefaults standardUserDefaults]objectForKey:@"USER_ID"];
+    if (User.length==0)
+    {
+        User=@"";
+    }
+    NSString *CAID= [[NSUserDefaults standardUserDefaults]objectForKey:@"cartID"];
+    if (CAID.length==0||[CAID isEqualToString:@""])
+    {
+        CAID=@"";
+    }
+    NSString* urlStr=[NSString stringWithFormat:@"%@%@%@",appDelObj.baseURL,@"mobileapp/Cart/addItem/languageID/",appDelObj.languageId];
+    NSMutableDictionary*   dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:User,@"userID",[array valueForKey:@"itemID"],@"productID",[array valueForKey:@"productOptionID"],@"productOptionID",[NSString stringWithFormat:@"%@",[array valueForKey:@"productMinBuyLimit"]],@"quantity",[array valueForKey:@"itemName"],@"productOptionName",[array valueForKey:@"itemName"],@"productTitle",[array valueForKey:@"productDefaultCurrency"],@"productDefaultCurrency",CAID,@"cartID",[array valueForKey:@"itemIcon"],@"productImage",@"",@"optionsHash",@"",@"combinationHash",@"",@"strcombinationValues",@"",@"subAttr",@"onetime",@"purchase",@"",@"customOptionValues",@"No",@"freeProduct",@"",@"freeBaseProductID",@"iPhone",@"deviceType",appDelObj.devicetocken,@"deviceID", nil];
+    [webServiceObj getUrlReqForPostingBaseUrl:urlStr andTextData:dicPost];*/
+    
 }
 -(void)timeSelect:(int)tag
 {

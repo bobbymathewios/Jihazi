@@ -338,7 +338,12 @@ static NSString *const kPlaceholderUserName = @"<Name>";
                               [Loading showWithStatus:@"Please wait..." maskType:SVProgressHUDMaskTypeClear Indicator:YES];
                           }
                           NSString *urlStr=[NSString stringWithFormat:@"%@%@",appDelObj.baseURL,@"mobileapp/User/signup/"];
-                          NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:appDelObj.languageId,@"languageID",self.txtname.text,@"userFirstName",self.txtLast.text,@"userLastName",self.txtEmailAddress.text,@"userEmail",self.txtPassword1.text,@"userPassword",self.txtPhone.text,@"userPhone",[[NSUserDefaults standardUserDefaults]objectForKey:@"cartID"],@"cartID", nil];
+                          NSString *cart=[[NSUserDefaults standardUserDefaults]objectForKey:@"cartID"];
+                          if(cart.length==0)
+                          {
+                              cart=@"";
+                          }
+                          NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:cart,@"cartID",appDelObj.languageId,@"languageID",self.txtname.text,@"userFirstName",self.txtLast.text,@"userLastName",self.txtEmailAddress.text,@"userEmail",self.txtPassword1.text,@"userPassword",self.txtPhone.text,@"userPhone", nil];
                           
                           [webService getUrlReqForPostingBaseUrl:urlStr andTextData:dicPost];
                       }
@@ -1188,7 +1193,12 @@ static NSString *const kPlaceholderUserName = @"<Name>";
         }
         
         NSString *urlStr=[NSString stringWithFormat:@"%@%@",appDelObj.baseURL,@"mobileapp/User/"];
-        NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:appDelObj.languageId,@"languageID",self.txtEmail.text,@"userEmail",self.txtPassword.text,@"userPassword",[[NSUserDefaults standardUserDefaults]objectForKey:@"cartID"],@"cartID", nil];
+        NSString *cart=[[NSUserDefaults standardUserDefaults]objectForKey:@"cartID"];
+        if(cart.length==0)
+        {
+            cart=@"";
+        }
+        NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:cart,@"cartID",appDelObj.languageId,@"languageID",self.txtEmail.text,@"userEmail",self.txtPassword.text,@"userPassword", nil];
         
         [webService getUrlReqForPostingBaseUrl:urlStr andTextData:dicPost];
     }
@@ -1320,8 +1330,13 @@ static NSString *const kPlaceholderUserName = @"<Name>";
                              {
                                  [Loading showWithStatus:@"Please wait..." maskType:SVProgressHUDMaskTypeClear Indicator:YES];
                              }
+                             NSString *cart=[[NSUserDefaults standardUserDefaults]objectForKey:@"cartID"];
+                             if(cart.length==0)
+                             {
+                                 cart=@"";
+                             }
                              NSString *urlStr=[NSString stringWithFormat:@"%@%@",appDelObj.baseURL,@"mobileapp/User/fbUserSignup/"];
-                             NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:appDelObj.languageId,@"languageID",first_name,@"first_name",last_name,@"last_name",sex,@"gender",uid,@"id",pic,@"profile_image",namefield.text,@"email",birthday_date,@"birthday",[[NSUserDefaults standardUserDefaults]objectForKey:@"cartID"],@"cartID", nil];
+                             NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:cart,@"cartID",appDelObj.languageId,@"languageID",first_name,@"first_name",last_name,@"last_name",sex,@"gender",uid,@"id",pic,@"profile_image",namefield.text,@"email",birthday_date,@"birthday", nil];
                              
                              [webService getUrlReqForPostingBaseUrl:urlStr andTextData:dicPost];
                              
@@ -1337,8 +1352,13 @@ static NSString *const kPlaceholderUserName = @"<Name>";
                          {
                              [Loading showWithStatus:@"Please wait..." maskType:SVProgressHUDMaskTypeClear Indicator:YES];
                          }
+                         NSString *cart=[[NSUserDefaults standardUserDefaults]objectForKey:@"cartID"];
+                         if(cart.length==0)
+                         {
+                             cart=@"";
+                         }
                          NSString *urlStr=[NSString stringWithFormat:@"%@%@",appDelObj.baseURL,@"mobileapp/User/fbUserSignup/"];
-                         NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:appDelObj.languageId,@"languageID",first_name,@"first_name",last_name,@"last_name",sex,@"gender",uid,@"id",pic,@"profile_image",email,@"email",birthday_date,@"birthday",[[NSUserDefaults standardUserDefaults]objectForKey:@"cartID"],@"cartID", nil];
+                         NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:cart,@"cartID",appDelObj.languageId,@"languageID",first_name,@"first_name",last_name,@"last_name",sex,@"gender",uid,@"id",pic,@"profile_image",email,@"email",birthday_date,@"birthday", nil];
                          
                          [webService getUrlReqForPostingBaseUrl:urlStr andTextData:dicPost];
                          
@@ -1455,9 +1475,14 @@ didDisconnectWithUser:(GIDGoogleUser *)user
     {
         [Loading showWithStatus:@"Please wait..." maskType:SVProgressHUDMaskTypeClear Indicator:YES];
     }
-    
+    //NSString *urlStr=[NSString stringWithFormat:@"%@%@",appDelObj.baseURL,@"mobileapp/User/checkgPlusLogin/"];
+    NSString *cart=[[NSUserDefaults standardUserDefaults]objectForKey:@"cartID"];
+    if(cart.length==0)
+    {
+        cart=@"";
+    }
     NSString *urlStr=[NSString stringWithFormat:@"%@%@",appDelObj.baseURL,@"mobileapp/googleplus/index/"];
-    NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:appDelObj.languageId,@"languageID",[GIDSignIn sharedInstance].currentUser.profile.givenName
+    NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:cart,@"cartID",appDelObj.languageId,@"languageID",[GIDSignIn sharedInstance].currentUser.profile.givenName
                                   ,@"given_name",[GIDSignIn sharedInstance].currentUser.profile.familyName,@"family_name",[GIDSignIn sharedInstance].currentUser.profile.email,@"email",@"",@"id",@"",@"birthday",@"",@"gender",@"",@"profile_image",[[NSUserDefaults standardUserDefaults]objectForKey:@"cartID"],@"cartID", nil];
     
     [webService getUrlReqForPostingBaseUrl:urlStr andTextData:dicPost];

@@ -2396,21 +2396,22 @@ NTMonthYearPicker *picker;
             UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:str preferredStyle:UIAlertControllerStyleAlert];
             [alertController addAction:[UIAlertAction actionWithTitle:okMsg style:UIAlertActionStyleDefault handler:^(UIAlertAction *action)
                                         {
-                                            if(appDelObj.isArabic)
-                                            {
-                                                transition = [CATransition animation];
-                                                [transition setDuration:0.3];
-                                                transition.type = kCATransitionPush;
-                                                transition.subtype = kCATransitionFromRight;
-                                                [transition setFillMode:kCAFillModeBoth];
-                                                [transition setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
-                                                [self.navigationController.view.layer addAnimation:transition forKey:kCATransition];
-                                                [self.navigationController popViewControllerAnimated:YES];
-                                            }
-                                            else
-                                            {
-                                                [self.navigationController popViewControllerAnimated:YES];
-                                            }
+                                            [self backAction:nil];
+//                                            if(appDelObj.isArabic)
+//                                            {
+//                                                transition = [CATransition animation];
+//                                                [transition setDuration:0.3];
+//                                                transition.type = kCATransitionPush;
+//                                                transition.subtype = kCATransitionFromRight;
+//                                                [transition setFillMode:kCAFillModeBoth];
+//                                                [transition setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+//                                                [self.navigationController.view.layer addAnimation:transition forKey:kCATransition];
+//                                                [self.navigationController popViewControllerAnimated:YES];
+//                                            }
+//                                            else
+//                                            {
+//                                                [self.navigationController popViewControllerAnimated:YES];
+//                                            }
                                         }]];
             
             [self presentViewController:alertController animated:YES completion:nil];
@@ -5336,7 +5337,7 @@ NTMonthYearPicker *picker;
                         float x1=[[[paymentMethodsAry objectAtIndex:indexPath.row]valueForKey:@"CODFee"] floatValue];
                         float x2=x+x1;
                         if (appDelObj.isArabic) {
-                            NSString *s=[NSString stringWithFormat:@"اكمال الشراء<%.2f %@",x2,appDelObj.currencySymbol];
+                            NSString *s=[NSString stringWithFormat:@"اكمال الشراء %.2f %@",x2,appDelObj.currencySymbol];
                             [self.btnCountinueBtn setTitle:s forState:UIControlStateNormal];
                         }
                         else
@@ -5981,7 +5982,7 @@ NTMonthYearPicker *picker;
                         float x=[[aa objectAtIndex:0] floatValue];
                         
                         if (appDelObj.isArabic) {
-                            NSString *s=[NSString stringWithFormat:@"اكمال الشراء< %.2f %@",x,appDelObj.currencySymbol];
+                            NSString *s=[NSString stringWithFormat:@"اكمال الشراء %.2f %@",x,appDelObj.currencySymbol];
                             [self.btnCountinueBtn setTitle:s forState:UIControlStateNormal];
                         }
                         else
@@ -6041,7 +6042,7 @@ NTMonthYearPicker *picker;
                         float x1=[[[paymentMethodsAry objectAtIndex:indexPath.row]valueForKey:@"CODFee"] floatValue];
                         float x2=x+x1;
                         if (appDelObj.isArabic) {
-                            NSString *s=[NSString stringWithFormat:@"اكمال الشراء<%.2f %@",x2,appDelObj.currencySymbol];
+                            NSString *s=[NSString stringWithFormat:@"اكمال الشراء %.2f %@",x2,appDelObj.currencySymbol];
                             [self.btnCountinueBtn setTitle:s forState:UIControlStateNormal];
                         }
                         else
@@ -6123,7 +6124,7 @@ NTMonthYearPicker *picker;
                     float x=[[aa objectAtIndex:0] floatValue];
                     
                     if (appDelObj.isArabic) {
-                        NSString *s=[NSString stringWithFormat:@"اكمال الشراء<%.2f %@",x,appDelObj.currencySymbol];
+                        NSString *s=[NSString stringWithFormat:@"اكمال الشراء %.2f %@",x,appDelObj.currencySymbol];
                         [self.btnCountinueBtn setTitle:s forState:UIControlStateNormal];
                     }
                     else
@@ -6184,7 +6185,7 @@ NTMonthYearPicker *picker;
                     float x1=[[[paymentMethodsAry objectAtIndex:indexPath.row]valueForKey:@"CODFee"] floatValue];
                     float x2=x+x1;
                     if (appDelObj.isArabic) {
-                       NSString *s=[NSString stringWithFormat:@"اكمال الشراء<%.2f %@",x2,appDelObj.currencySymbol];
+                       NSString *s=[NSString stringWithFormat:@"اكمال الشراء %.2f %@",x2,appDelObj.currencySymbol];
                         [self.btnCountinueBtn setTitle:s forState:UIControlStateNormal];
                     }
                     else

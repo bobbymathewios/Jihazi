@@ -170,6 +170,7 @@
     }
     cell.btnFav.tag=indexPath.row;
     cell.btnf1.tag=indexPath.row;
+    
     double  outStock;
     if ([[[colItemAry objectAtIndex:indexPath.row ]  valueForKey:@"productOptionQuantitySum"]isKindOfClass:[NSNull class]]) {
         outStock=1;
@@ -178,25 +179,46 @@
     {
         outStock=[[[colItemAry objectAtIndex:indexPath.row ]  valueForKey:@"productOptionQuantitySum"]doubleValue];
     }
-    if (outStock<1) {
-        if (appDelegateObj.isArabic) {
-            [cell.btnAdd setTitle:@"غير متوفر" forState:UIControlStateNormal];
-        }
-        else
-        {
-            [cell.btnAdd setTitle:@"Out Of Stock" forState:UIControlStateNormal];
-        }
+//    if ([[colItemAry objectAtIndex:indexPath.row ]  valueForKey:@"productOptionQuantitySum"]==nil)
+//    {
+//        if (appDelegateObj.isArabic) {
+//            [cell.btnAdd setTitle:@"إضافة الى العربة" forState:UIControlStateNormal];
+//        }
+//        else
+//        {
+//            [cell.btnAdd setTitle:@"Add To Cart" forState:UIControlStateNormal];
+//        }
+//    }
+//    else
+//    {
+////    if (outStock<1) {
+////        if (appDelegateObj.isArabic) {
+////            [cell.btnAdd setTitle:@"غير متوفر" forState:UIControlStateNormal];
+////        }
+////        else
+////        {
+////            [cell.btnAdd setTitle:@"Out Of Stock" forState:UIControlStateNormal];
+////        }
+////    }
+////    else
+////    {
+//        if (appDelegateObj.isArabic) {
+//            [cell.btnAdd setTitle:@"عرض المنتج" forState:UIControlStateNormal];
+//        }
+//        else
+//        {
+//            [cell.btnAdd setTitle:@"View Products" forState:UIControlStateNormal];
+//        }
+////    }
+//    }
+    if (appDelegateObj.isArabic) {
+        [cell.btnAdd setTitle:@"عرض المنتج" forState:UIControlStateNormal];
     }
     else
     {
-        if (appDelegateObj.isArabic) {
-            [cell.btnAdd setTitle:@"إضافة الى العربة" forState:UIControlStateNormal];
-        }
-        else
-        {
-            [cell.btnAdd setTitle:@"Add To Cart" forState:UIControlStateNormal];
-        }
+        [cell.btnAdd setTitle:@"View Product" forState:UIControlStateNormal];
     }
+    cell.btnAdd.tag=indexPath.row;
     return cell;
 }
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -205,7 +227,8 @@
 }
 -(void)AddToCartvActionDel:(int)tag
 {
-     [self.ViewDEL productSimilarDetailDel:[[colItemAry objectAtIndex:tag ]   valueForKey:@"productID"]];
+    [self.ViewDEL productSimilarDetailDel:[[colItemAry objectAtIndex:tag ]   valueForKey:@"productID"]];
+     //[self.ViewDEL productSimilarAddCartDel:[colItemAry objectAtIndex:tag ]];
 }
 - (void)setCollectionData:(NSArray *)collectionData
 {

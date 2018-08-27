@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "ItemCollectionViewCell.h"
 @protocol viewSililarAllDelegate <NSObject>
+-(void)productSimilarAddCartDel:(NSArray *)array;
 
 -(void)productSimilarDetailDel:(NSString *)pid;
 -(void)FavouriteAddAction:(NSString *)pid second:(NSString *)sender;

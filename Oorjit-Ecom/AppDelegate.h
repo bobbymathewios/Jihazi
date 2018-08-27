@@ -43,6 +43,8 @@
 -(void)arabicMenuAction;
 
 -(void)englishMenuAction;
+-(void)arabicRoot;
 
+-(void)englishRoot;
 @end
 

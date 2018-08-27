@@ -103,7 +103,7 @@
         if (appDelObj.isArabic==YES)
         {
             
-            self.lblMessage.text=[NSString stringWithFormat:@" تم إرسال رمز التحقق الى رقم الجوال  %@",s];
+            self.lblMessage.text=[NSString stringWithFormat:@" تم إرسال رمز التحقق الى رقم الجوال   %@",s];
             [self.btnVerify setTitle:@"التحقق" forState:UIControlStateNormal];
             self.lbl.text=@"الوقت المتبقي";
             self.txtOtp.placeholder=@"رمز التحقق";
@@ -785,13 +785,13 @@
             if (appDelObj.isArabic==YES)
             {
                 
-                self.lblMessage.text=[NSString stringWithFormat:@"تم ارسال رمز التحقق إلى رقم الجوال المسجّل  %@",s];
+                self.lblMessage.text=[NSString stringWithFormat:@"تم ارسال رمز التحقق إلى رقم الجوال تم إرسال رمز التحقق الى رقم الجوال   %@",s];
                 [self.btnVerify setTitle:@"التحقق" forState:UIControlStateNormal];
                 self.lbl.text=@"الوقت المتبقي";
                 self.txtOtp.placeholder=@"رمز التحقق";
-                self.lblVerify.text=@"يرجى تأكيد رقم الهاتف المحمول ";
+                self.lblVerify.text=@"يرجى تأكيد رقم الجوال ";
                 [self.btnResend setTitle:@"إعادة إرسال" forState:UIControlStateNormal];
-                self.lblSMS.text=@"يرجى إدخال رمز التحقق أدناه للتحقق من رقم هاتفك المحمول ";
+                self.lblSMS.text=@"يرجى إدخال رمز التحقق أدناه للتحقق من رقم الجوال .";
                 self.lblTitle.text=@"لن تتم مشاركة معلوماتك الشخصية مع أي جهة ";
                 [self.btnVerify setTitle:@"التحقق" forState:UIControlStateNormal];
             }

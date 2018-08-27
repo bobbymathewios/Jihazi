@@ -43,6 +43,8 @@
 #import "MessageViewController.h"
 
 @interface ListDetailViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIWebView *weee;
+@property (weak, nonatomic) IBOutlet UITextView *txtShort;
 @property (weak, nonatomic) IBOutlet UIButton *btnM;
 @property (weak, nonatomic) IBOutlet UIButton *btnP;
 @property (weak, nonatomic) IBOutlet UILabel *lblOut;

@@ -66,7 +66,7 @@
         self.txtReason.placeholder=@"يرجى تحديد السبب";
         
         self.lblOrderID.text=[NSString stringWithFormat:@" رقم الطلب :%@",self.OrderID];
-        self.txtText.text=@"يرجى ادخال سبب الالغاء";
+        self.txtText.text=@"يرجى ادخال سبب الالغاء/الاسترجاع";
         self.lblReasonForCancel.text=@"السبب";
         self.lblReason.text=@"السبب";
         self.lblCmtText.text=@"تعليقك";

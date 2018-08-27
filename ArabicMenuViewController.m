@@ -34,22 +34,6 @@
    
     self.navigationController.navigationBarHidden=YES;
     appDelObj=(AppDelegate *)[UIApplication sharedApplication].delegate;
-    self.tblLang.clipsToBounds=YES;
-    self.tblLang.layer.cornerRadius=7;
-    //self.lblCatTitle.backgroundColor=[UIColor colorWithRed:0.086 green:0.671 blue:0.412 alpha:1.00];
-   // self.lblCatTitle.textColor=[UIColor colorWithRed:0.749 green:0.918 blue:0.851 alpha:1.00];
-    ///******************/////
-    self.viewbg.backgroundColor=appDelObj.headderColor;
-    //self.view.backgroundColor=[UIColor colorWithRed:0.086 green:0.671 blue:0.412 alpha:1.00];
-    webServiceObj=[[WebService alloc]init];
-    webServiceObj.PDA=self;
-   
-    self.tblmenu.frame=CGRectMake(self.tblmenu.frame.origin.x, self.tblmenu.frame.origin.y, self.tblmenu.frame.size.width, 55*menuNameAry.count);
-    self.btnlogout.frame=CGRectMake(self.btnlogout.frame.origin.x, self.tblmenu.frame.origin.y+self.tblmenu.frame.size.height+20, self.btnlogout.frame.size.width, self.btnlogout.frame.size.height);
-    self.viewbg.frame=CGRectMake(self.viewbg.frame.origin.x, self.viewbg.frame.origin.y, self.viewbg.frame.size.width, self.btnlogout.frame.origin.y+self.btnlogout.frame.size.height+self.viewbg.frame.size.height+100);
-    
-    self.scrollobj.contentSize=CGSizeMake(0, self.btnlogout.frame.origin.y+self.btnlogout.frame.size.height+100);
-    
     NSString *userID=[[NSUserDefaults standardUserDefaults]objectForKey:@"USER_ID"];
     
     self.profileImg.clipsToBounds=YES;
@@ -88,7 +72,24 @@
         }
         
     }
-
+    [_tblmenu reloadData];
+    self.tblLang.clipsToBounds=YES;
+    self.tblLang.layer.cornerRadius=7;
+    //self.lblCatTitle.backgroundColor=[UIColor colorWithRed:0.086 green:0.671 blue:0.412 alpha:1.00];
+   // self.lblCatTitle.textColor=[UIColor colorWithRed:0.749 green:0.918 blue:0.851 alpha:1.00];
+    ///******************/////
+    self.viewbg.backgroundColor=appDelObj.headderColor;
+    //self.view.backgroundColor=[UIColor colorWithRed:0.086 green:0.671 blue:0.412 alpha:1.00];
+    webServiceObj=[[WebService alloc]init];
+    webServiceObj.PDA=self;
+   
+    self.tblmenu.frame=CGRectMake(self.tblmenu.frame.origin.x, self.tblmenu.frame.origin.y, self.tblmenu.frame.size.width, 55*menuNameAry.count);
+    self.btnlogout.frame=CGRectMake(self.btnlogout.frame.origin.x, self.tblmenu.frame.origin.y+self.tblmenu.frame.size.height+20, self.btnlogout.frame.size.width, self.btnlogout.frame.size.height);
+    self.viewbg.frame=CGRectMake(self.viewbg.frame.origin.x, self.viewbg.frame.origin.y, self.viewbg.frame.size.width, self.btnlogout.frame.origin.y+self.btnlogout.frame.size.height+self.viewbg.frame.size.height+100);
+    
+    self.scrollobj.contentSize=CGSizeMake(0, self.btnlogout.frame.origin.y+self.btnlogout.frame.size.height+500);
+    
+   
 }
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -145,6 +146,7 @@
     }  NSString *urlStr=[NSString stringWithFormat:@"%@%@%@",appDelObj.baseURL,@"mobileapp/index/setDynamicMenu/languageID/",appDelObj.languageId];
     [webServiceObj getDataFromService:[NSURLRequest requestWithURL:[NSURL URLWithString:urlStr]]];
 }
+
 -(void)failServiceMSg
 {
 //    NSString *strMsg,*okMsg;
@@ -246,13 +248,13 @@
             {
                 self.tblmenu.frame=CGRectMake(self.tblmenu.frame.origin.x, self.tblmenu.frame.origin.y, self.tblmenu.frame.size.width, (55*(menuNameAry.count+7))+50);
                 self.viewbg.frame=CGRectMake(self.viewbg.frame.origin.x, self.viewbg.frame.origin.y, self.viewbg.frame.size.width, self.tblmenu.frame.origin.y+self.tblmenu.frame.size.height+self.viewbg.frame.size.height+500);
-                self.scrollobj.contentSize=CGSizeMake(0, (55*(menuNameAry.count+7))+200);
+                self.scrollobj.contentSize=CGSizeMake(0, (55*(menuNameAry.count+7))+250);
             }
             else
             {
                 self.tblmenu.frame=CGRectMake(self.tblmenu.frame.origin.x, self.tblmenu.frame.origin.y, self.tblmenu.frame.size.width, (55*(menuNameAry.count+8))+100);
                 self.viewbg.frame=CGRectMake(self.viewbg.frame.origin.x, self.viewbg.frame.origin.y, self.viewbg.frame.size.width, self.tblmenu.frame.origin.y+self.tblmenu.frame.size.height+self.viewbg.frame.size.height+500);
-                self.scrollobj.contentSize=CGSizeMake(0, (55*(menuNameAry.count+8))+300);
+                self.scrollobj.contentSize=CGSizeMake(0, (55*(menuNameAry.count+8))+350);
             }
         [self.tblmenu reloadData];
         [Loading dismiss];
@@ -264,13 +266,13 @@
     {
         self.tblmenu.frame=CGRectMake(self.tblmenu.frame.origin.x, self.tblmenu.frame.origin.y, self.tblmenu.frame.size.width, (55*(menuNameAry.count+7))+50);
         self.viewbg.frame=CGRectMake(self.viewbg.frame.origin.x, self.viewbg.frame.origin.y, self.viewbg.frame.size.width, self.tblmenu.frame.origin.y+self.tblmenu.frame.size.height+self.viewbg.frame.size.height+500);
-        self.scrollobj.contentSize=CGSizeMake(0, (55*(menuNameAry.count+7))+300);
+        self.scrollobj.contentSize=CGSizeMake(0, (55*(menuNameAry.count+7))+350);
     }
     else
     {
         self.tblmenu.frame=CGRectMake(self.tblmenu.frame.origin.x, self.tblmenu.frame.origin.y, self.tblmenu.frame.size.width, (55*(menuNameAry.count+8))+100);
         self.viewbg.frame=CGRectMake(self.viewbg.frame.origin.x, self.viewbg.frame.origin.y, self.viewbg.frame.size.width, self.tblmenu.frame.origin.y+self.tblmenu.frame.size.height+self.viewbg.frame.size.height+500);
-        self.scrollobj.contentSize=CGSizeMake(0, (55*(menuNameAry.count+8))+300);
+        self.scrollobj.contentSize=CGSizeMake(0, (55*(menuNameAry.count+8))+350);
     }
     
     [Loading dismiss];
@@ -691,12 +693,12 @@
             if (userID.length==0)
             {
                 self.tblmenu.frame=CGRectMake(self.tblmenu.frame.origin.x, self.tblmenu.frame.origin.y, self.tblmenu.frame.size.width, (55*(menuNameAry.count+7))+50);
-                self.scrollobj.contentSize=CGSizeMake(0, (55*(menuNameAry.count+7))+230);
+                self.scrollobj.contentSize=CGSizeMake(0, (55*(menuNameAry.count+8))+250);
             }
             else
             {
                 self.tblmenu.frame=CGRectMake(self.tblmenu.frame.origin.x, self.tblmenu.frame.origin.y, self.tblmenu.frame.size.width, (55*(menuNameAry.count+8))+100);
-                self.scrollobj.contentSize=CGSizeMake(0, (55*(menuNameAry.count+8))+330);
+                self.scrollobj.contentSize=CGSizeMake(0, (55*(menuNameAry.count+9))+350);
             }
         }
         else
@@ -706,12 +708,12 @@
             if (userID.length==0)
             {
                 self.tblmenu.frame=CGRectMake(self.tblmenu.frame.origin.x, self.tblmenu.frame.origin.y, self.tblmenu.frame.size.width, (55*(menuNameAry.count+7))+55*a.count+50);
-                self.scrollobj.contentSize=CGSizeMake(0, (55*(menuNameAry.count+7))+55*a.count+230);
+                self.scrollobj.contentSize=CGSizeMake(0, (55*(menuNameAry.count+8))+55*a.count+250);
             }
             else
             {
                 self.tblmenu.frame=CGRectMake(self.tblmenu.frame.origin.x, self.tblmenu.frame.origin.y, self.tblmenu.frame.size.width, (55*(menuNameAry.count+8))+55*a.count+100);
-                self.scrollobj.contentSize=CGSizeMake(0, (55*(menuNameAry.count+8))+55*a.count+330);
+                self.scrollobj.contentSize=CGSizeMake(0, (55*(menuNameAry.count+9))+55*a.count+350);
             }
             
            
@@ -1064,13 +1066,13 @@
                         NSString *userID=[[NSUserDefaults standardUserDefaults]objectForKey:@"USER_ID"];
                         if (userID.length==0)
                         {
-                            self.tblmenu.frame=CGRectMake(self.tblmenu.frame.origin.x, self.tblmenu.frame.origin.y, self.tblmenu.frame.size.width, (55*(menuNameAry.count+7))+50);
-                            self.scrollobj.contentSize=CGSizeMake(0, (55*(menuNameAry.count+7))+230);
+                            self.tblmenu.frame=CGRectMake(self.tblmenu.frame.origin.x, self.tblmenu.frame.origin.y, self.tblmenu.frame.size.width, (55*(menuNameAry.count+7))+100);
+                            self.scrollobj.contentSize=CGSizeMake(0, (55*(menuNameAry.count+8))+200);
                         }
                         else
                         {
-                            self.tblmenu.frame=CGRectMake(self.tblmenu.frame.origin.x, self.tblmenu.frame.origin.y, self.tblmenu.frame.size.width, (55*(menuNameAry.count+8))+100);
-                            self.scrollobj.contentSize=CGSizeMake(0, (55*(menuNameAry.count+8))+330);
+                            self.tblmenu.frame=CGRectMake(self.tblmenu.frame.origin.x, self.tblmenu.frame.origin.y, self.tblmenu.frame.size.width, (55*(menuNameAry.count+8))+150);
+                            self.scrollobj.contentSize=CGSizeMake(0, (55*(menuNameAry.count+9))+300);
                         }
                         
                     }
@@ -1115,12 +1117,12 @@
                     if (userID.length==0)
                     {
                         self.tblmenu.frame=CGRectMake(self.tblmenu.frame.origin.x, self.tblmenu.frame.origin.y, self.tblmenu.frame.size.width, (55*(menuNameAry.count+7))+55*a.count+50);
-                        self.scrollobj.contentSize=CGSizeMake(0, (55*(menuNameAry.count+7))+55*a.count+230);
+                        self.scrollobj.contentSize=CGSizeMake(0, (55*(menuNameAry.count+7))+55*a.count+250);
                     }
                     else
                     {
                         self.tblmenu.frame=CGRectMake(self.tblmenu.frame.origin.x, self.tblmenu.frame.origin.y, self.tblmenu.frame.size.width, (55*(menuNameAry.count+8))+55*a.count+100);
-                        self.scrollobj.contentSize=CGSizeMake(0, (55*(menuNameAry.count+8))+55*a.count+330);
+                        self.scrollobj.contentSize=CGSizeMake(0, (55*(menuNameAry.count+8))+55*a.count+350);
                     }
                     
                     [self.tblmenu reloadData];
