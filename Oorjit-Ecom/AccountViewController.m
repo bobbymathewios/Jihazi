@@ -513,7 +513,7 @@
             NSString *strImgUrl=[[NSUserDefaults standardUserDefaults]objectForKey:@"USER_IMAGE"];
             if ([strImgUrl isKindOfClass: [NSNull class]]|| strImgUrl.length==0||strImgUrl.length<4)
             {
-                self.imgprofile.image=[UIImage imageNamed:@"my-account-menu.png"];
+                self.imgprofile.image=[UIImage imageNamed:@"my-accountset-4.png"];
             }
             else
             {
@@ -527,7 +527,7 @@
                 {
                     urlIMG=[NSString stringWithFormat:@"%@%@",appDelObj.profileURl,strImgUrl];
                 }
-                self.imgprofile.image = [UIImage imageNamed:@"my-account-menu.png"];
+                self.imgprofile.image = [UIImage imageNamed:@"my-accountset-4.png"];
                 dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
                 dispatch_async(queue, ^{
                     NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlIMG]];
@@ -538,7 +538,7 @@
                 });
                 if (self.imgprofile==nil||self.imgprofile==NULL)
                 {
-                    self.imgprofile.image = [UIImage imageNamed:@"my-account-menu.png"];
+                    self.imgprofile.image = [UIImage imageNamed:@"my-accountset-4.png"];
                 }
             }
             NSString *g=[[dictionary objectForKey:@"userData"]objectForKey:@"userGender"] ;
@@ -629,9 +629,20 @@
         {
              pushS=@"0";
         }
+        
+        NSString *de=[[NSUserDefaults standardUserDefaults]objectForKey:@"DEVICE"];
+        if (de.length==0) {
+            de=@"";
+        }
+        else
+        {
+            
+        };
+        
         //,self.txtDOB.text,@"userDOB"
         NSString *urlStr=[NSString stringWithFormat:@"%@%@%@",appDelObj.baseURL,@"mobileapp/User/editaccount/languageID/",appDelObj.languageId];
-        NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:[[NSUserDefaults standardUserDefaults]objectForKey:@"USER_ID"],@"userID",self.txtFirstName.text,@"userFirstName",self.txtLastNmae.text,@"userLastName",self.txtMobileNumber.text,@"userPhone",@"",@"userDOB", gender,@"userGender",self.txtEmailAddress.text,@"userEmail",@"",@"userNewsletterSubscribeStatus",pushS,@"hidnotification",@"iPhone",@"deviceType",[[NSUserDefaults standardUserDefaults]objectForKey:@"DEVICE"],@"deviceToken", nil];
+        
+        NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:[[NSUserDefaults standardUserDefaults]objectForKey:@"USER_ID"],@"userID",self.txtFirstName.text,@"userFirstName",self.txtLastNmae.text,@"userLastName",self.txtMobileNumber.text,@"userPhone",@"",@"userDOB", gender,@"userGender",self.txtEmailAddress.text,@"userEmail",@"",@"userNewsletterSubscribeStatus",pushS,@"hidnotification",@"iPhone",@"deviceType",de,@"deviceToken", nil];
         NSMutableDictionary *imageParams = [NSMutableDictionary dictionaryWithObject:self.imgprofile.image forKey:@"userProfilePicture"];
         [webServiceObj getUrlReqForUpdatingProfileBaseUrl:urlStr andTextData:dicPost andImageData:imageParams];
     }
