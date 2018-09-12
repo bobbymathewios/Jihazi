@@ -47,10 +47,10 @@
         self.lblc.textAlignment=NSTextAlignmentRight;
         self.txtCode.textAlignment=NSTextAlignmentRight;
         self.txtCode.placeholder=@"أدخل كوبون الهدية";
-        self.lblWalletBalance.text=@" رصيد المحفظة ";
+        self.lblWalletBalance.text=@"الرصيد المتوفر";
         self.lblc.text=@"كوبون الهدية";
 
-        self.lblTitle.text=@"محفظتى";
+        self.lblTitle.text=@"رصيدي";
         [self.btnCancel setTitle:@"إلغاء" forState:UIControlStateNormal];
         
         [self.btnApply setTitle:@"تطبيق" forState:UIControlStateNormal];
@@ -273,7 +273,7 @@
                 listCell.lbl3.transform=CGAffineTransformMakeScale(-1, 1);
 
                 listCell.lbl1.text=@"بطاقة هدية الكترونية";
-                listCell.lbl2.text=@"اضافة بطاقة هدية";
+                listCell.lbl2.text=@" استخدم بطاقة الهدية الخاصة بك";
                 listCell.lbl3.text=@"هل لديك بطاقة هدية ؟";
             }
             return listCell;

@@ -32,7 +32,7 @@
 
 @property(nonatomic)int menuTag;
 @property(nonatomic,strong)NSMutableArray *filterBrandID,*UploadedPrescription,*shipARRAY,*billARRAY;
-@property(nonatomic,strong)NSString *baseURL,*baseURLS,*homeImgURL,*listImgURL,*DetailImgURL,*ImgURL,*languageId,*frommenu,*listTitle,*combination1,*combination2,*wishImg,*currencySymbol,*CatID,*CatPArID,*widgetImgURL,*fromListPrescription,*fromWhere,*profileURl,*OrderID,*dealBundle,*fromSide,*devicetocken,*mainPrice,*mainDiscount,*mainBrand,*mainBusiness,*mainSearch,*CancelBillAddressOnCheckout;
+@property(nonatomic,strong)NSString *baseURL,*baseURLS,*homeImgURL,*listImgURL,*DetailImgURL,*ImgURL,*languageId,*frommenu,*listTitle,*combination1,*combination2,*wishImg,*currencySymbol,*CatID,*CatPArID,*widgetImgURL,*fromListPrescription,*fromWhere,*profileURl,*OrderID,*dealBundle,*fromSide,*devicetocken,*mainPrice,*mainDiscount,*mainBrand,*mainBusiness,*mainSearch,*CancelBillAddressOnCheckout,*cmsTitle;
 
 @property (readonly, strong) NSPersistentContainer *persistentContainer;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;

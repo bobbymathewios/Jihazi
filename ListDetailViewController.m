@@ -3193,16 +3193,16 @@ productOptionID=@"";
                 listCell.lbl3.textAlignment=NSTextAlignmentRight;
                 listCell.lbl2.textAlignment=NSTextAlignmentRight;
                 listCell.lbl1.textAlignment=NSTextAlignmentRight;
-                listCell.lblTitle.text=@"إعادة النظر";
+                listCell.lblTitle.text=@"التقييمات";
             }
             if(DetailListAryData.count!=0)
             {
             //NSArray *arrRate=[[[DetailListAryData valueForKey:@"result"]valueForKey:@"resTotProductReviewDetails"]valueForKey:@"resProductReview"];
                 listCell.lblrate.text=listCell.lblCount.text=[NSString stringWithFormat:@"%@",[[DetailListAryData valueForKey:@"resTotProductReviewDetails"]valueForKey:@"avgratings"]];
-                listCell.lblrate.text=[NSString stringWithFormat:@"%@ rating and %lu reviews",[[DetailListAryData valueForKey:@"resTotProductReviewDetails"]valueForKey:@"avgratings"],(unsigned long)reviewArray.count];
+                listCell.lblrate.text=[NSString stringWithFormat:@"Average star rating %@ out of 5 (%lu vote)",[[DetailListAryData valueForKey:@"resTotProductReviewDetails"]valueForKey:@"avgratings"],(unsigned long)reviewArray.count];
                 if (appDelObj.isArabic) 
                 {
-                    listCell.lblrate.text=[NSString stringWithFormat:@" تصنيف و %lu استعراض %@",(unsigned long)reviewArray.count,[[DetailListAryData valueForKey:@"resTotProductReviewDetails"]valueForKey:@"avgratings"]];
+                    listCell.lblrate.text=[NSString stringWithFormat:@"متوسط معدل التقييم %@ من 5 (%lu تقييم)",[[DetailListAryData valueForKey:@"resTotProductReviewDetails"]valueForKey:@"avgratings"],(unsigned long)reviewArray.count];
                     listCell.imm.image=[UIImage imageNamed:@"rating-ar.png"];
                 }
                 listCell.lbl5.text=[NSString stringWithFormat:@"%@",[[[[DetailListAryData valueForKey:@"resTotProductReviewDetails"]valueForKey:@"resProductReview"]objectAtIndex:0]valueForKey:@"rateCnt"]];

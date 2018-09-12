@@ -321,11 +321,11 @@
     NSString *userID=[[NSUserDefaults standardUserDefaults]objectForKey:@"USER_ID"];
     if (userID.length==0)
     {
-        return menuNameAry.count+7;
+        return menuNameAry.count+8;
     }
     else
     {
-        return menuNameAry.count+8;
+        return menuNameAry.count+9;
     }
     }
 }
@@ -435,7 +435,14 @@
     menuCell.imgline.frame=CGRectMake(menuCell.img.frame.origin.x, menuCell.imgline.frame.origin.y, menuCell.imgArrow.frame.origin.x+menuCell.imgArrow.frame.size.width-menuCell.img.frame.origin.x, 0.5);
 
     menuCell.selectionStyle=UITableViewCellSelectionStyleNone;
+         if (indexPath.section==menuNameAry.count+7)
+         {
+             
+         }
+        else
+        {
         menuCell.img.transform = CGAffineTransformMakeScale(-1, 1);
+        }
     if (indexPath.section>=menuNameAry.count)
     {
          menuCell.btnExp.alpha=0;
@@ -486,6 +493,12 @@
                 menuCell.lblNme.text=@"دردش معنا";
                 menuCell.img.image=[UIImage imageNamed:@"support_chat.png"];
             }
+            else if (indexPath.section==menuNameAry.count+7)
+            {
+                 //menuCell.img.transform = CGAffineTransformMakeScale(-1, 1);
+                menuCell.lblNme.text=@"الأسئلة الشائعة";
+                menuCell.img.image=[UIImage imageNamed:@"my-acoount-7.png"];
+            }
         }
         else
         {
@@ -534,6 +547,12 @@
                 menuCell.img.image=[UIImage imageNamed:@"support_chat.png"];
             }
             else if (indexPath.section==menuNameAry.count+7)
+            {
+                 //menuCell.img.transform = CGAffineTransformMakeScale(-1, 1);
+                menuCell.lblNme.text=@"الأسئلة الشائعة";
+                menuCell.img.image=[UIImage imageNamed:@"my-acoount-7.png"];
+            }
+            else if (indexPath.section==menuNameAry.count+8)
             {
                 menuCell.lblNme.text=@"تسجيل خروج ";
                 menuCell.img.image=[UIImage imageNamed:@"menu-5.png"];
@@ -956,6 +975,13 @@
             [self chatSupport];
         }
         else if (indexPath.section==menuNameAry.count+7)
+        {
+            appDelObj.cmsTitle=@"الأسئلة الشائعة";
+            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[[AboutViewController alloc] init]]
+                                                         animated:YES];
+            [self.sideMenuViewController hideMenuViewController];
+        }
+        else if (indexPath.section==menuNameAry.count+8)
         {
             //        [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[[AboutViewController alloc] init]]
             //                                                     animated:YES];

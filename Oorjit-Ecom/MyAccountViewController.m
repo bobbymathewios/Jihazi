@@ -775,6 +775,10 @@
             catCell.lblNotificationCount.transform=CGAffineTransformMakeScale(-1, 1);
 
             catCell.lblName.textAlignment=NSTextAlignmentRight;
+            if(indexPath.row==8)
+            {
+                //catCell.img.transform=CGAffineTransformMakeScale(-1, 1);
+            }
         }
     catCell.selectionStyle=UITableViewCellSelectionStyleNone;
 

@@ -33,7 +33,7 @@ static NSString * const kClientID =@"1058965638207-gr0vth5hjfd38j0pdsv1hmlcbbf9d
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
+    _cmsTitle=@"";
     self.CatPArID=self.CatID=@"";
 [FIRApp configure];
     self.CancelBillAddressOnCheckout=@"";
@@ -43,10 +43,12 @@ static NSString * const kClientID =@"1058965638207-gr0vth5hjfd38j0pdsv1hmlcbbf9d
  // [[Crashlytics sharedInstance] crash];
     //[trace incrementMetric:@"retry" by:1];
    //self.baseURL=@"http://pan02-private.ispghosting.com/resmi/jihazi/";
-// self.baseURL=@"https://v2-test.jihazi.com/";
+ //self.baseURL=@"https://v2-test.jihazi.com/";
     //self.baseURL=@"https://test.jihazi.com/";
     
-    self.baseURL=@"https://www.jihazi.com/";
+  self.baseURL=@"https://www.jihazi.com/";
+    
+    
     NSString* Identifier = [[[UIDevice currentDevice] identifierForVendor] UUIDString]; // IOS 6+
     NSLog(@"output is : %@", Identifier);
     webServiceObj=[[WebService alloc]init];
@@ -272,10 +274,10 @@ static NSString * const kClientID =@"1058965638207-gr0vth5hjfd38j0pdsv1hmlcbbf9d
 }
 -(void)finishedParsingDictionary:(NSDictionary *)dictionary
 {
-    if ([[dictionary objectForKey:@"response"]isEqualToString:@"Success"])
-    {
+    //if ([[dictionary objectForKey:@"response"]isEqualToString:@"Success"])
+    //{
         NSLog(@"succeesss");
-    }
+    //}
     [Loading dismiss];
 }
 -(void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)err {
@@ -362,7 +364,7 @@ static NSString * const kClientID =@"1058965638207-gr0vth5hjfd38j0pdsv1hmlcbbf9d
     
 }
 -(void)englishMenuAction
-{
+{_cmsTitle=@"";
     self.isArabic=NO;
     self.languageId=@"1";
     [[NSUserDefaults standardUserDefaults]setObject:@"English" forKey:@"LANGUAGE"];
@@ -391,7 +393,7 @@ static NSString * const kClientID =@"1058965638207-gr0vth5hjfd38j0pdsv1hmlcbbf9d
 }
 
 -(void)arabicMenuAction
-{
+{_cmsTitle=@"";
     [[NSUserDefaults standardUserDefaults]setObject:@"Arabic" forKey:@"LANGUAGE"];
     
     [[NSUserDefaults standardUserDefaults]setObject:@"2" forKey:@"LANGUAGEID"];

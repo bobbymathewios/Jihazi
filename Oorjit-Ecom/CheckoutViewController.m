@@ -162,7 +162,7 @@ NTMonthYearPicker *picker;
    
     if (appDelObj.isArabic)
     {
-         freeShippingText=@" [شحن مجاني (ترقية)]";
+         freeShippingText=@"شحن مجاني (عرض)";
     }
     else
     {
@@ -263,7 +263,7 @@ NTMonthYearPicker *picker;
                     {
                         self.lbls.text=@"Select Payment Method";
                     }
-         
+         [methodSelect removeAllIndexes];
                     shipOrDeli=@"PaymentList";
                     self.uploadView.alpha=0;
                     
@@ -295,7 +295,7 @@ NTMonthYearPicker *picker;
                     }                 CODAddTotalAmt=self.totalPriceValue;
                     address=@"";
                     NSString *urlStr=[NSString stringWithFormat:@"%@%@%@",appDelObj.baseURL,@"mobileapp/Cart/listPaymentmethods/languageID/",appDelObj.languageId];
-                    NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:[[NSUserDefaults standardUserDefaults]objectForKey:@"USER_ID"],@"userID",[[NSUserDefaults standardUserDefaults]objectForKey:@"cartID"],@"cartID", nil];
+                    NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:[[NSUserDefaults standardUserDefaults]objectForKey:@"USER_ID"],@"userID",[[NSUserDefaults standardUserDefaults]objectForKey:@"cartID"],@"cartID",@"",@"paySetGroupKey", nil];
                     [webServiceObj getUrlReqForPostingBaseUrl:urlStr andTextData:dicPost];
                     
                     
@@ -1197,7 +1197,7 @@ NTMonthYearPicker *picker;
                     {
                          self.lbls.text=@"Select Payment Method";
                     }
-                   
+                   [methodSelect removeAllIndexes];
                     shipOrDeli=@"PaymentView";
                     shipOrDeli=@"PaymentList";
                     self.uploadView.alpha=0;
@@ -1230,7 +1230,7 @@ NTMonthYearPicker *picker;
                 }                   CODAddTotalAmt=self.totalPriceValue;
                     address=@"";
                     NSString *urlStr=[NSString stringWithFormat:@"%@%@%@",appDelObj.baseURL,@"mobileapp/Cart/listPaymentmethods/languageID/",appDelObj.languageId];
-                    NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:[[NSUserDefaults standardUserDefaults]objectForKey:@"USER_ID"],@"userID",[[NSUserDefaults standardUserDefaults]objectForKey:@"cartID"],@"cartID", nil];
+                    NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:[[NSUserDefaults standardUserDefaults]objectForKey:@"USER_ID"],@"userID",[[NSUserDefaults standardUserDefaults]objectForKey:@"cartID"],@"cartID",@"",@"paySetGroupKey", nil];
                     [webServiceObj getUrlReqForPostingBaseUrl:urlStr andTextData:dicPost];
                 
                 
@@ -1276,7 +1276,7 @@ NTMonthYearPicker *picker;
                 
             }
             else if ([shipOrDeli isEqualToString:@"PrescriptionSkip"])
-            {
+            {[methodSelect removeAllIndexes];
                 shipOrDeli=@"PaymentList";
                 // self.scrollViewObj.contentSize=CGSizeMake(0, 0);
                 self.uploadView.alpha=0;
@@ -1306,11 +1306,11 @@ NTMonthYearPicker *picker;
                 }              address=@"";
                 CODAddTotalAmt=self.totalPriceValue;
                 NSString *urlStr=[NSString stringWithFormat:@"%@%@%@",appDelObj.baseURL,@"mobileapp/Cart/listPaymentmethods/languageID/",appDelObj.languageId];
-                NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:[[NSUserDefaults standardUserDefaults]objectForKey:@"USER_ID"],@"userID",[[NSUserDefaults standardUserDefaults]objectForKey:@"cartID"],@"cartID", nil];
+                NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:[[NSUserDefaults standardUserDefaults]objectForKey:@"USER_ID"],@"userID",[[NSUserDefaults standardUserDefaults]objectForKey:@"cartID"],@"cartID",@"",@"paySetGroupKey", nil];
                 [webServiceObj getUrlReqForPostingBaseUrl:urlStr andTextData:dicPost];
             }
             else if ([shipOrDeli isEqualToString:@"GetOrderComp"])
-            {
+            {[methodSelect removeAllIndexes];
                 [paymentMethodsAry removeAllObjects];
                 shipOrDeli=@"PaymentList";
                 // self.scrollViewObj.contentSize=CGSizeMake(0, 0);
@@ -1341,7 +1341,7 @@ NTMonthYearPicker *picker;
                 }              address=@"";
                 CODAddTotalAmt=self.totalPriceValue;
                 NSString *urlStr=[NSString stringWithFormat:@"%@%@%@",appDelObj.baseURL,@"mobileapp/Cart/listPaymentmethods/languageID/",appDelObj.languageId];
-                NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:[[NSUserDefaults standardUserDefaults]objectForKey:@"USER_ID"],@"userID",[[NSUserDefaults standardUserDefaults]objectForKey:@"cartID"],@"cartID", nil];
+                NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:[[NSUserDefaults standardUserDefaults]objectForKey:@"USER_ID"],@"userID",[[NSUserDefaults standardUserDefaults]objectForKey:@"cartID"],@"cartID",@"",@"paySetGroupKey", nil];
                 [webServiceObj getUrlReqForPostingBaseUrl:urlStr andTextData:dicPost];
             }
             else if ([shipOrDeli isEqualToString:@"PaymentList"])
@@ -1360,7 +1360,7 @@ NTMonthYearPicker *picker;
                 shipOrDeli=@"PaymentSelect";
                 [paymentMethodsAry removeAllObjects];
                 [cartArray removeAllObjects];
-                [methodSelect removeAllIndexes];
+               // [methodSelect removeAllIndexes];
                 NSArray *payArr=[dictionary objectForKey:@"result"];
                 if ([payArr isKindOfClass:[NSDictionary class]])
                 {
@@ -4250,7 +4250,7 @@ NTMonthYearPicker *picker;
             if ([freeShip isEqualToString:@"true"]) {
                 menuCell.lblPrice.alpha=0;
                 if (appDelObj.isArabic) {
-                     menuCell.lblOption.text=[NSString stringWithFormat:@"شحن مجاني (ترقية)"];
+                    menuCell.lblOption.text=[NSString stringWithFormat:@"شحن مجاني (عرض)"];
                 }
                 else
                 {
@@ -4759,6 +4759,41 @@ NTMonthYearPicker *picker;
                             
                         }
                     }
+                    if (payMetho.length==0)
+                    {
+                        payMetho=@"";
+                    }
+                    shipOrDeli=@"PaymentList";
+                    
+                    self.tblShipInfo.alpha=0;
+                    self.uploadView.alpha=0;
+                    self.colPaymentMethod.alpha=1;
+                    
+                    self.paymentView.alpha=1;
+                    self.btnCountinueBtn.alpha=1;
+                    if(appDelObj.isArabic)
+                    {
+                        NSString *s=[NSString stringWithFormat:@"اكمال الشراء  %@",self.totalPriceValue];
+                        [self.btnCountinueBtn setTitle:s forState:UIControlStateNormal];
+                    }
+                    else
+                    {
+                        NSString *s=[NSString stringWithFormat:@"PAY NOW   %@",self.totalPriceValue];
+                        [self.btnCountinueBtn setTitle:s forState:UIControlStateNormal];
+                        
+                    }
+                    if (appDelObj.isArabic)
+                    {
+                        [Loading showWithStatus:@"يرجى الانتظار " maskType:SVProgressHUDMaskTypeClear Indicator:YES];
+                    }
+                    else
+                    {
+                        [Loading showWithStatus:@"Please wait..." maskType:SVProgressHUDMaskTypeClear Indicator:YES];
+                    }        address=@"";
+                   // CODAddTotalAmt=self.totalPriceValue;
+                    NSString *urlStr=[NSString stringWithFormat:@"%@%@%@",appDelObj.baseURL,@"mobileapp/Cart/listPaymentmethods/languageID/",appDelObj.languageId];
+                    NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:[[NSUserDefaults standardUserDefaults]objectForKey:@"USER_ID"],@"userID",[[NSUserDefaults standardUserDefaults]objectForKey:@"cartID"],@"cartID",payMetho,@"paySetGroupKey", nil];
+                    [webServiceObj getUrlReqForPostingBaseUrl:urlStr andTextData:dicPost];
                     [self.tblCartDetails reloadData];
                     
                 }
@@ -5425,6 +5460,37 @@ NTMonthYearPicker *picker;
                 }
                 
             }
+            shipOrDeli=@"PaymentList";
+            
+            self.tblShipInfo.alpha=0;
+            self.uploadView.alpha=0;
+            self.colPaymentMethod.alpha=1;
+            
+            self.paymentView.alpha=1;
+            self.btnCountinueBtn.alpha=1;
+            if(appDelObj.isArabic)
+            {
+                NSString *s=[NSString stringWithFormat:@"اكمال الشراء  %@",self.totalPriceValue];
+                [self.btnCountinueBtn setTitle:s forState:UIControlStateNormal];
+            }
+            else
+            {
+                NSString *s=[NSString stringWithFormat:@"PAY NOW   %@",self.totalPriceValue];
+                [self.btnCountinueBtn setTitle:s forState:UIControlStateNormal];
+                
+            }
+            if (appDelObj.isArabic)
+            {
+                [Loading showWithStatus:@"يرجى الانتظار " maskType:SVProgressHUDMaskTypeClear Indicator:YES];
+            }
+            else
+            {
+                [Loading showWithStatus:@"Please wait..." maskType:SVProgressHUDMaskTypeClear Indicator:YES];
+            }        address=@"";
+            //CODAddTotalAmt=self.totalPriceValue;
+            NSString *urlStr=[NSString stringWithFormat:@"%@%@%@",appDelObj.baseURL,@"mobileapp/Cart/listPaymentmethods/languageID/",appDelObj.languageId];
+            NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:[[NSUserDefaults standardUserDefaults]objectForKey:@"USER_ID"],@"userID",[[NSUserDefaults standardUserDefaults]objectForKey:@"cartID"],@"cartID",payMetho,@"paySetGroupKey", nil];
+            [webServiceObj getUrlReqForPostingBaseUrl:urlStr andTextData:dicPost];
             [self.tblCartDetails reloadData];
         }
         else if (indexPath.section==1)
@@ -6975,7 +7041,7 @@ NTMonthYearPicker *picker;
     else if ([shipOrDeli isEqualToString:@"PaymentView"])
     {
         shipOrDeli=@"PaymentList";
-        
+        [methodSelect removeAllIndexes];
         self.tblShipInfo.alpha=0;
         self.uploadView.alpha=0;
         self.colPaymentMethod.alpha=1;
@@ -7003,7 +7069,7 @@ NTMonthYearPicker *picker;
         }        address=@"";
         CODAddTotalAmt=self.totalPriceValue;
         NSString *urlStr=[NSString stringWithFormat:@"%@%@%@",appDelObj.baseURL,@"mobileapp/Cart/listPaymentmethods/languageID/",appDelObj.languageId];
-        NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:[[NSUserDefaults standardUserDefaults]objectForKey:@"USER_ID"],@"userID",[[NSUserDefaults standardUserDefaults]objectForKey:@"cartID"],@"cartID", nil];
+        NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:[[NSUserDefaults standardUserDefaults]objectForKey:@"USER_ID"],@"userID",[[NSUserDefaults standardUserDefaults]objectForKey:@"cartID"],@"cartID",@"",@"paySetGroupKey", nil];
         [webServiceObj getUrlReqForPostingBaseUrl:urlStr andTextData:dicPost];
     }
     else if ([shipOrDeli isEqualToString:@"PaymentListMethods"])

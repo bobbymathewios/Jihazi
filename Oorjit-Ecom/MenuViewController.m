@@ -319,11 +319,11 @@
     NSString *userID=[[NSUserDefaults standardUserDefaults]objectForKey:@"USER_ID"];
     if (userID.length==0)
     {
-        return menuNameAry.count+7;
+        return menuNameAry.count+8;
     }
     else
     {
-        return menuNameAry.count+8;
+        return menuNameAry.count+9;
     }
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -519,6 +519,11 @@ else{
                     menuCell.lblNme.text=@"CHAT SUPPORT";
                     menuCell.img.image=[UIImage imageNamed:@"support_chat.png"];
                 }
+                else if (indexPath.section==menuNameAry.count+7)
+                {
+                    menuCell.lblNme.text=@"FAQ";
+                    menuCell.img.image=[UIImage imageNamed:@"my-acoount-7.png"];
+                }
 //                else if (indexPath.section==menuNameAry.count+6)
 //                {
 //                    menuCell.lblNme.text=@"MESSAGES";
@@ -569,8 +574,12 @@ else{
                     menuCell.lblNme.text=@"CHAT SUPPORT";
                     menuCell.img.image=[UIImage imageNamed:@"support_chat.png"];
                 }
-                
                 else if (indexPath.section==menuNameAry.count+7)
+                {
+                    menuCell.lblNme.text=@"FAQ";
+                    menuCell.img.image=[UIImage imageNamed:@"my-acoount-7.png"];
+                }
+                else if (indexPath.section==menuNameAry.count+8)
                 {
                     menuCell.lblNme.text=@"SIGN OUT";
                     menuCell.img.image=[UIImage imageNamed:@"menu-5.png"];
@@ -1008,8 +1017,14 @@ else{
         {
             [self chatSupport];
         }
-        
         else if (indexPath.section==menuNameAry.count+7)
+        {
+            appDelObj.cmsTitle=@"FAQ";
+            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[[AboutViewController alloc] init]]
+                                                         animated:YES];
+            [self.sideMenuViewController hideMenuViewController];
+        }
+        else if (indexPath.section==menuNameAry.count+8)
         {
             //        [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[[AboutViewController alloc] init]]
             //                                                     animated:YES];

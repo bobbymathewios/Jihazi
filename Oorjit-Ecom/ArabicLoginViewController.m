@@ -394,7 +394,16 @@ static NSString *const kPlaceholderUserName = @"<Name>";
     {
         if ([[dictionary objectForKey:@"response"]isEqualToString:@"Success"])
         {
-            isPhoneVerify=[NSString stringWithFormat:@"%@",[[dictionary objectForKey:@"userData"] objectForKey:@"isverify"]];
+           
+            if([type isEqualToString:@"FBLogin"]||[type isEqualToString:@"GPLogin"])
+            {
+                isPhoneVerify=@"Y";
+                self.verifyphone=@"N";
+            }
+            else
+            {
+               isPhoneVerify=[NSString stringWithFormat:@"%@",[[dictionary objectForKey:@"userData"] objectForKey:@"isverify"]];
+            }
             NSString *status=[[dictionary objectForKey:@"userData"] objectForKey:@"userStatus"];
             if ([status isEqualToString:@"Inactive"])
             {

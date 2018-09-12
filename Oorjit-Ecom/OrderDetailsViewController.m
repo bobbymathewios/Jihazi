@@ -14,7 +14,7 @@
     CATransition * transition;
     WebService *webServiceObj;
     NSArray *itemsArray,*orderArray,*shipmentAry;
-    NSString*reorder,*imgURl,*RID,*replace;
+    NSString*reorder,*imgURl,*RID,*replace,*returnTitle,*returnTitleShow;
     NSMutableArray *shippingChargeAry;
     int pre;
 }
@@ -161,6 +161,8 @@
             self.txt.text=[[dictionary objectForKey:@"result"]objectForKey:@"applied_promotion_label"];
             RID=[NSString stringWithFormat:@"%@",[[dictionary objectForKey:@"result"]objectForKey:@"returnIDs"]];
             replace=[NSString stringWithFormat:@"%@",[[dictionary objectForKey:@"result"]objectForKey:@"returnAvailable"]];
+            returnTitle=[NSString stringWithFormat:@"%@",[[dictionary objectForKey:@"result"]objectForKey:@"returnLabel"]];
+            returnTitleShow=[NSString stringWithFormat:@"%@",[[dictionary objectForKey:@"result"]objectForKey:@"returnLabelShow"]];
 
             float subTotal=[[self.detailsArray valueForKey:@"orderSubtotal"]floatValue];
             [shippingChargeAry removeAllObjects];
@@ -504,19 +506,33 @@
     
     if (indexPath.section==0)
     {
-        if(RID.length==0&&([replace isEqualToString:@"true"]||[replace isEqualToString:@"1"]))
+        if([[self.detailsArray valueForKey:@"orderStatusCheck"]isEqualToString:@"Error"])
         {
-            return 250;
-        }
-        else if (([replace isEqualToString:@"0"]||[replace isEqualToString:@"false"])&&RID.length==0)
-        {
-            return 200;
+            return  200;
         }
         else
         {
-            return 250;
-       }
-        
+//        if(RID.length==0&&([replace isEqualToString:@"true"]||[replace isEqualToString:@"1"]))
+//        {
+//            return 250;
+//        }
+//        else if (([replace isEqualToString:@"0"]||[replace isEqualToString:@"false"])&&RID.length==0)
+//        {
+//            return 200;
+//        }
+//        else
+//        {
+//            return 250;
+//       }
+            if([[self.detailsArray valueForKey:@"orderStatusCheck"]isEqualToString:@"Process"]||[[self.detailsArray valueForKey:@"orderStatusCheck"]isEqualToString:@"Completed"])
+            {
+                return 250;
+            }
+            else
+            {
+                return 200;
+            }
+        }
     }
     else if (indexPath.section==1)
     {
@@ -528,7 +544,6 @@
     }
     else
     {
-        
         return 38;
     }
 }
@@ -621,9 +636,31 @@
             listCell.btnReturn.alpha=1;
             
         }
+        if([[self.detailsArray valueForKey:@"orderStatusCheck"]isEqualToString:@"Error"])
+        {
+            listCell.btnReturn.alpha=0;
+        }
+        else
+        {
         if(RID.length==0&&([replace isEqualToString:@"true"]||[replace isEqualToString:@"1"]))
         {
+            if ([[self.detailsArray valueForKey:@"orderStatusCheck"] isEqualToString:@"Cancelled"]) {
+                [listCell.btnReturn setTitle:@"Cancel Details" forState:UIControlStateNormal];
+                if (appDelObj.isArabic) {
+                    [listCell.btnReturn setTitle:@"معلومات طلب الاسترجاع" forState:UIControlStateNormal];
+                }
+            }
+            else  if ([[self.detailsArray valueForKey:@"orderStatusCheck"] isEqualToString:@"Returned"])
+            {
+                [listCell.btnReturn setTitle:@"Return Details" forState:UIControlStateNormal];
+                if (appDelObj.isArabic) {
+                    [listCell.btnReturn setTitle:@"معلومات طلب الاسترجاع" forState:UIControlStateNormal];
+                }
+            }
+            else
+            {
              [listCell.btnReturn setTitle:[orderArray  valueForKey:@"returnLabelShow"] forState:UIControlStateNormal];
+            }
         }
         else if (([replace isEqualToString:@"0"]||[replace isEqualToString:@"false"])&&RID.length==0)
         {
@@ -632,10 +669,20 @@
         else
         {
             if (RID!=0) {
-                [listCell.btnReturn setTitle:@"Return Details" forState:UIControlStateNormal];
-                if (appDelObj.isArabic) {
-                    [listCell.btnReturn setTitle:@"معلومات طلب الاسترجاع" forState:UIControlStateNormal];
+                if ([returnTitle isEqualToString:@""]) {
+                    [listCell.btnReturn setTitle:@"Cancel Details" forState:UIControlStateNormal];
+                    if (appDelObj.isArabic) {
+                        [listCell.btnReturn setTitle:@"معلومات طلب الاسترجاع" forState:UIControlStateNormal];
+                    }
                 }
+                else
+                {
+                    [listCell.btnReturn setTitle:@"Return Details" forState:UIControlStateNormal];
+                    if (appDelObj.isArabic) {
+                        [listCell.btnReturn setTitle:@"معلومات طلب الاسترجاع" forState:UIControlStateNormal];
+                    }
+                }
+               
             }
             else
             {
@@ -643,7 +690,15 @@
             }
             
         }
-       
+        }
+        if([[self.detailsArray valueForKey:@"orderStatusCheck"]isEqualToString:@"Process"]||[[self.detailsArray valueForKey:@"orderStatusCheck"]isEqualToString:@"Completed"])
+        {
+            listCell.btnReturn.alpha=1;
+        }
+        else
+        {
+            listCell.btnReturn.alpha=0;
+        }
         listCell.returnDelegateObj=self;
          return listCell;
     }
@@ -918,6 +973,59 @@
 {
     if(RID.length==0&&([replace isEqualToString:@"true"]||[replace isEqualToString:@"1"]))
     {
+        if ([[self.detailsArray valueForKey:@"orderStatusCheck"] isEqualToString:@"Cancelled"]) {
+            if(appDelObj.isArabic)
+            {
+                OrderCancelViewController *listDetail=[[OrderCancelViewController alloc]init];
+                listDetail.rid=RID;
+                listDetail.img=imgURl;
+                listDetail.oid=[self.detailsArray valueForKey:@"masterOrderID"];;
+                transition = [CATransition animation];
+                [transition setDuration:0.3];
+                transition.type = kCATransitionPush;
+                transition.subtype = kCATransitionFromLeft;
+                [transition setFillMode:kCAFillModeBoth];
+                [transition setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+                [self.navigationController.view.layer addAnimation:transition forKey:kCATransition];
+                [self.navigationController pushViewController:listDetail animated:NO];
+            }
+            else
+            {
+                OrderCancelViewController *listDetail=[[OrderCancelViewController alloc]init];
+                listDetail.rid=RID;
+                listDetail.img=imgURl;
+                listDetail.oid=[self.detailsArray valueForKey:@"masterOrderID"];;
+                [self.navigationController pushViewController:listDetail animated:NO];
+            }
+        }
+        else  if ([[self.detailsArray valueForKey:@"orderStatusCheck"] isEqualToString:@"Returned"])
+        {
+            if(appDelObj.isArabic)
+            {
+                OrderCancelViewController *listDetail=[[OrderCancelViewController alloc]init];
+                listDetail.rid=RID;
+                listDetail.img=imgURl;
+                listDetail.oid=[self.detailsArray valueForKey:@"masterOrderID"];;
+                transition = [CATransition animation];
+                [transition setDuration:0.3];
+                transition.type = kCATransitionPush;
+                transition.subtype = kCATransitionFromLeft;
+                [transition setFillMode:kCAFillModeBoth];
+                [transition setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+                [self.navigationController.view.layer addAnimation:transition forKey:kCATransition];
+                [self.navigationController pushViewController:listDetail animated:NO];
+            }
+            else
+            {
+                OrderCancelViewController *listDetail=[[OrderCancelViewController alloc]init];
+                listDetail.rid=RID;
+                listDetail.img=imgURl;
+                listDetail.oid=[self.detailsArray valueForKey:@"masterOrderID"];;
+                [self.navigationController pushViewController:listDetail animated:NO];
+            }
+        }
+        else
+        {
         CancelOrderViewController *listDetail=[[CancelOrderViewController alloc]init];
         listDetail.fromDetail=@"yes";
         if (appDelObj.isArabic) {
@@ -946,6 +1054,7 @@
             listDetail.cancel=@"no";
             listDetail.cancel=@"no";
             [self.navigationController pushViewController:listDetail animated:YES];
+        }
         }
     }
     else if (([replace isEqualToString:@"0"]||[replace isEqualToString:@"false"])&&RID.length==0)

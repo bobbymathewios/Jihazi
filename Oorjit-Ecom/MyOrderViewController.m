@@ -559,7 +559,18 @@
                         //listCell.lblViewmore.frame=CGRectMake(listCell.lblViewmore.frame.origin.x, listCell.lblDeliverdDate.frame.origin.y+listCell.lblDeliverdDate.frame.size.height+10, listCell.lblViewmore.frame.size.width, listCell.lblViewmore.frame.size.height);
                     }
                 }
-                
+                if([[[listAry objectAtIndex:indexPath.section]valueForKey:@"orderStatusCheck"]isEqualToString:@"Error"]||[[[listAry objectAtIndex:indexPath.section]valueForKey:@"orderStatusCheck"]isEqualToString:@"Cancelled"])
+                {
+                    if (appDelObj.isArabic) {
+                        [listCell.btnCancel setTitle:@"تفاصيل الطلب" forState:UIControlStateNormal];
+                        
+                    }
+                    else
+                    {
+                        [listCell.btnCancel setTitle:@"View Order" forState:UIControlStateNormal];
+                        
+                    }
+                }
                 if (listAry.count>8&&indexPath.section==listAry.count-1)
                 {
                     

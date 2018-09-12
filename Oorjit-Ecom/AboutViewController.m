@@ -54,6 +54,10 @@
 }
 -(void)getData
 {
+    if (appDelObj.cmsTitle.length==0)
+    {
+       
+        
     if ([self.cms  isEqualToString:@"10"])
     {
         self.lblTitle.text=self.titleText;
@@ -111,6 +115,39 @@
             self.lblTitle.text=@"About Us";
         }
         [webServiceObj getUrlReqForPostingBaseUrl:urlStr andTextData:dicPost];
+    }
+    }
+    else
+    {
+//        if([appDelObj.cmsTitle isEqualToString:@"1"])
+//        {
+            NSString *urlStr=[NSString stringWithFormat:@"%@%@%@",appDelObj.baseURL,@"mobileapp/Index/cms/languageID/",appDelObj.languageId];
+            NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:@"1",@"pageID", nil];
+            if(appDelObj.isArabic)
+            {
+                self.lblTitle.text=appDelObj.cmsTitle;
+            }
+            else
+            {
+                self.lblTitle.text=appDelObj.cmsTitle;
+            }
+            
+            [webServiceObj getUrlReqForPostingBaseUrl:urlStr andTextData:dicPost];
+//        }
+//        else
+//        {
+//            NSString *urlStr=[NSString stringWithFormat:@"%@%@%@",appDelObj.baseURL,@"mobileapp/Index/cms/languageID/",appDelObj.languageId];
+//            NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:@"3",@"pageID", nil];
+//            if(appDelObj.isArabic)
+//            {
+//                self.lblTitle.text=@"معلومات عنا";
+//            }
+//            else
+//            {
+//                self.lblTitle.text=@"About Us";
+//            }
+//            [webServiceObj getUrlReqForPostingBaseUrl:urlStr andTextData:dicPost];
+//        }
     }
 }
 -(void)failServiceMSg

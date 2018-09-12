@@ -489,6 +489,10 @@ s3=[NSString stringWithFormat:@"%.02f  %@ ",x3,appDelObj.currencySymbol];
     [self presentViewController:alertController animated:YES completion:nil];
     [Loading dismiss];
 }
+-(void)callBackAction
+{
+    [self backAction:nil];
+}
 -(void)finishedParsingDictionary:(NSDictionary *)dictionary
 {
     if ([[dictionary objectForKey:@"response"]isEqualToString:@"Success"])
@@ -509,7 +513,8 @@ s3=[NSString stringWithFormat:@"%.02f  %@ ",x3,appDelObj.currencySymbol];
             UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:strMsg preferredStyle:UIAlertControllerStyleAlert];
             [alertController addAction:[UIAlertAction actionWithTitle:okMsg style:UIAlertActionStyleDefault handler:^(UIAlertAction *action)
                                         {
-                                            if(appDelObj.isArabic) 
+                                            [self callBackAction];
+                                            /*if(appDelObj.isArabic)
                                             {
                                                 transition = [CATransition animation];
                                                 [transition setDuration:0.3];
@@ -524,10 +529,11 @@ s3=[NSString stringWithFormat:@"%.02f  %@ ",x3,appDelObj.currencySymbol];
                                             else
                                             {
                                                 [self.navigationController popViewControllerAnimated:YES];
-                                            }
+                                            }*/
                                         }]];
             
             [self presentViewController:alertController animated:YES completion:nil];
+            
         }
         else
         {
