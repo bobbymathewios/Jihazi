@@ -24,6 +24,9 @@
 
 @property (assign, nonatomic)  BOOL isCustomNib;
 
+@property (assign, nonatomic)  BOOL isNPSCard;
+
+
 @property (assign, nonatomic)  int CurrentTagTextField;
 
 @property (weak, nonatomic) IBOutlet UIView *titleView;
@@ -33,6 +36,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *BackBtn;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerHeight;
 
 @property (weak, nonatomic) IBOutlet UILabel *PriceLbl;
 @property (weak, nonatomic) IBOutlet PFKJVFloatLabeledTextField *CardNameTxt;

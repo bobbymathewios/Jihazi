@@ -42,11 +42,10 @@ static NSString * const kClientID =@"1058965638207-gr0vth5hjfd38j0pdsv1hmlcbbf9d
     [Fabric with:@[[Crashlytics class]]];
  // [[Crashlytics sharedInstance] crash];
     //[trace incrementMetric:@"retry" by:1];
-   //self.baseURL=@"http://pan02-private.ispghosting.com/resmi/jihazi/";
+  // self.baseURL=@"http://pan02-private.ispghosting.com/resmi/jihazi/";
  //self.baseURL=@"https://v2-test.jihazi.com/";
     //self.baseURL=@"https://test.jihazi.com/";
-    
-  self.baseURL=@"https://www.jihazi.com/";
+     self.baseURL=@"https://www.jihazi.com/";
     
     
     NSString* Identifier = [[[UIDevice currentDevice] identifierForVendor] UUIDString]; // IOS 6+
@@ -78,10 +77,10 @@ static NSString * const kClientID =@"1058965638207-gr0vth5hjfd38j0pdsv1hmlcbbf9d
    [ZDCChat initializeWithAccountKey:@"4gIZ13NPRA4FxjgZ8PfYwqePqzyem7l9"];
  [self  registerForRemoteNotifications];
 
-    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
-    if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
-        statusBar.backgroundColor = [UIColor blackColor];
-    }
+//    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+//    if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
+//        statusBar.backgroundColor = [UIColor blackColor];
+//    }
 
     self.languageId=[[NSUserDefaults standardUserDefaults]objectForKey:@"LANGUAGEID"];
     _filterBrandID=[[NSMutableArray alloc]init];

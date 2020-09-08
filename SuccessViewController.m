@@ -86,6 +86,7 @@
    // [self createPaymentDetailView];
     
 }
+
 - (NSString *) generateMD5:(NSString *) input
 {
     //**************************
@@ -112,11 +113,11 @@
 //
 //    return  output;
 }
+
 -(void)finishedParsingDictionary:(NSDictionary *)dictionary
 {
     if ([[dictionary objectForKey:@"response"]isKindOfClass:[NSNull class]])
     {
-
         // [Loading dismiss];
     }
     else if ([[dictionary objectForKey:@"response"]isEqualToString:@"Success"])
@@ -129,11 +130,12 @@
         [[NSUserDefaults standardUserDefaults]setObject:@"" forKey:@"PayMethod"];
         [[NSUserDefaults standardUserDefaults]synchronize];
         ThankYouViewController *thank=[[ThankYouViewController alloc]init];
-        thank.strResponse=@"Your order has been placed and is being processed. When items are shipped, you will receive an email with the details. You can track this order through . My order Page.";
+        thank.strResponse=@"Your order has been placed and is being processed. When items are shipped, you will receive an email with the details. You can track this order through. My order Page.";
         if (appDelObj.isArabic) {
             thank.strResponse=@"لقد تم اكمال طلبك بنجاح،سوف تتلقى رسالة تأكيد الطلب بالبريد الإلكتروني مع تفاصيل طلبك .";
         }
-                    [self.navigationController pushViewController:thank animated:YES];
+
+        [self.navigationController pushViewController:thank animated:YES];
     }
     else
     {
@@ -141,6 +143,8 @@
     }
     [Loading dismiss];
 }
+
+
 -(void)createPaymentDetailView
 {
     int YPOS=30;

@@ -1,5 +1,7 @@
-target “Jihazi” do
-platform :ios, ‘9.0’
+target "Jihazi" do
+platform :ios, '9.0'
+use_frameworks!
+
 pod 'SDWebImage', '~>3.8'
 pod 'SDWebImage/WebP'
 pod 'JVFloatLabeledTextField'
@@ -17,5 +19,5 @@ pod 'ZDCChat'
 pod 'Firebase/Performance'
 pod 'Fabric', '~> 1.7.6'
 pod 'Crashlytics', '~> 3.10.1'
-use_frameworks!
+
 end

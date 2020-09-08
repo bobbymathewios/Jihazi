@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -407,7 +407,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <tableView clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EkI-U3-UnV">
-                    <rect key="frame" x="1" y="136" width="372" height="474"/>
+                    <rect key="frame" x="1" y="136" width="373" height="474"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="372" id="HCV-Ht-V6z"/>
@@ -451,7 +451,7 @@
                 <constraint firstItem="Ele-Nc-zXs" firstAttribute="leading" secondItem="TNh-3C-8nd" secondAttribute="leading" id="ygj-eG-mwd"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="TNh-3C-8nd"/>
-            <point key="canvasLocation" x="-3130.5" y="-635.5"/>
+            <point key="canvasLocation" x="-5008.8000000000002" y="-571.66416791604206"/>
         </view>
         <view contentMode="scaleToFill" id="o6P-2j-bR3">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -546,7 +546,7 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.1098882299" colorSpace="calibratedWhite"/>
             <viewLayoutGuide key="safeArea" id="Acu-Py-9IU"/>
-            <point key="canvasLocation" x="-2660" y="-636"/>
+            <point key="canvasLocation" x="-4256" y="-572.11394302848578"/>
         </view>
         <view contentMode="scaleToFill" id="fde-mo-Iu6">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -619,7 +619,7 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.1098882299" colorSpace="calibratedWhite"/>
             <viewLayoutGuide key="safeArea" id="F6M-pt-Yyf"/>
-            <point key="canvasLocation" x="-2198" y="-637"/>
+            <point key="canvasLocation" x="-3516.8000000000002" y="-573.01349325337333"/>
         </view>
         <view contentMode="scaleToFill" id="ZpL-QC-lJ1">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -682,7 +682,7 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.43365077549999997" colorSpace="calibratedWhite"/>
             <viewLayoutGuide key="safeArea" id="BNR-b8-0CW"/>
-            <point key="canvasLocation" x="-1734.5" y="-638.5"/>
+            <point key="canvasLocation" x="-2775.1999999999998" y="-574.36281859070471"/>
         </view>
         <view contentMode="scaleToFill" id="Oiy-bd-aAw">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -706,7 +706,7 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.22265625" colorSpace="calibratedWhite"/>
             <viewLayoutGuide key="safeArea" id="gY0-sA-ctG"/>
-            <point key="canvasLocation" x="-1144" y="-650"/>
+            <point key="canvasLocation" x="-1830.4000000000001" y="-584.70764617691157"/>
         </view>
     </objects>
     <resources>

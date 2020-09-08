@@ -26,6 +26,8 @@
 		18E5FB6A20496447000E6241 /* wishlist-home.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E5FB6020496445000E6241 /* wishlist-home.png */; };
 		18E5FB6B20496447000E6241 /* Kindom-wide-Delivery.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E5FB6120496446000E6241 /* Kindom-wide-Delivery.png */; };
 		2A6DD742E2404EE1433E9F7F /* Pods_Jihazi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE3103C4A4321AD439B18061 /* Pods_Jihazi.framework */; };
+		3956471A2500A0DE00008497 /* Jihazi_Logo_E.png in Resources */ = {isa = PBXBuildFile; fileRef = 395647182500A0DD00008497 /* Jihazi_Logo_E.png */; };
+		3956471B2500A0DE00008497 /* jihazi_log_A.png in Resources */ = {isa = PBXBuildFile; fileRef = 395647192500A0DE00008497 /* jihazi_log_A.png */; };
 		9B074D6320B68EA200E10234 /* noti.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B074D6220B68EA100E10234 /* noti.png */; };
 		9B074D6520B68EA900E10234 /* store-FavIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B074D6420B68EA800E10234 /* store-FavIcon.png */; };
 		9B1B862A20A023E900D40A58 /* deal.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B1B862920A023E900D40A58 /* deal.png */; };
@@ -57,8 +59,6 @@
 		9B4238F820A5B39300C76AF9 /* support_chat.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B4238F720A5B39200C76AF9 /* support_chat.png */; };
 		9B4322CA20A95B8E00B04924 /* reply_message.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B4322C920A95B8E00B04924 /* reply_message.png */; };
 		9B49095220A18496002E7D46 /* bundle-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B49095120A18495002E7D46 /* bundle-icon.png */; };
-		9B5F524C20DCFD71001A44DA /* fav-store.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B5F524A20DCFD70001A44DA /* fav-store.png */; };
-		9B5F524D20DCFD71001A44DA /* fav-store-active.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B5F524B20DCFD70001A44DA /* fav-store-active.png */; };
 		9B690C8920B281D10085121C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9B690C8820B281D10085121C /* GoogleService-Info.plist */; };
 		9B6B394F20806855006DCFCA /* NotificationDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B6B394D20806853006DCFCA /* NotificationDetailViewController.m */; };
 		9B6B395020806855006DCFCA /* NotificationDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B6B394E20806854006DCFCA /* NotificationDetailViewController.xib */; };
@@ -633,6 +633,8 @@
 		18E5FB5F20496444000E6241 /* Competitive-Prices.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Competitive-Prices.png"; sourceTree = "<group>"; };
 		18E5FB6020496445000E6241 /* wishlist-home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wishlist-home.png"; sourceTree = "<group>"; };
 		18E5FB6120496446000E6241 /* Kindom-wide-Delivery.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Kindom-wide-Delivery.png"; sourceTree = "<group>"; };
+		395647182500A0DD00008497 /* Jihazi_Logo_E.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Jihazi_Logo_E.png; sourceTree = "<group>"; };
+		395647192500A0DE00008497 /* jihazi_log_A.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jihazi_log_A.png; sourceTree = "<group>"; };
 		91DB771BC4CDFE80709D62CA /* Pods-Jihazi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jihazi.release.xcconfig"; path = "Pods/Target Support Files/Pods-Jihazi/Pods-Jihazi.release.xcconfig"; sourceTree = "<group>"; };
 		9B074D6220B68EA100E10234 /* noti.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noti.png; sourceTree = "<group>"; };
 		9B074D6420B68EA800E10234 /* store-FavIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "store-FavIcon.png"; sourceTree = "<group>"; };
@@ -673,8 +675,6 @@
 		9B49095120A18495002E7D46 /* bundle-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bundle-icon.png"; sourceTree = "<group>"; };
 		9B57D61020AAA5BB00CE2354 /* ar-SA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ar-SA"; path = "ar-SA.lproj/Main.strings"; sourceTree = "<group>"; };
 		9B57D61120AAA5BE00CE2354 /* ar-SA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ar-SA"; path = "ar-SA.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
-		9B5F524A20DCFD70001A44DA /* fav-store.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "fav-store.png"; path = "../fav-store.png"; sourceTree = "<group>"; };
-		9B5F524B20DCFD70001A44DA /* fav-store-active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "fav-store-active.png"; path = "../fav-store-active.png"; sourceTree = "<group>"; };
 		9B690C8820B281D10085121C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9B6B394C208067C6006DCFCA /* NotificationDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationDetailViewController.h; sourceTree = "<group>"; };
 		9B6B394D20806853006DCFCA /* NotificationDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationDetailViewController.m; sourceTree = "<group>"; };
@@ -1318,8 +1318,8 @@
 		C6E76F4C1EF3CDFE004065DF /* BundleCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BundleCollectionViewCell.m; sourceTree = "<group>"; };
 		C6E76F4D1EF3CDFE004065DF /* BundleCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BundleCollectionViewCell.xib; sourceTree = "<group>"; };
 		C6E9ED16205A36DB00717D91 /* menu-top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-top.png"; sourceTree = "<group>"; };
-		C6E9ED18205A36E800717D91 /* splash_screen-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash_screen-1.png"; sourceTree = "<group>"; };
-		C6E9ED19205A36E900717D91 /* splash_screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_screen.png; sourceTree = "<group>"; };
+		C6E9ED18205A36E800717D91 /* splash_screen-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "splash_screen-1.png"; path = "/Users/imac1/Documents/Jihazi/splash_screen-1.png"; sourceTree = "<absolute>"; };
+		C6E9ED19205A36E900717D91 /* splash_screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = splash_screen.png; path = /Users/imac1/Documents/Jihazi/splash_screen.png; sourceTree = "<absolute>"; };
 		C6E9ED1C205A36FD00717D91 /* english.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = english.png; sourceTree = "<group>"; };
 		C6E9ED1D205A36FE00717D91 /* arabic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arabic.png; sourceTree = "<group>"; };
 		C6E9ED20205A9E5300717D91 /* payment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = payment.png; sourceTree = "<group>"; };
@@ -1939,8 +1939,6 @@
 				C68226082068CE8700F7E3A1 /* free-gift.png */,
 				C6AE84CA2057E9A7007A4947 /* giftbox.png */,
 				C6150FCB2060ED5200F5B403 /* icon.png */,
-				9B5F524B20DCFD70001A44DA /* fav-store-active.png */,
-				9B5F524A20DCFD70001A44DA /* fav-store.png */,
 				9B360FB22089AD830084ED5A /* rating-ar.png */,
 				9B360FB32089AD840084ED5A /* rating-en.png */,
 				9B360FB12089AD810084ED5A /* star-1.png */,
@@ -1971,6 +1969,8 @@
 				C6E9ED22205A9E5900717D91 /* placeholder1.png */,
 				C6E9ED1C205A36FD00717D91 /* english.png */,
 				18E5FB562049609B000E6241 /* index-menu.png */,
+				395647192500A0DE00008497 /* jihazi_log_A.png */,
+				395647182500A0DD00008497 /* Jihazi_Logo_E.png */,
 				C6E9ED18205A36E800717D91 /* splash_screen-1.png */,
 				C6E9ED19205A36E900717D91 /* splash_screen.png */,
 				18E5FB5220495CB8000E6241 /* english-google.PNG */,
@@ -2701,14 +2701,14 @@
 					};
 					C65B4B501EC444CC008EC3B2 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = YUPRBBJ4DH;
-						ProvisioningStyle = Manual;
+						DevelopmentTeam = 9ZV6MGTJVM;
+						ProvisioningStyle = Automatic;
 						TestTargetID = C65B4B341EC444CC008EC3B2;
 					};
 					C65B4B5B1EC444CC008EC3B2 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = YUPRBBJ4DH;
-						ProvisioningStyle = Manual;
+						DevelopmentTeam = 9ZV6MGTJVM;
+						ProvisioningStyle = Automatic;
 						TestTargetID = C65B4B341EC444CC008EC3B2;
 					};
 				};
@@ -2718,8 +2718,10 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
+				"ar-SA",
 			);
 			mainGroup = C65B4B2C1EC444CC008EC3B2;
 			productRefGroup = C65B4B361EC444CC008EC3B2 /* Products */;
@@ -2849,7 +2851,6 @@
 				C67A29DF1FD57066008D89E3 /* closes.png in Resources */,
 				C67A29E01FD57066008D89E3 /* des-1.png in Resources */,
 				C67A29E11FD57066008D89E3 /* image.png in Resources */,
-				9B5F524C20DCFD71001A44DA /* fav-store.png in Resources */,
 				C67A29E21FD57066008D89E3 /* pre-2.png in Resources */,
 				9B4238F620A57EF600C76AF9 /* close-button.png in Resources */,
 				C60AF09A2004B63D0028974D /* SubscriptionDetailViewController.xib in Resources */,
@@ -3024,6 +3025,7 @@
 				C6195E6D1ECB2748007EDC7B /* thank-in.png in Resources */,
 				C64C17DE1EFA9D9400B644DA /* dpls.png in Resources */,
 				C65A611B1FB97CE600FB69FA /* OptionViewCell.xib in Resources */,
+				3956471B2500A0DE00008497 /* jihazi_log_A.png in Resources */,
 				C6195E2D1ECAB630007EDC7B /* account-help.png in Resources */,
 				C62F96301FD94CB900C58358 /* ChangepasswordView.xib in Resources */,
 				C64C17E51EFA9FF600B644DA /* RiviewListCell.xib in Resources */,
@@ -3048,6 +3050,7 @@
 				C61A810E1ED55FCF003E29EE /* cart-dot.png in Resources */,
 				C65B4B991EC445BF008EC3B2 /* LoginViewController.xib in Resources */,
 				C65B4BA11EC445BF008EC3B2 /* ArabicMenuViewController.xib in Resources */,
+				3956471A2500A0DE00008497 /* Jihazi_Logo_E.png in Resources */,
 				9BE567362074B63100B31875 /* listing-page-search.png in Resources */,
 				C6E9ED1F205A36FE00717D91 /* arabic.png in Resources */,
 				C6195E2C1ECAB630007EDC7B /* account-bg.png in Resources */,
@@ -3167,7 +3170,6 @@
 				9B074D6320B68EA200E10234 /* noti.png in Resources */,
 				9B6B395020806855006DCFCA /* NotificationDetailViewController.xib in Resources */,
 				C61869761ECC271600B06372 /* add-location.png in Resources */,
-				9B5F524D20DCFD71001A44DA /* fav-store-active.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3492,12 +3494,12 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Sajith K.G (ZFM3K7N5BG)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Sajith K.G (ZFM3K7N5BG)";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Bobby Mathew (CSJ7U2M66S)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Bobby Mathew (CSJ7U2M66S)";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = YUPRBBJ4DH;
+				DEVELOPMENT_TEAM = 9ZV6MGTJVM;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -3518,7 +3520,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "dba00e03-4108-4860-954b-b7ea5b5de812";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -3545,12 +3547,12 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Sajith K.G (ZFM3K7N5BG)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Sajith K.G (ZFM3K7N5BG)";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: LEADER INVESTEMENT GROUP (9ZV6MGTJVM)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: LEADER INVESTEMENT GROUP (9ZV6MGTJVM)";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = YUPRBBJ4DH;
+				DEVELOPMENT_TEAM = 9ZV6MGTJVM;
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -3564,7 +3566,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "dba00e03-4108-4860-954b-b7ea5b5de812";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -3576,8 +3578,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Jihazi.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Sajith K.G (ZFM3K7N5BG)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Sajith K.G (ZFM3K7N5BG)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = YUPRBBJ4DH;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3629,7 +3631,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ISPG.Jihazi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "dba00e03-4108-4860-954b-b7ea5b5de812";
+				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = JihaziDevelopment;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -3641,8 +3643,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Jihazi.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Sajith K.G (ZFM3K7N5BG)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Sajith K.G (ZFM3K7N5BG)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = YUPRBBJ4DH;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3694,7 +3696,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ISPG.Jihazi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "dba00e03-4108-4860-954b-b7ea5b5de812";
+				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = JihaziDevelopment;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

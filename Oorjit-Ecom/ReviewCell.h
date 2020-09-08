@@ -7,11 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-@protocol ReviewDelegate <NSObject>
+//@protocol ReviewDelegate <NSObject>
+//-(void)writeReview;
+//@end
 
--(void)writeReview;
-
-@end
 @interface ReviewCell : UITableViewCell
 
 
@@ -27,4 +26,5 @@
 @property (strong, nonatomic) IBOutlet UIImageView *imm;
 
 - (IBAction)writeReviewAction:(id)sender;
+
 @end

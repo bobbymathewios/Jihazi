@@ -1747,7 +1747,9 @@ productOptionID=@"";
                             self.imgrate5.image=[UIImage imageNamed:@"star-1.png"];
                         }
                     }
+                    
                     optionsArray=[[NSMutableArray alloc]init];
+                    
                     NSArray *optArr=[[dictionary objectForKey:@"result"]objectForKey:@"options"];          
                     if ([optArr isKindOfClass:[NSDictionary class]])
                     {
@@ -1761,9 +1763,10 @@ productOptionID=@"";
                     combinationSelectArray=[[NSMutableArray alloc]init];
                     includeCombinationArray=[[NSMutableArray alloc]init];
 
-                    NSArray *custArr=[[dictionary objectForKey:@"result"]objectForKey:@"customOption"];                                        if ([custArr isKindOfClass:[NSDictionary class]])                    {
+                    NSArray *custArr=[[dictionary objectForKey:@"result"]objectForKey:@"customOption"];
+                    if ([custArr isKindOfClass:[NSDictionary class]])                    {
                         if (custArr.count!=0) {
-                              [customOption addObject:custArr];
+                            [customOption addObject:custArr];
                         }
                       
                     }
@@ -1774,6 +1777,8 @@ productOptionID=@"";
                         [customOption addObjectsFromArray:custArr];
                         }
                     }
+                    
+                    
                     if ([customOption isKindOfClass:[NSNull class]]|| customOption.count==0||customOption.count==1)
                     {
                         
@@ -1783,6 +1788,8 @@ productOptionID=@"";
                     //NSArray *combArray=[customOption filterUsingPredicate:[NSPredicate predicateWithFormat:@"include_in_combination like %@",@"Yes"]];
                     
                     }
+                    
+                    
                     for(int i=0;i<customOption.count;i++)
                     {
                         if ([[[customOption objectAtIndex:i]valueForKey:@"inputType"]isEqualToString:@"file"]||[[[customOption objectAtIndex:i]valueForKey:@"inputType"]isEqualToString:@"datetime"]||[[[customOption objectAtIndex:i]valueForKey:@"inputType"]isEqualToString:@"time"]||[[[customOption objectAtIndex:i]valueForKey:@"inputType"]isEqualToString:@"date"]||[[[customOption objectAtIndex:i]valueForKey:@"inputType"]isEqualToString:@"textbox"]||[[[customOption objectAtIndex:i]valueForKey:@"inputType"]isEqualToString:@"select"])                        {

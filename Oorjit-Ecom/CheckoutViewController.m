@@ -13,6 +13,8 @@
 #define ACCEPTABLE_CHARACTERS @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
 #define ACCEPTABLE_CHARACTERS_REDEEM @"0123456789"
 #import <PayFortSDK/PayFortSDK.h>
+#import <CommonCrypto/CommonDigest.h>
+
 @interface CheckoutViewController ()<passDataAfterParsing,UITableViewDelegate,UITableViewDataSource,ChangeAddressDelegate,UIPickerViewDelegate,UIPickerViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate,UIAlertViewDelegate>
 {
     AppDelegate *appDelObj;
@@ -25,6 +27,10 @@
     NSMutableArray *imagePrescriptionAry,*colArray;
     NSString *strPrice;
     NSString *sdk_token;
+    NSString *merchant_reference;
+
+    
+    
     NSMutableArray *billingAry,*shipMethodsAry,*shippingAry,*shippingAddressAry,*cartArray;
     int btnSelect,sameAsSelect;;
     NSString *fName,*Lname,*differentBill;
@@ -42,11 +48,48 @@
     NSString *isBillingAddressUpdate,*isShippingAddressUpdate,*isTimeSlotUpdate,*isPaymentOptionSelect,*priceRowSelect,*selectShipAdr,*totalAmount;
     NSDateFormatter *dateFormatter;
     NSString *freeShipping,*freeShippingText;
+    NSURLSession *_session;
+    NSURLSession *_newSession;
+
+    NSURLRequest *_urlRequest;
+    NSURLRequest *_checkoutRequest;
+
 }
 @end
 
 @implementation CheckoutViewController
 NTMonthYearPicker *picker;
+
+
+    NSString *const startSDKUrl = @"https://api.start.payfort.com/tokens/";
+   NSString *const startSDKDevUrl = @"https://api.start.payfort.com/tokens/";
+   NSString *const startSDKProductionUrl = @"https://api.start.payfort.com/tokens/";
+
+   NSString *const payfortUrl = @"https://sbpaymentservices.payfort.com/FortAPI/paymentApi";
+   NSString *const payfortDevUrl = @"https://sbpaymentservices.payfort.com/FortAPI/paymentApi";
+   NSString *const payfortProductionUrl = @"https://paymentservices.payfort.com/FortAPI/paymentApi";
+
+   NSString *const requestPhrase = @"xxxxxxxx";
+   NSString *const accessCode = @"xxxxxxxx";
+   NSString *const merchantID = @"xxxxxxxx";
+
+
+   NSString *const payfortDevPhrase = @"qwertwqert";
+   NSString *const payfortDevAccessCode = @"d2s1As1SP9A4zelSA2OU";
+   NSString *const payfortDevMerchantID = @"bdMZsfAO";
+
+   NSString *const payfortProductPhrase = @"xxxxxxxx";
+   NSString *const payfortProductAccessCode = @"xxxxxxxx";
+   NSString *const payfortProductMerchantID = @"xxxxxxxx";
+
+
+   NSString *const authCommand = @"AUTHORIZATION";
+   NSString *const purchaseCommand = @"PURCHASE";
+   NSString *const sdkTokenCommand = @"SDK_TOKEN";
+   NSString *const payfortCurreny = @"SAR";
+   NSString *const payfortLanguage = @"en";
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -147,144 +190,90 @@ NTMonthYearPicker *picker;
         self.lbls.text=@"Select delivery address";
     }
 }
+
+
 -(void)viewWillAppear:(BOOL)animated
 {
-    selectShipAdr=@"";
-    strPrice=self.totalPriceValue;
-   isBillingAddressUpdate=isShippingAddressUpdate=isTimeSlotUpdate=isPaymentOptionSelect=@"";
-    ShipOptionAry=[[NSMutableArray alloc]init];
-    paymentMethodsAry=[[NSMutableArray alloc]init];
-    postDataAry=[[NSMutableArray alloc]init];
-    billingAry=[[NSMutableArray alloc]init];
-    shippingAry=[[NSMutableArray alloc]init];
-    shippingAddressAry=[[NSMutableArray alloc]init];
-    freeShipping=@"";
-   
-    if (appDelObj.isArabic)
-    {
-         freeShippingText=@"شحن مجاني (عرض)";
-    }
-    else
-    {
-         freeShippingText=@" [ Free shipping (Promotion) ]";
-    }
-    rowSelect=rewardSel=methodSelect=shipSelectionSelect=shipAdrSelectionSelect=sectionSelect=[[NSMutableIndexSet alloc]init];
-    self.navigationController.navigationBarHidden=YES;
-    self.tioView.backgroundColor=appDelObj.headderColor;
-    //self.view.backgroundColor=appDelObj.menubgtable;
-    [rowSelect removeAllIndexes];
-    [methodSelect removeAllIndexes];
-    [shipSelectionSelect removeAllIndexes];
-    [shipAdrSelectionSelect removeAllIndexes];
-    [sectionSelect removeAllIndexes];
-    self.paymentView.alpha=0;
-    //self.view.backgroundColor=appDelObj.menubgtable;
-    //[self.colPaymentMethod registerNib:[UINib nibWithNibName:@"MethodCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"cellIdentifier"];
-    [_colPrescription registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cellIdentifier"];
-    if(appDelObj.isArabic)
-    {
+     if ([payMetho isEqual: @"PayfortMada"]) {
+         
+    }  else if ( [payMetho isEqual: @"Payfort"]) {
 
-        self.view.transform = CGAffineTransformMakeScale(-1, 1);
-     
-        self.giftcouponView.transform = CGAffineTransformMakeScale(-1, 1);
- 
-        [self.cancelPayFortAction setTitle:@"إلغاء" forState:UIControlStateNormal];
-        [self.btnpayforpply setTitle:@"ادفع الآن" forState:UIControlStateNormal];
-        self.lblRewarTitle.text=@"نقاط المكافأة التي حصلت عليها:";
-        [self.btncouponCancel setTitle:@"إلغاء" forState:UIControlStateNormal];
-        [self.btnRewardCancel setTitle:@"إلغاء" forState:UIControlStateNormal];
-        [self.btnR setTitle:@"استبدل المكافأة" forState:UIControlStateNormal];
-       [self.btnCouponApply setTitle:@"تطبيق" forState:UIControlStateNormal];
-        [self.btnCountinueBtn setTitle:@"متابعة" forState:UIControlStateNormal];
-        
-        self.lblCouponTitle.text=@"رمز القسيمة";
-        self.lblCouponTitle.textAlignment=NSTextAlignmentRight;
-         self.txtCouponCodeValueEntered.textAlignment=NSTextAlignmentRight;
-    }
-    
-    
-    if(appDelObj.isArabic)
-    {
-        [self.btnCountinueBtn setTitle:@"متابعة" forState:UIControlStateNormal];
-    }
-    else
-    {
-        [self.btnCountinueBtn setTitle:@"CONTINUE" forState:UIControlStateNormal];
-    }
-    
-    webServiceObj=[[WebService alloc]init];
-    webServiceObj.PDA=self;
-    show=0;
-    CODAddTotalAmt=self.totalPriceValue;
-    
-            if ([shipOrDeli isEqualToString:@"UpdateShipListUpdate"])
-            {
-                billValue=1;
-                self.uploadView.alpha=0;
-                if (appDelObj.isArabic)
-                {
-                    [Loading showWithStatus:@"يرجى الانتظار " maskType:SVProgressHUDMaskTypeClear Indicator:YES];
-                }
-                else
-                {
-                    [Loading showWithStatus:@"Please wait..." maskType:SVProgressHUDMaskTypeClear Indicator:YES];
-                }
-                appDelObj.shipARRAY=[[NSMutableArray alloc]init];
-                //appDelObj.billARRAY=[[NSMutableArray alloc]init];
+    } else if ([payMetho isEqual: @"PayfortSadad"]) {
 
-                NSString *urlStr=[NSString stringWithFormat:@"%@%@%@",appDelObj.baseURL,@"mobileapp/User/shipping/languageID/",appDelObj.languageId];
-                NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:[[NSUserDefaults standardUserDefaults]objectForKey:@"USER_ID"],@"userID",@"list",@"action", nil];
-                [webServiceObj getUrlReqForPostingBaseUrl:urlStr andTextData:dicPost];
-                shipOrDeli=@"UpdateShipList";
-                
-            }
+    }  else {
             
-            else
-            {
-                if ([shipOrDeli isEqualToString:@"AddnewAddress"])
+        selectShipAdr=@"";
+        strPrice=self.totalPriceValue;
+       isBillingAddressUpdate=isShippingAddressUpdate=isTimeSlotUpdate=isPaymentOptionSelect=@"";
+        ShipOptionAry=[[NSMutableArray alloc]init];
+        paymentMethodsAry=[[NSMutableArray alloc]init];
+        postDataAry=[[NSMutableArray alloc]init];
+        billingAry=[[NSMutableArray alloc]init];
+        shippingAry=[[NSMutableArray alloc]init];
+        shippingAddressAry=[[NSMutableArray alloc]init];
+        freeShipping=@"";
+       
+        if (appDelObj.isArabic)
+        {
+             freeShippingText=@"شحن مجاني (عرض)";
+        }
+        else
+        {
+             freeShippingText=@" [ Free shipping (Promotion) ]";
+        }
+        rowSelect=rewardSel=methodSelect=shipSelectionSelect=shipAdrSelectionSelect=sectionSelect=[[NSMutableIndexSet alloc]init];
+        self.navigationController.navigationBarHidden=YES;
+        self.tioView.backgroundColor=appDelObj.headderColor;
+        //self.view.backgroundColor=appDelObj.menubgtable;
+        [rowSelect removeAllIndexes];
+        [methodSelect removeAllIndexes];
+        [shipSelectionSelect removeAllIndexes];
+        [shipAdrSelectionSelect removeAllIndexes];
+        [sectionSelect removeAllIndexes];
+        self.paymentView.alpha=0;
+        //self.view.backgroundColor=appDelObj.menubgtable;
+        //[self.colPaymentMethod registerNib:[UINib nibWithNibName:@"MethodCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"cellIdentifier"];
+        [_colPrescription registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cellIdentifier"];
+        if(appDelObj.isArabic)
+        {
+
+            self.view.transform = CGAffineTransformMakeScale(-1, 1);
+         
+            self.giftcouponView.transform = CGAffineTransformMakeScale(-1, 1);
+     
+            [self.cancelPayFortAction setTitle:@"إلغاء" forState:UIControlStateNormal];
+            [self.btnpayforpply setTitle:@"ادفع الآن" forState:UIControlStateNormal];
+            self.lblRewarTitle.text=@"نقاط المكافأة التي حصلت عليها:";
+            [self.btncouponCancel setTitle:@"إلغاء" forState:UIControlStateNormal];
+            [self.btnRewardCancel setTitle:@"إلغاء" forState:UIControlStateNormal];
+            [self.btnR setTitle:@"استبدل المكافأة" forState:UIControlStateNormal];
+           [self.btnCouponApply setTitle:@"تطبيق" forState:UIControlStateNormal];
+            [self.btnCountinueBtn setTitle:@"متابعة" forState:UIControlStateNormal];
+            
+            self.lblCouponTitle.text=@"رمز القسيمة";
+            self.lblCouponTitle.textAlignment=NSTextAlignmentRight;
+             self.txtCouponCodeValueEntered.textAlignment=NSTextAlignmentRight;
+        }
+        
+        
+        if(appDelObj.isArabic)
+        {
+            [self.btnCountinueBtn setTitle:@"متابعة" forState:UIControlStateNormal];
+        }
+        else
+        {
+            [self.btnCountinueBtn setTitle:@"CONTINUE" forState:UIControlStateNormal];
+        }
+        
+        webServiceObj=[[WebService alloc]init];
+        webServiceObj.PDA=self;
+        show=0;
+        CODAddTotalAmt=self.totalPriceValue;
+        
+                if ([shipOrDeli isEqualToString:@"UpdateShipListUpdate"])
                 {
-                    appDelObj.shipARRAY=[[NSMutableArray alloc]init];
-                   // appDelObj.billARRAY=[[NSMutableArray alloc]init];
-                    shipOrDeli=shipOrDeli=@"AddnewAddress";
-                    SBValue=1;
+                    billValue=1;
                     self.uploadView.alpha=0;
-                    [self getDataFromService];
-                }
-                else if([shipOrDeli isEqualToString:@"PaymentAfterOption"])
-                {
-                    self.tblShippingAdress.alpha=0;
-                    self.tblShipInfo.alpha=0;
-                    self.scrollViewObj.alpha=1;
-                    if (appDelObj.isArabic)
-                    {
-                        self.lbls.text=@" اختر طريقة الدفع ";
-                    }
-                    else
-                    {
-                        self.lbls.text=@"Select Payment Method";
-                    }
-         [methodSelect removeAllIndexes];
-                    shipOrDeli=@"PaymentList";
-                    self.uploadView.alpha=0;
-                    
-                    self.uploadView.alpha=0;
-                    
-                    self.tblShipInfo.alpha=0;
-                    self.paymentView.alpha=1;
-                    self.colPaymentMethod.alpha=1;
-                                       self.scrollViewObj.contentSize=CGSizeMake(0, 0);
-                    
-                    self.btnCountinueBtn.alpha=1;
-                    if(appDelObj.isArabic)
-                    {
-                        [self.btnCountinueBtn setTitle:[NSString stringWithFormat:@"اكمال الشراء %@",self.totalPriceValue] forState:UIControlStateNormal];
-                    }
-                    else
-                    {
-                        NSString *s=[NSString stringWithFormat:@"PAY NOW %@",self.totalPriceValue];
-                        [self.btnCountinueBtn setTitle:s forState:UIControlStateNormal];
-                        
-                    }
                     if (appDelObj.isArabic)
                     {
                         [Loading showWithStatus:@"يرجى الانتظار " maskType:SVProgressHUDMaskTypeClear Indicator:YES];
@@ -292,49 +281,126 @@ NTMonthYearPicker *picker;
                     else
                     {
                         [Loading showWithStatus:@"Please wait..." maskType:SVProgressHUDMaskTypeClear Indicator:YES];
-                    }                 CODAddTotalAmt=self.totalPriceValue;
-                    address=@"";
-                    NSString *urlStr=[NSString stringWithFormat:@"%@%@%@",appDelObj.baseURL,@"mobileapp/Cart/listPaymentmethods/languageID/",appDelObj.languageId];
-                    NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:[[NSUserDefaults standardUserDefaults]objectForKey:@"USER_ID"],@"userID",[[NSUserDefaults standardUserDefaults]objectForKey:@"cartID"],@"cartID",@"",@"paySetGroupKey", nil];
+                    }
+                    appDelObj.shipARRAY=[[NSMutableArray alloc]init];
+                    //appDelObj.billARRAY=[[NSMutableArray alloc]init];
+
+                    NSString *urlStr=[NSString stringWithFormat:@"%@%@%@",appDelObj.baseURL,@"mobileapp/User/shipping/languageID/",appDelObj.languageId];
+                    NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:[[NSUserDefaults standardUserDefaults]objectForKey:@"USER_ID"],@"userID",@"list",@"action", nil];
                     [webServiceObj getUrlReqForPostingBaseUrl:urlStr andTextData:dicPost];
-                    
+                    shipOrDeli=@"UpdateShipList";
                     
                 }
-                else if ([shipOrDeli isEqualToString:@"ListBill"])
+                
+                else
                 {
-                    if ([appDelObj.CancelBillAddressOnCheckout isEqualToString:@"Yes"]) {
+                    if ([shipOrDeli isEqualToString:@"AddnewAddress"])
+                    {
                         appDelObj.shipARRAY=[[NSMutableArray alloc]init];
-                        // appDelObj.billARRAY=[[NSMutableArray alloc]init];
+                       // appDelObj.billARRAY=[[NSMutableArray alloc]init];
                         shipOrDeli=shipOrDeli=@"AddnewAddress";
                         SBValue=1;
                         self.uploadView.alpha=0;
-                        differentBill=@"No";
                         [self getDataFromService];
                     }
-                    else
+                    else if([shipOrDeli isEqualToString:@"PaymentAfterOption"])
                     {
-                    appDelObj.billARRAY=[[NSMutableArray alloc]init];
-                    shipOrDeli=@"ListBill";
-                    differentBill=@"Yes";
-                    if (shippingAry.count==0)
-                    {
-                        shippingAry=appDelObj.shipARRAY;
+    //                    if ([payMetho isEqual: @"PayfortMada"]) {
+    //                        [self generateAccessToken];
+    //
+    //                    }  else if ( [payMetho isEqual: @"Payfort"]) {
+    //                        [self generateAccessToken];
+    //
+    //                    } else if ([payMetho isEqual: @"PayfortSadad"]) {
+    //                        [self generateAccessToken];
+    //
+    //                    }  else {
+                            
+                            self.tblShippingAdress.alpha=0;
+                            self.tblShipInfo.alpha=0;
+                            self.scrollViewObj.alpha=1;
+                            if (appDelObj.isArabic)
+                            {
+                                self.lbls.text=@" اختر طريقة الدفع ";
+                            }
+                            else
+                            {
+                                self.lbls.text=@"Select Payment Method";
+                            }
+                            [methodSelect removeAllIndexes];
+                            shipOrDeli=@"PaymentList";
+                            self.uploadView.alpha=0;
+                            
+                            self.uploadView.alpha=0;
+                            
+                            self.tblShipInfo.alpha=0;
+                            self.paymentView.alpha=1;
+                            self.colPaymentMethod.alpha=1;
+                                               self.scrollViewObj.contentSize=CGSizeMake(0, 0);
+                            
+                            self.btnCountinueBtn.alpha=1;
+                            if(appDelObj.isArabic)
+                            {
+                                [self.btnCountinueBtn setTitle:[NSString stringWithFormat:@"اكمال الشراء %@",self.totalPriceValue] forState:UIControlStateNormal];
+                            }
+                            else
+                            {
+                                NSString *s=[NSString stringWithFormat:@"PAY NOW %@",self.totalPriceValue];
+                                [self.btnCountinueBtn setTitle:s forState:UIControlStateNormal];
+                                
+                            }
+                            if (appDelObj.isArabic)
+                            {
+                                [Loading showWithStatus:@"يرجى الانتظار " maskType:SVProgressHUDMaskTypeClear Indicator:YES];
+                            }
+                            else
+                            {
+                                [Loading showWithStatus:@"Please wait..." maskType:SVProgressHUDMaskTypeClear Indicator:YES];
+                            }                 CODAddTotalAmt=self.totalPriceValue;
+                            address=@"";
+                            NSString *urlStr=[NSString stringWithFormat:@"%@%@%@",appDelObj.baseURL,@"mobileapp/Cart/listPaymentmethods/languageID/",appDelObj.languageId];
+                            NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:[[NSUserDefaults standardUserDefaults]objectForKey:@"USER_ID"],@"userID",[[NSUserDefaults standardUserDefaults]objectForKey:@"cartID"],@"cartID",@"",@"paySetGroupKey", nil];
+                            [webServiceObj getUrlReqForPostingBaseUrl:urlStr andTextData:dicPost];
+    //                    }
+                        
                     }
-                    if (appDelObj.isArabic)
+                    else if ([shipOrDeli isEqualToString:@"ListBill"])
                     {
-                        [Loading showWithStatus:@"يرجى الانتظار " maskType:SVProgressHUDMaskTypeClear Indicator:YES];
-                    }
-                    else
-                    {
-                        [Loading showWithStatus:@"Please wait..." maskType:SVProgressHUDMaskTypeClear Indicator:YES];
-                    }
-                    NSString *urlStr=[NSString stringWithFormat:@"%@%@%@",appDelObj.baseURL,@"mobileapp/Cart/index/languageID/",appDelObj.languageId];
-                    NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:[[NSUserDefaults standardUserDefaults]objectForKey:@"USER_ID"],@"userID",[[NSUserDefaults standardUserDefaults]objectForKey:@"cartID"],@"cartID", nil];
-                    [webServiceObj getUrlReqForPostingBaseUrl:urlStr andTextData:dicPost];
+                        if ([appDelObj.CancelBillAddressOnCheckout isEqualToString:@"Yes"]) {
+                            appDelObj.shipARRAY=[[NSMutableArray alloc]init];
+                            // appDelObj.billARRAY=[[NSMutableArray alloc]init];
+                            shipOrDeli=shipOrDeli=@"AddnewAddress";
+                            SBValue=1;
+                            self.uploadView.alpha=0;
+                            differentBill=@"No";
+                            [self getDataFromService];
+                        }
+                        else
+                        {
+                        appDelObj.billARRAY=[[NSMutableArray alloc]init];
+                        shipOrDeli=@"ListBill";
+                        differentBill=@"Yes";
+                        if (shippingAry.count==0)
+                        {
+                            shippingAry=appDelObj.shipARRAY;
+                        }
+                        if (appDelObj.isArabic)
+                        {
+                            [Loading showWithStatus:@"يرجى الانتظار " maskType:SVProgressHUDMaskTypeClear Indicator:YES];
+                        }
+                        else
+                        {
+                            [Loading showWithStatus:@"Please wait..." maskType:SVProgressHUDMaskTypeClear Indicator:YES];
+                        }
+                        NSString *urlStr=[NSString stringWithFormat:@"%@%@%@",appDelObj.baseURL,@"mobileapp/Cart/index/languageID/",appDelObj.languageId];
+                        NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:[[NSUserDefaults standardUserDefaults]objectForKey:@"USER_ID"],@"userID",[[NSUserDefaults standardUserDefaults]objectForKey:@"cartID"],@"cartID", nil];
+                        [webServiceObj getUrlReqForPostingBaseUrl:urlStr andTextData:dicPost];
+                        }
                     }
                 }
-            }
+    }
 }
+
 -(void)viewDidLayoutSubviews
 {
 //    self.scrollViewObj.contentSize=CGSizeMake(0,self.sampleView.frame.origin.y+self.sampleView.frame.size.height);
@@ -1248,27 +1314,75 @@ NTMonthYearPicker *picker;
             }
             else if ([shipOrDeli isEqualToString:@"PaymentAfterOption"])
             {
-                PaymentWebView *thank=[[PaymentWebView alloc]init];
-                thank.strUrl=[[dictionary objectForKey:@"result"]objectForKey:@"paymentUrl"];
-                thank.strSuccess=[[dictionary objectForKey:@"result"]objectForKey:@"successUrl"];
-                thank.strFail=[[dictionary objectForKey:@"result"]objectForKey:@"failureUrl"];
-                thank.strPost=[[dictionary objectForKey:@"result"]objectForKey:@"paymentValues"];
+                
+//                if ([payMetho isEqual: @"PayfortMada"]) {
+//                    [self generateAccessToken];
+//
+//                }  else if ( [payMetho isEqual: @"Payfort"]) {
+//                    [self generateAccessToken];
+//
+//                } else if ([payMetho isEqual: @"PayfortSadad"]) {
+//                    [self generateAccessToken];
+//
+//                } else
+                    
+                if ([payMetho isEqual: @"CashOnDeliveryRedemption"] || [payMetho isEqual: @"Paypalexprescheckout"] || [payMetho isEqual: @"PayfortEMI"]) {
+                                    
+                    PaymentWebView *thank=[[PaymentWebView alloc]init];
+                    thank.strUrl=[[dictionary objectForKey:@"result"]objectForKey:@"paymentUrl"];
+                    thank.strSuccess=[[dictionary objectForKey:@"result"]objectForKey:@"successUrl"];
+                    thank.strFail=[[dictionary objectForKey:@"result"]objectForKey:@"failureUrl"];
+                    thank.strPost=[[dictionary objectForKey:@"result"]objectForKey:@"paymentValues"];
 
-                if(appDelObj.isArabic)
-                {
-                    transition = [CATransition animation];
-                    [transition setDuration:0.3];
-                    transition.type = kCATransitionPush;
-                    transition.subtype = kCATransitionFromLeft;
-                    [transition setFillMode:kCAFillModeBoth];
-                    [transition setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
-                    [self.navigationController.view.layer addAnimation:transition forKey:kCATransition];
-                    [self.navigationController pushViewController:thank animated:YES];
+                    if(appDelObj.isArabic)
+                    {
+                        transition = [CATransition animation];
+                        [transition setDuration:0.3];
+                        transition.type = kCATransitionPush;
+                        transition.subtype = kCATransitionFromLeft;
+                        [transition setFillMode:kCAFillModeBoth];
+                        [transition setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+                        [self.navigationController.view.layer addAnimation:transition forKey:kCATransition];
+                        [self.navigationController pushViewController:thank animated:YES];
+                    }
+                    else
+                    {
+                        [self.navigationController pushViewController:thank animated:YES];
+                    }
+                } else {
+                    if ([payMetho isEqual: @"PayfortMada"] || [payMetho isEqual: @"Payfort"] || [payMetho isEqual: @"PayfortSadad"]) {
+                        [[NSUserDefaults standardUserDefaults]setObject:@"" forKey:@"CART_COUNT"];
+                       [[NSUserDefaults standardUserDefaults]setObject:@"" forKey:@"CART_PRICE"];
+                       [[NSUserDefaults standardUserDefaults]setObject:@"" forKey:@"cartID"];
+                       [[NSUserDefaults standardUserDefaults]setObject:@"" forKey:@"Order_ID"];
+                       [[NSUserDefaults standardUserDefaults]setObject:@"" forKey:@"PayMethod"];
+
+                       [[NSUserDefaults standardUserDefaults]synchronize];
+                       
+                       dispatch_async(dispatch_get_main_queue(), ^{
+
+                       ThankYouViewController *thank=[[ThankYouViewController alloc]init];
+                           if(appDelObj.isArabic)
+                           {
+                               thank.strResponse=@"لقد تم اكمال طلبك بنجاح،سوف تتلقى رسالة تأكيد الطلب بالبريد الإلكتروني مع تفاصيل طلبك .";
+                               transition = [CATransition animation];
+                               [transition setDuration:0.3];
+                               transition.type = kCATransitionPush;
+                               transition.subtype = kCATransitionFromLeft;
+                               [transition setFillMode:kCAFillModeBoth];
+                               [transition setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+                               [self.navigationController.view.layer addAnimation:transition forKey:kCATransition];
+                               [self.navigationController pushViewController:thank animated:YES];
+                           }
+                           else
+                           {
+                               thank.strResponse=@"Your order has been placed and is being processed. When items are shipped, you will receive an email with the details. You can track this order through . My order Page.";
+                               [self.navigationController pushViewController:thank animated:YES];
+                           }
+                       });
+                    }
                 }
-                else
-                {
-                    [self.navigationController pushViewController:thank animated:YES];
-                }
+                
                 [Loading dismiss];
             }
             else if ([shipOrDeli isEqualToString:@"PayFortAfter"])
@@ -2357,8 +2471,7 @@ NTMonthYearPicker *picker;
         
         [Loading dismiss];
     }
-    else
-    {
+    else {
         if ([shipOrDeli isEqualToString:@"PaymentAfter"])
         {
             shipOrDeli=@"PaymentSelect";
@@ -2413,16 +2526,16 @@ NTMonthYearPicker *picker;
 //                                                [self.navigationController popViewControllerAnimated:YES];
 //                                            }
                                         }]];
-            
+
             [self presentViewController:alertController animated:YES completion:nil];
         }
         else if ([shipOrDeli isEqualToString:@"PaymentAfterOption"])
         {
             shipOrDeli=@"PaymentSelect";
          NSString*   okMsg=@"Ok";
-            
+
             if (appDelObj.isArabic) {
-                
+
                 okMsg=@" موافق ";
             }
             UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:[dictionary objectForKey:@"errorMsg"] preferredStyle:UIAlertControllerStyleAlert];
@@ -2433,29 +2546,29 @@ NTMonthYearPicker *picker;
         {
             shipOrDeli=@"UpdateShipList";
             SBValue=1;
-            
+
             self.tblShippingAdress.alpha=1;
             [Loading dismiss];
-            
+
             [shipAdrSelectionSelect removeAllIndexes];                shipAdrSelectionSelect=[[NSMutableIndexSet alloc]init];                [self.tblShippingAdress reloadData];
             NSString *strMsg,*okMsg;
-            
-            
+
+
             okMsg=@"Ok";
-            
+
             if (appDelObj.isArabic) {
-                
+
                 okMsg=@" موافق ";
             }
             UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:[dictionary objectForKey:@"errorMsg"] preferredStyle:UIAlertControllerStyleAlert];
             [alertController addAction:[UIAlertAction actionWithTitle:okMsg style:UIAlertActionStyleDefault handler:nil]];
             [self presentViewController:alertController animated:YES completion:nil];
         }
-        
-        
+
+
         else
         {
-            
+
             NSString *okMsg;
             if(appDelObj.isArabic)
             {
@@ -2471,6 +2584,7 @@ NTMonthYearPicker *picker;
         }
         [Loading dismiss];
     }
+    
    // [Loading dismiss];
 }
 -(void)buttonClick:(NSArray *)arr
@@ -2698,11 +2812,18 @@ NTMonthYearPicker *picker;
             if (indexPath.section==0)
             {
                 if (paymentMethodsAry.count!=0) {
-                    if (indexPath.row<paymentMethodsAry.count&&[[[paymentMethodsAry objectAtIndex:indexPath.row]valueForKey:@"label"]isEqualToString:@"Redeem Points"])
+                    if ([[[paymentMethodsAry objectAtIndex:indexPath.row]valueForKey:@"label"] isKindOfClass:[NSNull class]])
                     {
-                        return 0;
+                        return 44;
                     }
-                    return 44;
+                    else
+                    {
+                        if (indexPath.row<paymentMethodsAry.count&&[[[paymentMethodsAry objectAtIndex:indexPath.row]valueForKey:@"label"]isEqualToString:@"Redeem Points"])
+                        {
+                            return 0;
+                        }
+                        return 44;
+                    }
                 }
                 return 44;
             }
@@ -3727,12 +3848,13 @@ NTMonthYearPicker *picker;
                 imgArrow.image=[UIImage imageNamed:@"index-arrow.png"];
                 [cell.contentView addSubview:imgArrow];
             }
-            else
+            else    //###
             {
                 imgSel=[[UIImageView alloc]initWithFrame:CGRectMake(12, 7, 25, 25)];
                 imgSel.image=[UIImage imageNamed:@""];
-                lbl=[[UILabel alloc]initWithFrame:CGRectMake(imgSel.frame.origin.x+imgSel.frame.size.width+15, 3, 320, 30)];
-                UIImageView *imgIcon=[[UIImageView alloc]initWithFrame:CGRectMake(self.tblCartDetails.frame.size.width-90, 7, 60, 25)];
+                lbl=[[UILabel alloc]initWithFrame:CGRectMake(imgSel.frame.origin.x+imgSel.frame.size.width+15, 3, self.view.frame.size.width - (imgSel.frame.origin.x+imgSel.frame.size.width+90+15), 44)];
+                lbl.numberOfLines = 2;
+                UIImageView *imgIcon=[[UIImageView alloc]initWithFrame:CGRectMake(self.tblCartDetails.frame.size.width-80, 7, 60, 25)];
                 NSString *strImgUrl=[[paymentMethodsAry objectAtIndex:indexPath.row ] valueForKey:@"icon"] ;
                
                 if (appDelObj.isArabic) {
@@ -3836,16 +3958,21 @@ NTMonthYearPicker *picker;
                         
                     }
                     
-                    
-                    if ([[[paymentMethodsAry objectAtIndex:indexPath.row]valueForKey:@"label"]isEqualToString:@"Redeem Points"])
+                    if ([[[paymentMethodsAry objectAtIndex:indexPath.row]valueForKey:@"label"] isKindOfClass:[NSNull class]])
                     {
-                        lbl.alpha=0;
-                        
-                        imgSel.alpha=0;
+                        lbl.text=@"";
                     }
                     else
                     {
-                        lbl.text=[[paymentMethodsAry objectAtIndex:indexPath.row]valueForKey:@"label"];
+                        if ([[[paymentMethodsAry objectAtIndex:indexPath.row]valueForKey:@"label"]isEqualToString:@"Redeem Points"])
+                        {
+                            lbl.alpha=0;
+                            imgSel.alpha=0;
+                        }
+                        else
+                        {
+                            lbl.text=[[paymentMethodsAry objectAtIndex:indexPath.row]valueForKey:@"label"];
+                        }
                     }
                     
                 }
@@ -3934,14 +4061,20 @@ NTMonthYearPicker *picker;
                         
                     }
                     
-                    
-                    if ([[[paymentMethodsAry objectAtIndex:indexPath.row]valueForKey:@"label"]isEqualToString:@"Redeem Points"]) {
-                        lbl.alpha=0;
-                        imgSel.alpha=0;
+                    if ([[[paymentMethodsAry objectAtIndex:indexPath.row]valueForKey:@"label"] isKindOfClass:[NSNull class]])
+                    {
+                        lbl.text=@"";
                     }
                     else
                     {
-                        lbl.text=[[paymentMethodsAry objectAtIndex:indexPath.row]valueForKey:@"label"];
+                        if ([[[paymentMethodsAry objectAtIndex:indexPath.row]valueForKey:@"label"]isEqualToString:@"Redeem Points"]) {
+                            lbl.alpha=0;
+                            imgSel.alpha=0;
+                        }
+                        else
+                        {
+                            lbl.text=[[paymentMethodsAry objectAtIndex:indexPath.row]valueForKey:@"label"];
+                        }
                     }
                     
                 }
@@ -3983,22 +4116,38 @@ NTMonthYearPicker *picker;
                     
                 }
                 
-                lbl.text=[[paymentMethodsAry objectAtIndex:indexPath.row]valueForKey:@"label"];
+               // NSString *strPayLabel = [[paymentMethodsAry objectAtIndex:indexPath.row]valueForKey:@"label"];
+                
+                if ([[[paymentMethodsAry objectAtIndex:indexPath.row]valueForKey:@"label"] isKindOfClass:[NSNull class]])
+                {
+                    lbl.text=@"";
+                } else {
+                    lbl.text=[[paymentMethodsAry objectAtIndex:indexPath.row]valueForKey:@"label"];
+                }
+                
+                
                 if ([COD isKindOfClass:[NSNull class]]&&[[[paymentMethodsAry objectAtIndex:indexPath.row]valueForKey:@"paySetGroupKey"]isEqualToString:@"CashOnDeliveryRedemption"])
                 {
-                }
-                else if ([[[paymentMethodsAry objectAtIndex:indexPath.row]valueForKey:@"label"]isEqualToString:@"Redeem Points"])
-                {
-                    if (appDelObj.isArabic)
+                } else {
+                    if ([[[paymentMethodsAry objectAtIndex:indexPath.row]valueForKey:@"label"] isKindOfClass:[NSNull class]])
                     {
-                        lbl.text=@"استبدال النقاط";
                     }
-                    else
-                    {
-                        lbl.text=@"Redeem Points";
+                    else {
+                        if ([[[paymentMethodsAry objectAtIndex:indexPath.row]valueForKey:@"label"]isEqualToString:@"Redeem Points"])
+                        {
+                            if (appDelObj.isArabic)
+                            {
+                                lbl.text=@"استبدال النقاط";
+                            }
+                            else
+                            {
+                                lbl.text=@"Redeem Points";
+                            }
+                            
+                        }
                     }
-                    
                 }
+                
             }
             cell.clipsToBounds=YES;
             cell.layer.borderWidth=1;
@@ -4308,12 +4457,7 @@ NTMonthYearPicker *picker;
                 }
                
             }
-           
-            
-            
-            
         }
-        
         return menuCell;
     }
 }
@@ -4363,6 +4507,7 @@ NTMonthYearPicker *picker;
     {
         [self.navigationController pushViewController:wallet animated:YES];
     }
+    
 }
 - (NSIndexPath*)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath*)indexPath {
     if (tableView==self.tblShipInfo)
@@ -5858,16 +6003,21 @@ NTMonthYearPicker *picker;
                     
                 }
                 
-                
-                if ([[[paymentMethodsAry objectAtIndex:indexPath.row]valueForKey:@"label"]isEqualToString:@"Redeem Points"]) {
-                    catCell.lblMethod.alpha=0;
-                    catCell.lblIm.alpha=0;
+                if ([[[paymentMethodsAry objectAtIndex:indexPath.row]valueForKey:@"label"] isKindOfClass:[NSNull class]])
+                {
                 }
                 else
                 {
-                    catCell.lblMethod.text=[[paymentMethodsAry objectAtIndex:indexPath.row]valueForKey:@"label"];
+                    if ([[[paymentMethodsAry objectAtIndex:indexPath.row]valueForKey:@"label"]isEqualToString:@"Redeem Points"])
+                    {
+                        catCell.lblMethod.alpha=0;
+                        catCell.lblIm.alpha=0;
+                    }
+                    else
+                    {
+                        catCell.lblMethod.text=[[paymentMethodsAry objectAtIndex:indexPath.row]valueForKey:@"label"];
+                    }
                 }
-                
             }
             
             
@@ -5903,13 +6053,29 @@ NTMonthYearPicker *picker;
                 
             }
             
-            catCell.lblMethod.text=[[paymentMethodsAry objectAtIndex:indexPath.row]valueForKey:@"label"];
+            if ([[[paymentMethodsAry objectAtIndex:indexPath.row]valueForKey:@"label"] isKindOfClass:[NSNull class]])
+            {
+                catCell.lblMethod.text=@"";
+            }
+            else
+            {
+                catCell.lblMethod.text=[[paymentMethodsAry objectAtIndex:indexPath.row]valueForKey:@"label"];
+            }
+            
             if ([COD isKindOfClass:[NSNull class]]&&[[[paymentMethodsAry objectAtIndex:indexPath.row]valueForKey:@"paySetGroupKey"]isEqualToString:@"CashOnDeliveryRedemption"])
             {
             }
-            else if ([[[paymentMethodsAry objectAtIndex:indexPath.row]valueForKey:@"label"]isEqualToString:@"Redeem Points"]) {
-                catCell.lblMethod.alpha=0;
-                catCell.lblIm.alpha=0;
+            else {
+                if ([[[paymentMethodsAry objectAtIndex:indexPath.row]valueForKey:@"label"] isKindOfClass:[NSNull class]])
+                {
+                }
+                else
+                {
+                    if ([[[paymentMethodsAry objectAtIndex:indexPath.row]valueForKey:@"label"]isEqualToString:@"Redeem Points"]) {
+                        catCell.lblMethod.alpha=0;
+                        catCell.lblIm.alpha=0;
+                    }
+                }
             }
         }
         
@@ -6473,6 +6639,346 @@ NTMonthYearPicker *picker;
         [returnString appendFormat:@"%C", [numbers characterAtIndex:arc4random() % [numbers length]]];
     }
     return returnString;
+}
+
+
+
+#pragma mark - Payfort Sdk
+-(NSString*)sha256:(NSString*)input
+{
+    const char* str = [input UTF8String];
+    unsigned char result[CC_SHA256_DIGEST_LENGTH];
+    CC_SHA256(str, strlen(str), result);
+
+    NSMutableString *ret = [NSMutableString stringWithCapacity:CC_SHA256_DIGEST_LENGTH*2];
+    for(int i = 0; i<CC_SHA256_DIGEST_LENGTH; i++)
+    {
+        [ret appendFormat:@"%02x",result[i]];
+    }
+    return ret;
+}
+
+
+
+-(NSString*) getSignatureStr {
+    
+    NSString * signatureString = [NSString stringWithFormat:@"%@access_code=%@device_id=%@language=%@merchant_identifier=%@service_command=%@%@",payfortDevPhrase, payfortDevAccessCode,
+                                  [[[UIDevice currentDevice] identifierForVendor] UUIDString], payfortLanguage, payfortDevMerchantID, @"SDK_TOKEN", payfortDevPhrase];
+    NSString *generatedString = [self sha256:signatureString];
+    return generatedString;
+}
+
+
+- (BOOL)generateAccessToken {
+    NSURL *url = [NSURL URLWithString:payfortDevUrl];
+
+    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
+    [urlRequest setHTTPMethod:@"POST"];
+    [urlRequest addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [urlRequest addValue:@"application/json" forHTTPHeaderField:@"Accept"];
+
+    NSDictionary *postDataDic = [NSDictionary dictionaryWithObjectsAndKeys:sdkTokenCommand,@"service_command",payfortDevAccessCode,
+                                 @"access_code", payfortDevMerchantID,@"merchant_identifier", payfortLanguage,@"language", [[[UIDevice currentDevice] identifierForVendor] UUIDString],@"device_id",
+                                 [self getSignatureStr],@"signature", nil];
+    
+    NSData *jsonData;
+    @try {
+        jsonData = [NSJSONSerialization dataWithJSONObject:postDataDic options:(NSJSONWritingOptions) 0 error:nil];
+    }
+    @catch (NSException *) {
+        return NO;
+    }
+    [urlRequest setHTTPBody:jsonData];
+
+    _urlRequest = urlRequest;
+    
+    [self startDataTask];
+
+    return YES;
+}
+
+
+- (void)startDataTask {
+//    [_request registerPerforming];
+
+    _session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *dataTask = [_session dataTaskWithRequest:_urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        [self handleResponse:response data:data error:error];
+    }];
+    [dataTask resume];
+}
+
+
+
+- (void)handleResponse:(NSURLResponse *)response data:(NSData *)data error:(NSError *)error {
+
+    if (!error) {
+        if (data) {
+
+            NSDictionary *userInfo;
+            NSString *responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            if (responseString) {
+                userInfo = @{
+//                        StartAPIClientErrorKeyResponse: responseString
+                };
+            }
+
+            id responseJSON = [NSJSONSerialization JSONObjectWithData:data options:(NSJSONReadingOptions) 0 error:nil];
+            
+            if ([responseJSON isKindOfClass:[NSDictionary class]]) {
+                NSLog(@"%@", responseJSON);
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self connectPaymentGateway: [responseJSON valueForKey:@"sdk_token"]];
+
+                });
+                
+                if ([response isKindOfClass:[NSHTTPURLResponse class]] && ((NSHTTPURLResponse *)response).statusCode / 100 == 2) {
+//                    if ([_request processResponse:responseJSON]) {
+////                        _successBlock();
+//                    }
+//                    else {
+////                        error = [NSError errorWithDomain:StartAPIClientError code:StartAPIClientErrorCodeInvalidResponse userInfo:userInfo];
+//                    }
+                }
+                else {
+                    if ([responseJSON[@"error"][@"type"] isEqualToString:@"authentication"]) {
+//                        error = [NSError errorWithDomain:StartAPIClientError code:StartAPIClientErrorCodeInvalidAPIKey userInfo:userInfo];
+                    }
+                    else {
+//                        error = [NSError errorWithDomain:StartAPIClientError code:StartAPIClientErrorCodeServerError userInfo:userInfo];
+                    }
+                };
+            }
+            else {
+//                error = [NSError errorWithDomain:StartAPIClientError code:StartAPIClientErrorCodeInvalidResponse userInfo:userInfo];
+            }
+        }
+        else {
+//            error = [NSError errorWithDomain:StartAPIClientError code:StartAPIClientErrorCodeInvalidResponse userInfo:nil];
+        }
+    }
+    
+    if (error) {
+//        if ((error.domain != StartAPIClientError || error.code != StartAPIClientErrorCodeInvalidAPIKey) && _request.shouldRetry) {
+//            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t) (NSEC_PER_SEC * _request.retryInterval)), dispatch_get_main_queue(), ^{
+//                if (self->_request.shouldRetry) {
+//                    [self startDataTask];
+//                }
+//            });
+//        }
+//        else {
+//            _errorBlock(error);
+//        }
+    }
+}
+
+
+-(void) connectPaymentGateway: (NSString*)token {
+    PayFortController *payFort = [[PayFortController
+    alloc]initWithEnviroment:KPayFortEnviromentSandBox];
+    //if you need to switch on the Payfort Response page payFort.IsShowResponsePage = YES;
+    //Generate the request dictionary as follow
+    
+    NSTimeInterval timeInSeconds = [[NSDate date] timeIntervalSince1970] * 1000; // [[NSDate date] timeIntervalSince1970];
+    NSInteger time = round(timeInSeconds);
+
+    NSString * referenceString = [NSString stringWithFormat:@"12586_%0.2ld",(long)time];
+                                  
+    NSMutableDictionary *requestDictionary = [[NSMutableDictionary alloc]init];
+
+    [requestDictionary setValue:@"AUTHORIZATION" forKey:@"command"];
+    [requestDictionary setValue:payfortCurreny forKey:@"currency"];
+    [requestDictionary setValue:payfortLanguage forKey:@"language"];
+    [requestDictionary setValue:@"" forKey:@"payment_option"];
+
+    NSArray *priceArr=[self.totalPriceValue componentsSeparatedByString:appDelObj.currencySymbol];
+    float price=[[[priceArr objectAtIndex:0] stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceAndNewlineCharacterSet]] floatValue];
+    NSInteger centsToPay = price*100;
+    
+    [requestDictionary setValue:[NSString stringWithFormat:@"%ld", (long)centsToPay] forKey:@"amount"];
+    [requestDictionary setValue:[[NSUserDefaults standardUserDefaults]  valueForKey:@"USER_EMAIL"] forKey:@"customer_email"];
+    [requestDictionary setValue:referenceString forKey:@"merchant_reference"];
+//    [requestDictionary setValue:payfortDevAccessCode forKey:@"token_name"];
+    [requestDictionary setValue:token forKey:@"sdk_token"];
+
+    [payFort callPayFortWithRequest:requestDictionary currentViewController:self
+     
+    Success:^(NSDictionary *requestDic, NSDictionary *responeDic) {
+        sdk_token = token;
+        merchant_reference = referenceString;
+        
+        [self submitCheckoutParams: responeDic];
+
+        
+    } Canceled:^(NSDictionary *requestDic, NSDictionary *responeDic) {
+                 
+        
+    } Faild:^(NSDictionary *requestDic, NSDictionary *responeDic, NSString *message) {
+        
+        
+    }];
+}
+
+
+
+- (void)submitCheckoutParams: (NSDictionary*)responeDic {
+    NSString *urlStr=[NSString stringWithFormat:@"%@%@%@",appDelObj.baseURL,@"mobileapp/Cart/payfortSettings/languageID/",appDelObj.languageId];
+    NSURL *url = [NSURL URLWithString:urlStr];
+
+    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
+    [urlRequest setHTTPMethod:@"POST"];
+//    [urlRequest addValue:_authorization forHTTPHeaderField:@"Authorization"];
+//    [urlRequest addValue:[NSBundle bundleForClass:[self class]].startVersion forHTTPHeaderField:@"StartiOS"];
+    [urlRequest addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [urlRequest addValue:@"application/json" forHTTPHeaderField:@"Accept"];
+
+    NSArray *priceArr=[self.totalPriceValue componentsSeparatedByString:appDelObj.currencySymbol];
+    float price=[[[priceArr objectAtIndex:0] stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceAndNewlineCharacterSet]] floatValue];
+    NSInteger centsToPay = price*100;
+    
+//    NSDictionary *postDataDic = [NSDictionary dictionaryWithObjectsAndKeys:[[NSUserDefaults standardUserDefaults]objectForKey:@"USER_ID"],@"userID",@"Payfort",
+//                                 @"paySetGroupKey", [[NSUserDefaults standardUserDefaults]objectForKey:@"cartID"], @"cartID", [[[UIDevice currentDevice] identifierForVendor] UUIDString],@"device_id", @"iphone",
+//                                 @"deviceType", [NSString stringWithFormat:@"%ld", (long)centsToPay], @"amount", sdk_token, @"sdk_token",
+//                                 merchant_reference,@"merchant_reference", [[NSUserDefaults standardUserDefaults]  valueForKey:@"USER_EMAIL"],
+//                                 @"customer_email", payfortCurreny, @"currency", [[NSUserDefaults standardUserDefaults] valueForKey:@"USER_NAME"], @"customer_name",
+//                                 payfortLanguage, @"language", @"PURCHASE", @"command",nil];
+    
+    
+    NSMutableDictionary *postDataDic;
+
+    postDataDic = [NSMutableDictionary dictionaryWithObjectsAndKeys:[[NSUserDefaults standardUserDefaults]objectForKey:@"USER_ID"],@"userID",@"Payfort",
+    @"paySetGroupKey", [[NSUserDefaults standardUserDefaults]objectForKey:@"cartID"], @"cartID", [[[UIDevice currentDevice] identifierForVendor] UUIDString],@"device_id", @"iphone",
+    @"deviceType", [responeDic valueForKey:@"amount"], @"amount", [responeDic valueForKey:@"sdk_token"], @"sdk_token",
+    [responeDic valueForKey:@"merchant_reference"],@"merchant_reference", [responeDic valueForKey:@"customer_email"],
+    @"customer_email", [responeDic valueForKey:@"currency"], @"currency", [responeDic valueForKey:@"card_holder_name"], @"customer_name",
+    [responeDic valueForKey:@"language"], @"language", @"PURCHASE", @"command",nil];
+    
+    NSLog(@"%@", postDataDic);
+    
+    
+    [webServiceObj getUrlReqForPostingBaseUrl:urlStr andTextData:postDataDic];
+
+    
+    
+    /*NSData *jsonData;
+    @try {
+        jsonData = [NSJSONSerialization dataWithJSONObject:postDataDic options:(NSJSONWritingOptions) 0 error:nil];
+    }
+    @catch (NSException *) {
+        return NO;
+    }
+    [urlRequest setHTTPBody:jsonData];
+
+    _checkoutRequest = urlRequest;
+    
+    [self startCheckoutTask];
+
+    return YES;*/
+}
+
+
+
+
+- (void)startCheckoutTask {
+//    [_request registerPerforming];
+
+    _newSession = [NSURLSession sharedSession];
+    NSURLSessionDataTask *dataTask = [_newSession dataTaskWithRequest:_checkoutRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        [self handleCheckoutResponse:response data:data error:error];
+    }];
+    [dataTask resume];
+}
+
+
+
+- (void)handleCheckoutResponse:(NSURLResponse *)response data:(NSData *)data error:(NSError *)error {
+     if (!error) {
+            if (data) {
+
+                NSDictionary *userInfo;
+                NSString *responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                if (responseString) {
+                    userInfo = @{
+    //                        StartAPIClientErrorKeyResponse: responseString
+                    };
+                }
+
+                id responseJSON = [NSJSONSerialization JSONObjectWithData:data options:(NSJSONReadingOptions) 0 error:nil];
+                
+                if ([responseJSON isKindOfClass:[NSDictionary class]]) {
+                    NSLog(@"%@", responseJSON);
+
+                    sdk_token = @"";
+                    merchant_reference = @"";
+
+                    [[NSUserDefaults standardUserDefaults]setObject:@"" forKey:@"CART_COUNT"];
+                    [[NSUserDefaults standardUserDefaults]setObject:@"" forKey:@"CART_PRICE"];
+                    [[NSUserDefaults standardUserDefaults]setObject:@"" forKey:@"cartID"];
+                    [[NSUserDefaults standardUserDefaults]setObject:@"" forKey:@"Order_ID"];
+                    [[NSUserDefaults standardUserDefaults]setObject:@"" forKey:@"PayMethod"];
+
+                    [[NSUserDefaults standardUserDefaults]synchronize];
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+
+                    ThankYouViewController *thank=[[ThankYouViewController alloc]init];
+                        if(appDelObj.isArabic)
+                        {
+                            thank.strResponse=@"لقد تم اكمال طلبك بنجاح،سوف تتلقى رسالة تأكيد الطلب بالبريد الإلكتروني مع تفاصيل طلبك .";
+                            transition = [CATransition animation];
+                            [transition setDuration:0.3];
+                            transition.type = kCATransitionPush;
+                            transition.subtype = kCATransitionFromLeft;
+                            [transition setFillMode:kCAFillModeBoth];
+                            [transition setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+                            [self.navigationController.view.layer addAnimation:transition forKey:kCATransition];
+                            [self.navigationController pushViewController:thank animated:YES];
+                        }
+                        else
+                        {
+                            thank.strResponse=@"Your order has been placed and is being processed. When items are shipped, you will receive an email with the details. You can track this order through . My order Page.";
+                            [self.navigationController pushViewController:thank animated:YES];
+                        }
+                    });
+                        
+                        
+//                    [Loading dismiss];
+                    
+                    
+                    
+                    
+                    
+                    
+                    if ([response isKindOfClass:[NSHTTPURLResponse class]] && ((NSHTTPURLResponse *)response).statusCode / 100 == 2) {
+    //                    if ([_request processResponse:responseJSON]) {
+    ////                        _successBlock();
+    //                    }
+    //                    else {
+    ////                        error = [NSError errorWithDomain:StartAPIClientError code:StartAPIClientErrorCodeInvalidResponse userInfo:userInfo];
+    //                    }
+                    }
+                    else {
+                        if ([responseJSON[@"error"][@"type"] isEqualToString:@"authentication"]) {
+    //                        error = [NSError errorWithDomain:StartAPIClientError code:StartAPIClientErrorCodeInvalidAPIKey userInfo:userInfo];
+                        }
+                        else {
+    //                        error = [NSError errorWithDomain:StartAPIClientError code:StartAPIClientErrorCodeServerError userInfo:userInfo];
+                        }
+                    };
+                }
+                else {
+    //                error = [NSError errorWithDomain:StartAPIClientError code:StartAPIClientErrorCodeInvalidResponse userInfo:userInfo];
+                }
+            }
+            else {
+    //            error = [NSError errorWithDomain:StartAPIClientError code:StartAPIClientErrorCodeInvalidResponse userInfo:nil];
+            }
+        }
+        
+        if (error) {
+            
+        }
 }
 
 
@@ -7104,17 +7610,30 @@ NTMonthYearPicker *picker;
         else
         {
             shipOrDeli=@"PaymentAfterOption";
-            if (appDelObj.isArabic)
-            {
-                [Loading showWithStatus:@"يرجى الانتظار " maskType:SVProgressHUDMaskTypeClear Indicator:YES];
+            
+            if ([payMetho isEqual: @"PayfortMada"]) {
+                [self generateAccessToken];
+
+            }  else if ( [payMetho isEqual: @"Payfort"]) {
+                [self generateAccessToken];
+
+            } else if ([payMetho isEqual: @"PayfortSadad"]) {
+                [self generateAccessToken];
+
+            } else {
+            
+                if (appDelObj.isArabic)
+                {
+                    [Loading showWithStatus:@"يرجى الانتظار " maskType:SVProgressHUDMaskTypeClear Indicator:YES];
+                }
+                else
+                {
+                    [Loading showWithStatus:@"Please wait..." maskType:SVProgressHUDMaskTypeClear Indicator:YES];
+                }
+                NSString*url=  [NSString stringWithFormat:@"%@mobileapp/Cart/paymentGatewaySettings/languageID/%@",appDelObj.baseURL,appDelObj.languageId];
+                NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:[[NSUserDefaults standardUserDefaults]objectForKey:@"USER_ID"],@"userID",payMetho,@"paySetGroupKey",[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults]objectForKey:@"DEVICE"]],@"device_id",[NSString stringWithString:[[NSUserDefaults standardUserDefaults]objectForKey:@"cartID"]],@"cartID", nil];
+                [webServiceObj getUrlReqForPostingBaseUrl:url andTextData:dicPost];
             }
-            else
-            {
-                [Loading showWithStatus:@"Please wait..." maskType:SVProgressHUDMaskTypeClear Indicator:YES];
-            }
-            NSString*url=  [NSString stringWithFormat:@"%@mobileapp/Cart/paymentGatewaySettings/languageID/%@",appDelObj.baseURL,appDelObj.languageId];
-            NSMutableDictionary *dicPost=[[NSMutableDictionary alloc]initWithObjectsAndKeys:[[NSUserDefaults standardUserDefaults]objectForKey:@"USER_ID"],@"userID",payMetho,@"paySetGroupKey",[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults]objectForKey:@"DEVICE"]],@"device_id",[NSString stringWithString:[[NSUserDefaults standardUserDefaults]objectForKey:@"cartID"]],@"cartID", nil];
-            [webServiceObj getUrlReqForPostingBaseUrl:url andTextData:dicPost];
         }
             /*if([payMetho isEqualToString:@"PayU"])
             {
@@ -8254,4 +8773,3 @@ NTMonthYearPicker *picker;
 }
 
 @end
-

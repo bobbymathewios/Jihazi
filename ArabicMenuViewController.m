@@ -143,7 +143,9 @@
     else
     {
         [Loading showWithStatus:@"Please wait..." maskType:SVProgressHUDMaskTypeClear Indicator:YES];
-    }  NSString *urlStr=[NSString stringWithFormat:@"%@%@%@",appDelObj.baseURL,@"mobileapp/index/setDynamicMenu/languageID/",appDelObj.languageId];
+    }
+    
+    NSString *urlStr=[NSString stringWithFormat:@"%@%@%@",appDelObj.baseURL,@"mobileapp/index/setDynamicMenu/languageID/",appDelObj.languageId];
     [webServiceObj getDataFromService:[NSURLRequest requestWithURL:[NSURL URLWithString:urlStr]]];
 }
 
